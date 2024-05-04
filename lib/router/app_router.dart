@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../feature/onboarding/data/onboarding_repository.dart';
 import '../feature/onboarding/presentation/onboarding_page.dart';
 import 'scaffold_with_nested_navigation.dart';
 
@@ -18,8 +19,20 @@ final eNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'e');
 GoRouter goRouter(GoRouterRef ref) {
   return GoRouter(
     debugLogDiagnostics: true,
-    initialLocation: '/onboarding',
+    initialLocation: '/a',
     routes: $appRoutes,
+    redirect: (context, state) async {
+      final path = state.uri.path;
+      // オンボーディングが未実施ならオンボーディングへ
+      final onboardingRepository = await ref
+          .read(onboardingRepositoryProvider.selectAsync((value) => value));
+      if (!onboardingRepository.isCompleted()) {
+        if (path != OnboardingRoute.path) {
+          return OnboardingRoute.path;
+        }
+      }
+      return null;
+    },
   );
 }
 
@@ -39,11 +52,12 @@ class DummyHomeRoute extends GoRouteData {
 }
 
 @TypedGoRoute<OnboardingRoute>(
-  path: '/onboarding',
+  path: OnboardingRoute.path,
   routes: <TypedGoRoute<GoRouteData>>[],
 )
 class OnboardingRoute extends GoRouteData {
   const OnboardingRoute();
+  static const path = '/onboarding';
 
   @override
   Widget build(BuildContext context, GoRouterState state) => OnboardingPage();
