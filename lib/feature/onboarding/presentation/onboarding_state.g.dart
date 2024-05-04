@@ -22,7 +22,7 @@ final onboardingIndexProvider =
 );
 
 typedef _$OnboardingIndex = AutoDisposeNotifier<int>;
-String _$onboardingStateHash() => r'ccc028cbfa28114698b6e054329cafa40edfe648';
+String _$onboardingStateHash() => r'2ffa268f755afb24e8b350e00adc83cd689de6f9';
 
 /// See also [OnboardingState].
 @ProviderFor(OnboardingState)

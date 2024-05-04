@@ -7,33 +7,9 @@ part of 'app_router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-      $dummyHomeRoute,
       $onboardingRoute,
       $appShellRouteData,
     ];
-
-RouteBase get $dummyHomeRoute => GoRouteData.$route(
-      path: '/dummy',
-      factory: $DummyHomeRouteExtension._fromState,
-    );
-
-extension $DummyHomeRouteExtension on DummyHomeRoute {
-  static DummyHomeRoute _fromState(GoRouterState state) =>
-      const DummyHomeRoute();
-
-  String get location => GoRouteData.$location(
-        '/dummy',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
 
 RouteBase get $onboardingRoute => GoRouteData.$route(
       path: '/onboarding',
@@ -62,47 +38,52 @@ RouteBase get $appShellRouteData => StatefulShellRouteData.$route(
       factory: $AppShellRouteDataExtension._fromState,
       branches: [
         StatefulShellBranchData.$branch(
-          navigatorKey: TabABranch.$navigatorKey,
+          navigatorKey: HomeBranch.$navigatorKey,
           routes: [
             GoRouteData.$route(
-              path: '/a',
-              factory: $ARouteDataExtension._fromState,
+              path: '/home',
+              name: 'home',
+              factory: $HomeRouteDataExtension._fromState,
             ),
           ],
         ),
         StatefulShellBranchData.$branch(
-          navigatorKey: TabBBranch.$navigatorKey,
+          navigatorKey: PartyBranch.$navigatorKey,
           routes: [
             GoRouteData.$route(
-              path: '/b',
-              factory: $BRouteDataExtension._fromState,
+              path: '/party',
+              name: 'party',
+              factory: $PartyRouteDataExtension._fromState,
             ),
           ],
         ),
         StatefulShellBranchData.$branch(
-          navigatorKey: TabCBranch.$navigatorKey,
+          navigatorKey: AdventureBranch.$navigatorKey,
           routes: [
             GoRouteData.$route(
-              path: '/c',
-              factory: $CRouteDataExtension._fromState,
+              path: '/adventure',
+              name: 'adventure',
+              factory: $AdventureRouteDataExtension._fromState,
             ),
           ],
         ),
         StatefulShellBranchData.$branch(
-          navigatorKey: TabDBranch.$navigatorKey,
+          navigatorKey: PokedexBranch.$navigatorKey,
           routes: [
             GoRouteData.$route(
-              path: '/d',
-              factory: $DRouteDataExtension._fromState,
+              path: '/pokedex',
+              name: 'pokedex',
+              factory: $PokedexRouteDataExtension._fromState,
             ),
           ],
         ),
         StatefulShellBranchData.$branch(
-          navigatorKey: TabEBranch.$navigatorKey,
+          navigatorKey: AccountBranch.$navigatorKey,
           routes: [
             GoRouteData.$route(
-              path: '/e',
-              factory: $ERouteDataExtension._fromState,
+              path: '/account',
+              name: 'account',
+              factory: $AccountRouteDataExtension._fromState,
             ),
           ],
         ),
@@ -114,11 +95,11 @@ extension $AppShellRouteDataExtension on AppShellRouteData {
       const AppShellRouteData();
 }
 
-extension $ARouteDataExtension on ARouteData {
-  static ARouteData _fromState(GoRouterState state) => const ARouteData();
+extension $HomeRouteDataExtension on HomeRouteData {
+  static HomeRouteData _fromState(GoRouterState state) => const HomeRouteData();
 
   String get location => GoRouteData.$location(
-        '/a',
+        '/home',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -131,11 +112,12 @@ extension $ARouteDataExtension on ARouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $BRouteDataExtension on BRouteData {
-  static BRouteData _fromState(GoRouterState state) => const BRouteData();
+extension $PartyRouteDataExtension on PartyRouteData {
+  static PartyRouteData _fromState(GoRouterState state) =>
+      const PartyRouteData();
 
   String get location => GoRouteData.$location(
-        '/b',
+        '/party',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -148,11 +130,12 @@ extension $BRouteDataExtension on BRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $CRouteDataExtension on CRouteData {
-  static CRouteData _fromState(GoRouterState state) => const CRouteData();
+extension $AdventureRouteDataExtension on AdventureRouteData {
+  static AdventureRouteData _fromState(GoRouterState state) =>
+      const AdventureRouteData();
 
   String get location => GoRouteData.$location(
-        '/c',
+        '/adventure',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -165,11 +148,12 @@ extension $CRouteDataExtension on CRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $DRouteDataExtension on DRouteData {
-  static DRouteData _fromState(GoRouterState state) => const DRouteData();
+extension $PokedexRouteDataExtension on PokedexRouteData {
+  static PokedexRouteData _fromState(GoRouterState state) =>
+      const PokedexRouteData();
 
   String get location => GoRouteData.$location(
-        '/d',
+        '/pokedex',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -182,11 +166,12 @@ extension $DRouteDataExtension on DRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $ERouteDataExtension on ERouteData {
-  static ERouteData _fromState(GoRouterState state) => const ERouteData();
+extension $AccountRouteDataExtension on AccountRouteData {
+  static AccountRouteData _fromState(GoRouterState state) =>
+      const AccountRouteData();
 
   String get location => GoRouteData.$location(
-        '/e',
+        '/account',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -203,7 +188,7 @@ extension $ERouteDataExtension on ERouteData {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$goRouterHash() => r'274a39bdaf9927ea46c74830cd807609ec76032a';
+String _$goRouterHash() => r'cd8daa87a9239e94464c72e188a1d0240897682b';
 
 /// See also [goRouter].
 @ProviderFor(goRouter)

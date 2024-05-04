@@ -70,7 +70,7 @@ final _pages = <_Page>[
     title: 'Page Last',
     description: 'last',
     buttonText: '始める',
-    nextLocation: ARouteData.path,
+    nextLocation: HomeRouteData.path,
   ),
 ];
 

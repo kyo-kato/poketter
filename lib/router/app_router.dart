@@ -9,17 +9,18 @@ import 'scaffold_with_nested_navigation.dart';
 part 'app_router.g.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>();
-final aNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'a');
-final bNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'b');
-final cNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'c');
-final dNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'd');
-final eNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'e');
+final homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
+final partyNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'party');
+final adventureNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'adventure');
+final pokedexNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'pokedex');
+final accountNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'account');
 
 @riverpod
 GoRouter goRouter(GoRouterRef ref) {
   return GoRouter(
     debugLogDiagnostics: true,
-    initialLocation: '/a',
+    initialLocation: HomeRouteData.path,
     routes: $appRoutes,
     redirect: (context, state) async {
       final path = state.uri.path;
@@ -36,67 +37,60 @@ GoRouter goRouter(GoRouterRef ref) {
   );
 }
 
-@TypedGoRoute<DummyHomeRoute>(
-  path: '/dummy',
-  routes: <TypedGoRoute<GoRouteData>>[],
-)
-class DummyHomeRoute extends GoRouteData {
-  const DummyHomeRoute();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) => Scaffold(
-        appBar: AppBar(
-          title: const Text('dummy home'),
-        ),
-      );
-}
-
 @TypedGoRoute<OnboardingRoute>(
   path: OnboardingRoute.path,
   routes: <TypedGoRoute<GoRouteData>>[],
 )
 class OnboardingRoute extends GoRouteData {
   const OnboardingRoute();
-  static const path = '/onboarding';
+  static const name = 'onboarding';
+  static const path = '/$name';
 
   @override
   Widget build(BuildContext context, GoRouterState state) => OnboardingPage();
 }
 
+// タブ
+
 @TypedStatefulShellRoute<AppShellRouteData>(
   branches: <TypedStatefulShellBranch<StatefulShellBranchData>>[
-    TypedStatefulShellBranch<TabABranch>(
+    TypedStatefulShellBranch<HomeBranch>(
       routes: [
-        TypedGoRoute<ARouteData>(
-          path: ARouteData.path,
+        TypedGoRoute<HomeRouteData>(
+          path: HomeRouteData.path,
+          name: HomeRouteData.name,
         ),
       ],
     ),
-    TypedStatefulShellBranch<TabBBranch>(
+    TypedStatefulShellBranch<PartyBranch>(
       routes: [
-        TypedGoRoute<BRouteData>(
-          path: BRouteData.path,
+        TypedGoRoute<PartyRouteData>(
+          path: PartyRouteData.path,
+          name: PartyRouteData.name,
         ),
       ],
     ),
-    TypedStatefulShellBranch<TabCBranch>(
+    TypedStatefulShellBranch<AdventureBranch>(
       routes: [
-        TypedGoRoute<CRouteData>(
-          path: CRouteData.path,
+        TypedGoRoute<AdventureRouteData>(
+          path: AdventureRouteData.path,
+          name: AdventureRouteData.name,
         ),
       ],
     ),
-    TypedStatefulShellBranch<TabDBranch>(
+    TypedStatefulShellBranch<PokedexBranch>(
       routes: [
-        TypedGoRoute<DRouteData>(
-          path: DRouteData.path,
+        TypedGoRoute<PokedexRouteData>(
+          path: PokedexRouteData.path,
+          name: PokedexRouteData.name,
         ),
       ],
     ),
-    TypedStatefulShellBranch<TabEBranch>(
+    TypedStatefulShellBranch<AccountBranch>(
       routes: [
-        TypedGoRoute<ERouteData>(
-          path: ERouteData.path,
+        TypedGoRoute<AccountRouteData>(
+          path: AccountRouteData.path,
+          name: AccountRouteData.name,
         ),
       ],
     ),
@@ -119,87 +113,92 @@ class AppShellRouteData extends StatefulShellRouteData {
   }
 }
 
-/// TAB A
-class TabABranch extends StatefulShellBranchData {
-  const TabABranch();
+/// TAB Home
+class HomeBranch extends StatefulShellBranchData {
+  const HomeBranch();
 
-  static final GlobalKey<NavigatorState> $navigatorKey = aNavigatorKey;
+  static final GlobalKey<NavigatorState> $navigatorKey = homeNavigatorKey;
 }
 
-class ARouteData extends GoRouteData {
-  const ARouteData();
-  static const path = '/a';
+class HomeRouteData extends GoRouteData {
+  const HomeRouteData();
+  static const name = 'home';
+  static const path = '/$name';
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const Scaffold(body: Text(path));
+    return const Scaffold(body: Text(name));
   }
 }
 
-/// TAB B
-class TabBBranch extends StatefulShellBranchData {
-  const TabBBranch();
+/// TAB Party
+class PartyBranch extends StatefulShellBranchData {
+  const PartyBranch();
 
-  static final GlobalKey<NavigatorState> $navigatorKey = bNavigatorKey;
+  static final GlobalKey<NavigatorState> $navigatorKey = partyNavigatorKey;
 }
 
-class BRouteData extends GoRouteData {
-  const BRouteData();
-  static const path = '/b';
+class PartyRouteData extends GoRouteData {
+  const PartyRouteData();
+  static const name = 'party';
+  static const path = '/$name';
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const Scaffold(body: Text(path));
+    return const Scaffold(body: Text(name));
   }
 }
 
-/// TAB C
-class TabCBranch extends StatefulShellBranchData {
-  const TabCBranch();
+/// TAB Adventure
+class AdventureBranch extends StatefulShellBranchData {
+  const AdventureBranch();
 
-  static final GlobalKey<NavigatorState> $navigatorKey = cNavigatorKey;
+  static final GlobalKey<NavigatorState> $navigatorKey = adventureNavigatorKey;
 }
 
-class CRouteData extends GoRouteData {
-  const CRouteData();
-  static const path = '/c';
+class AdventureRouteData extends GoRouteData {
+  const AdventureRouteData();
+  static const name = 'adventure';
+  static const path = '/$name';
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const Scaffold(body: Text(path));
+    return const Scaffold(body: Text(name));
   }
 }
 
-/// TAB D
-class TabDBranch extends StatefulShellBranchData {
-  const TabDBranch();
+/// TAB Pokedex
+class PokedexBranch extends StatefulShellBranchData {
+  const PokedexBranch();
 
-  static final GlobalKey<NavigatorState> $navigatorKey = dNavigatorKey;
+  static final GlobalKey<NavigatorState> $navigatorKey = pokedexNavigatorKey;
 }
 
-class DRouteData extends GoRouteData {
-  const DRouteData();
-  static const path = '/d';
+class PokedexRouteData extends GoRouteData {
+  const PokedexRouteData();
+  static const name = 'pokedex';
+  static const path = '/$name';
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const Scaffold(body: Text(path));
+    return const Scaffold(body: Text(name));
   }
 }
 
-/// TAB E
-class TabEBranch extends StatefulShellBranchData {
-  const TabEBranch();
+/// TAB Account
+class AccountBranch extends StatefulShellBranchData {
+  const AccountBranch();
 
-  static final GlobalKey<NavigatorState> $navigatorKey = eNavigatorKey;
+  static final GlobalKey<NavigatorState> $navigatorKey = accountNavigatorKey;
 }
 
-class ERouteData extends GoRouteData {
-  const ERouteData();
-  static const path = '/e';
+class AccountRouteData extends GoRouteData {
+  const AccountRouteData();
+  static const name = 'account';
+  static const path = '/$name';
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const Scaffold(body: Text(path));
+    return const Scaffold(body: Text(name));
   }
 }
