@@ -19,7 +19,7 @@ class OnboardingPage extends ConsumerWidget {
         child: PageView(
           controller: _pageController,
           onPageChanged:
-              ref.read(onboardingStateProvider.notifier).updatePageIndex,
+              ref.read(onboardingIndexProvider.notifier).updatePageIndex,
           children: _pages,
         ),
       ),
@@ -40,7 +40,7 @@ class _BottomPageIndicator extends ConsumerWidget {
         _pages.length,
         (index) => Consumer(
           builder: (context, ref, child) {
-            final state = ref.watch(onboardingStateProvider);
+            final state = ref.watch(onboardingIndexProvider);
             return IconButton(
               onPressed: () {
                 pageController.animateToPage(
@@ -147,9 +147,25 @@ class _LastPage extends _Page {
             ),
           ),
           Expanded(
-            child: TextButton(
-              onPressed: () => GoRouter.of(context).go(nextLocation),
-              child: Text(buttonText),
+            child: Consumer(
+              builder: (context, ref, child) {
+                final state = ref.watch(onboardingStateProvider);
+                return TextButton(
+                  onPressed: state.isLoading
+                      ? null
+                      : () async {
+                          await ref
+                              .read(onboardingStateProvider.notifier)
+                              .complete();
+                          if (context.mounted) {
+                            GoRouter.of(context).go(nextLocation);
+                          }
+                        },
+                  child: state.isLoading
+                      ? const CircularProgressIndicator.adaptive()
+                      : Text(buttonText),
+                );
+              },
             ),
           ),
           const Spacer(),

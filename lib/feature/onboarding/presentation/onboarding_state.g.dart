@@ -6,12 +6,28 @@ part of 'onboarding_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$onboardingStateHash() => r'ae33af60458d8eeb365576426b4a99d104f990c9';
+String _$onboardingIndexHash() => r'a1c7178150d51d4225454a47fb4de9ab54f418f6';
+
+/// See also [OnboardingIndex].
+@ProviderFor(OnboardingIndex)
+final onboardingIndexProvider =
+    AutoDisposeNotifierProvider<OnboardingIndex, int>.internal(
+  OnboardingIndex.new,
+  name: r'onboardingIndexProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$onboardingIndexHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$OnboardingIndex = AutoDisposeNotifier<int>;
+String _$onboardingStateHash() => r'ccc028cbfa28114698b6e054329cafa40edfe648';
 
 /// See also [OnboardingState].
 @ProviderFor(OnboardingState)
 final onboardingStateProvider =
-    AutoDisposeNotifierProvider<OnboardingState, int>.internal(
+    AutoDisposeAsyncNotifierProvider<OnboardingState, void>.internal(
   OnboardingState.new,
   name: r'onboardingStateProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,6 +37,6 @@ final onboardingStateProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$OnboardingState = AutoDisposeNotifier<int>;
+typedef _$OnboardingState = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
