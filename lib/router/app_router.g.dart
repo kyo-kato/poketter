@@ -8,6 +8,7 @@ part of 'app_router.dart';
 
 List<RouteBase> get $appRoutes => [
       $dummyHomeRoute,
+      $onboardingRoute,
       $appShellRouteData,
     ];
 
@@ -22,6 +23,29 @@ extension $DummyHomeRouteExtension on DummyHomeRoute {
 
   String get location => GoRouteData.$location(
         '/dummy',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $onboardingRoute => GoRouteData.$route(
+      path: '/onboarding',
+      factory: $OnboardingRouteExtension._fromState,
+    );
+
+extension $OnboardingRouteExtension on OnboardingRoute {
+  static OnboardingRoute _fromState(GoRouterState state) =>
+      const OnboardingRoute();
+
+  String get location => GoRouteData.$location(
+        '/onboarding',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -179,7 +203,7 @@ extension $ERouteDataExtension on ERouteData {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$goRouterHash() => r'04fac633d5cba53866df95e40e71c9306aea3cf3';
+String _$goRouterHash() => r'274a39bdaf9927ea46c74830cd807609ec76032a';
 
 /// See also [goRouter].
 @ProviderFor(goRouter)

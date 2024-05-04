@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../feature/onboarding/presentation/onboarding_page.dart';
 import 'scaffold_with_nested_navigation.dart';
 
 part 'app_router.g.dart';
@@ -17,7 +18,7 @@ final eNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'e');
 GoRouter goRouter(GoRouterRef ref) {
   return GoRouter(
     debugLogDiagnostics: true,
-    initialLocation: '/dummy',
+    initialLocation: '/onboarding',
     routes: $appRoutes,
   );
 }
@@ -35,6 +36,17 @@ class DummyHomeRoute extends GoRouteData {
           title: const Text('dummy home'),
         ),
       );
+}
+
+@TypedGoRoute<OnboardingRoute>(
+  path: '/onboarding',
+  routes: <TypedGoRoute<GoRouteData>>[],
+)
+class OnboardingRoute extends GoRouteData {
+  const OnboardingRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => OnboardingPage();
 }
 
 @TypedStatefulShellRoute<AppShellRouteData>(
