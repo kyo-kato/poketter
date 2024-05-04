@@ -14,3 +14,5 @@ linter:
   rules:
     prefer_single_quotes: true
     prefer_relative_imports: true
+    use_setters_to_change_properties: false
+    flutter_style_todos: false
