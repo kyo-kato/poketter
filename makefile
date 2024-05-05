@@ -17,13 +17,7 @@ build-apk:
 	${FLUTTER} build apk --dart-define-from-file=dart_define/prod.env
 
 build-ipa-dev:
-	${FLUTTER} build ipa --dart-define-from-file=dart_define/dev.env
+	${FLUTTER} build ipa --dart-define-from-file=dart_define/dev.env --export-options-plist ios/dev/ExportOptions.plist
 
 build-ipa:
-	${FLUTTER} build ipa --dart-define-from-file=dart_define/prod.env
-
-build-ipa-dev-ns:
-	${FLUTTER} build ipa --no-codesign --dart-define-from-file=dart_define/dev.env
-
-build-ipa-ns:
-	${FLUTTER} build ipa --no-codesign --dart-define-from-file=dart_define/prod.env
+	${FLUTTER} build ipa --dart-define-from-file=dart_define/prod.env --export-options-plist ios/prod/ExportOptions.plist

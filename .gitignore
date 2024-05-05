@@ -50,4 +50,5 @@ android/app/src/main/res/values/colors.xml
 ios/Flutter/Dart-Define.xcconfig
 ios/**/GoogleService-Info.plist
 ios/**/firebase_app_id_file.json
+ios/**/ExportOptions.plist
 android/**/google-services.json
