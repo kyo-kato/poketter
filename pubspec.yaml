@@ -11,6 +11,7 @@ environment:
 dependencies:
   cached_network_image: ^3.3.1
   cupertino_icons: ^1.0.6
+  firebase_core: ^2.30.1
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.5.1

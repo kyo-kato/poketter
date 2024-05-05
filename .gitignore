@@ -48,3 +48,6 @@ app.*.map.json
 # build flavor
 android/app/src/main/res/values/colors.xml
 ios/Flutter/Dart-Define.xcconfig
+ios/**/GoogleService-Info.plist
+ios/**/firebase_app_id_file.json
+android/**/google-services.json
