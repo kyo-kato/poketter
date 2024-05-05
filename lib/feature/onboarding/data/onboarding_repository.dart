@@ -14,8 +14,13 @@ class OnboardingRepository {
   OnboardingRepository(this._sharedPreferences);
 
   static const completedKey = 'onboardingCompleted';
+  static const localUserNameKey = 'localUserName';
 
   final SharedPreferences _sharedPreferences;
+
+  Future<void> saveName(String userName) async {
+    await _sharedPreferences.setString(localUserNameKey, userName);
+  }
 
   Future<void> complete() async {
     await _sharedPreferences.setBool(completedKey, true);

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../feature/onboarding/data/onboarding_repository.dart';
+import '../feature/onboarding/presentation/entry_page.dart';
 import '../feature/onboarding/presentation/onboarding_page.dart';
 import 'scaffold_with_nested_navigation.dart';
 
@@ -27,11 +28,18 @@ GoRouter goRouter(GoRouterRef ref) {
       // オンボーディングが未実施ならオンボーディングへ
       final onboardingRepository = await ref
           .read(onboardingRepositoryProvider.selectAsync((value) => value));
-      if (!onboardingRepository.isCompleted()) {
-        if (path != OnboardingRoute.path) {
-          return OnboardingRoute.path;
-        }
+
+      final onboardingCompleted = onboardingRepository.isCompleted();
+      final currentPageIsOnboarding = path.startsWith(OnboardingRoute.path);
+
+      if (onboardingCompleted && currentPageIsOnboarding) {
+        return HomeRouteData.path;
       }
+
+      if (!onboardingCompleted && !currentPageIsOnboarding) {
+        return OnboardingRoute.path;
+      }
+
       return null;
     },
   );
@@ -39,7 +47,9 @@ GoRouter goRouter(GoRouterRef ref) {
 
 @TypedGoRoute<OnboardingRoute>(
   path: OnboardingRoute.path,
-  routes: <TypedGoRoute<GoRouteData>>[],
+  routes: <TypedGoRoute<GoRouteData>>[
+    TypedGoRoute<EntryRoute>(path: EntryRoute.name, name: EntryRoute.name),
+  ],
 )
 class OnboardingRoute extends GoRouteData {
   const OnboardingRoute();
@@ -48,6 +58,15 @@ class OnboardingRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => OnboardingPage();
+}
+
+class EntryRoute extends GoRouteData {
+  const EntryRoute();
+  static const name = 'entry';
+  static const path = name;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const EntryPage();
 }
 
 // タブ

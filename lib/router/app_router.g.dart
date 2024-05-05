@@ -14,6 +14,13 @@ List<RouteBase> get $appRoutes => [
 RouteBase get $onboardingRoute => GoRouteData.$route(
       path: '/onboarding',
       factory: $OnboardingRouteExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'entry',
+          name: 'entry',
+          factory: $EntryRouteExtension._fromState,
+        ),
+      ],
     );
 
 extension $OnboardingRouteExtension on OnboardingRoute {
@@ -22,6 +29,23 @@ extension $OnboardingRouteExtension on OnboardingRoute {
 
   String get location => GoRouteData.$location(
         '/onboarding',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $EntryRouteExtension on EntryRoute {
+  static EntryRoute _fromState(GoRouterState state) => const EntryRoute();
+
+  String get location => GoRouteData.$location(
+        '/onboarding/entry',
       );
 
   void go(BuildContext context) => context.go(location);

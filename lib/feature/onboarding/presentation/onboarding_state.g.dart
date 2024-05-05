@@ -22,6 +22,22 @@ final onboardingIndexProvider =
 );
 
 typedef _$OnboardingIndex = AutoDisposeNotifier<int>;
+String _$entryUserNameHash() => r'1a1b408ca335db7c153089854c0eb7c4c3be7a6b';
+
+/// See also [EntryUserName].
+@ProviderFor(EntryUserName)
+final entryUserNameProvider =
+    AutoDisposeNotifierProvider<EntryUserName, String>.internal(
+  EntryUserName.new,
+  name: r'entryUserNameProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$entryUserNameHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$EntryUserName = AutoDisposeNotifier<String>;
 String _$onboardingStateHash() => r'2ffa268f755afb24e8b350e00adc83cd689de6f9';
 
 /// See also [OnboardingState].

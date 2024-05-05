@@ -70,7 +70,7 @@ final _pages = <_Page>[
     title: 'Page Last',
     description: 'last',
     buttonText: '始める',
-    nextLocation: HomeRouteData.path,
+    nextLocation: EntryRoute.path,
   ),
 ];
 
@@ -147,25 +147,9 @@ class _LastPage extends _Page {
             ),
           ),
           Expanded(
-            child: Consumer(
-              builder: (context, ref, child) {
-                final state = ref.watch(onboardingStateProvider);
-                return TextButton(
-                  onPressed: state.isLoading
-                      ? null
-                      : () async {
-                          await ref
-                              .read(onboardingStateProvider.notifier)
-                              .complete();
-                          if (context.mounted) {
-                            GoRouter.of(context).go(nextLocation);
-                          }
-                        },
-                  child: state.isLoading
-                      ? const CircularProgressIndicator.adaptive()
-                      : Text(buttonText),
-                );
-              },
+            child: TextButton(
+              onPressed: () => GoRouter.of(context).goNamed(nextLocation),
+              child: Text(buttonText),
             ),
           ),
           const Spacer(),
