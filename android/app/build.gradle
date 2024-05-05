@@ -80,6 +80,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         resValue "string", "app_name", "${dartDefines.appName}"
+        multiDexEnabled true
     }
 
     signingConfigs {

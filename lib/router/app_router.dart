@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../feature/authentication/presentation/sign_up_page.dart';
 import '../feature/onboarding/data/onboarding_repository.dart';
 import '../feature/onboarding/presentation/entry_page.dart';
 import '../feature/onboarding/presentation/onboarding_page.dart';
@@ -218,6 +219,6 @@ class AccountRouteData extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const Scaffold(body: Text(name));
+    return const SignUpPage();
   }
 }

@@ -212,7 +212,7 @@ extension $AccountRouteDataExtension on AccountRouteData {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$goRouterHash() => r'cd8daa87a9239e94464c72e188a1d0240897682b';
+String _$goRouterHash() => r'a91642b53bcbb1ce4f53564ae6ad3fe09f8c3e85';
 
 /// See also [goRouter].
 @ProviderFor(goRouter)
