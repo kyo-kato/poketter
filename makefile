@@ -10,14 +10,20 @@ run-app-icon:
 build-runner:
 	${DART} pub run build_runner build --delete-conflicting-outputs
 
-build-apk-dev:
+apk-dev:
 	${FLUTTER} build apk --dart-define-from-file=dart_define/dev.env
 
-build-apk:
+apk:
 	${FLUTTER} build apk --dart-define-from-file=dart_define/prod.env
 
-build-ipa-dev:
+aab-dev:
+	${FLUTTER} build appbundle --dart-define-from-file=dart_define/dev.env
+
+aab:
+	${FLUTTER} build appbundle --dart-define-from-file=dart_define/prod.env
+
+ipa-dev:
 	${FLUTTER} build ipa --dart-define-from-file=dart_define/dev.env --export-options-plist ios/dev/ExportOptions.plist
 
-build-ipa:
+ipa:
 	${FLUTTER} build ipa --dart-define-from-file=dart_define/prod.env --export-options-plist ios/prod/ExportOptions.plist
