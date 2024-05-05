@@ -4,6 +4,9 @@ DART := fvm dart
 pub-get:
 	${FLUTTER} pub get
 
+run-app-icon:
+	${DART} run flutter_launcher_icons
+
 build-runner:
 	${DART} pub run build_runner build --delete-conflicting-outputs
 

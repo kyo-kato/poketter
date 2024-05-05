@@ -22,6 +22,15 @@ if (project.hasProperty('dart-defines')) {
         }
 }
 
+task copySources(type: Copy) {
+   from "src/${dartDefines.flavor}/res"
+   into 'src/main/res'
+}
+
+tasks.whenTaskAdded { task ->
+    task.dependsOn copySources
+}
+
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
     flutterVersionCode = '1'

@@ -46,4 +46,5 @@ app.*.map.json
 .fvm/
 
 # build flavor
+android/app/src/main/res/values/colors.xml
 ios/Flutter/Dart-Define.xcconfig
