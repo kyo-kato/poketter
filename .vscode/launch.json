@@ -2,9 +2,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "poketter",
+            "name": "poketter dev",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": ["--dart-define-from-file=dart_define/dev.env"]
+        },
+        {
+            "name": "poketter prod",
+            "request": "launch",
+            "type": "dart",
+            "args": ["--dart-define-from-file=dart_define/prod.env"]
         },
         {
             "name": "poketter (profile mode)",
