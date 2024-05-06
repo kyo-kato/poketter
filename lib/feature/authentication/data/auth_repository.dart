@@ -30,9 +30,10 @@ class AuthRepository {
 
   final FirebaseAuth _auth;
 
-  Future<void> signInAsGuest() async {
+  Future<AppUser?> signInAsGuest() async {
     final credential = await _auth.signInAnonymously();
     logger.i('signInAsGuest: ${credential.user?.uid}');
+    return _convertUser(credential.user);
   }
 
   Stream<AppUser?> authStateChanges() =>
