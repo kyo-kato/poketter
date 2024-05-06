@@ -50,11 +50,7 @@ class _SubmitButton extends ConsumerWidget {
       data: (_) => ElevatedButton(
         onPressed: userName.isEmpty
             ? null
-            : () async {
-                await ref
-                    .read(onboardingStateProvider.notifier)
-                    .complete(userName);
-              },
+            : () => ref.read(onboardingStateProvider.notifier).complete(),
         child: const Text('Start'),
       ),
     );

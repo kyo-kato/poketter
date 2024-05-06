@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../util/extension.dart';
 import '../../../util/logger.dart';
 import '../domain/app_user.dart';
 
@@ -19,31 +20,22 @@ Stream<AppUser?> authStateChanges(AuthStateChangesRef ref) {
   return authRepository.authStateChanges();
 }
 
-@Riverpod(keepAlive: true)
-AppUser? currentUser(CurrentUserRef ref) {
-  final authRepository = ref.watch(authRepositoryProvider);
-  return authRepository.currentUser();
-}
-
 class AuthRepository {
   AuthRepository(this._auth);
 
   final FirebaseAuth _auth;
 
-  Future<AppUser?> signInAsGuest() async {
+  Future<AppUser?> signInAsGuest({String userName = ''}) async {
     final credential = await _auth.signInAnonymously();
-    logger.i('signInAsGuest: ${credential.user?.uid}');
-    return _convertUser(credential.user);
+    logger.i('signInAsGuest: ${credential.user}');
+    return credential.user?.toAppUser(userName: userName);
   }
 
   Stream<AppUser?> authStateChanges() =>
-      _auth.authStateChanges().map(_convertUser);
+      _auth.authStateChanges().map((user) => user?.toAppUser());
 
-  Stream<AppUser?> userChanges() => _auth.userChanges().map(_convertUser);
+  Stream<AppUser?> userChanges() =>
+      _auth.userChanges().map((user) => user?.toAppUser());
 
-  AppUser? currentUser() => _convertUser(_auth.currentUser);
-
-  AppUser? _convertUser(User? user) => user == null
-      ? null
-      : AppUser(id: user.uid, name: 'Guest', isGuest: user.isAnonymous);
+  UserId? currentUserId() => _auth.currentUser?.uid;
 }

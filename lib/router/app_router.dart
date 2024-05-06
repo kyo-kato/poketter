@@ -29,7 +29,7 @@ GoRouter goRouter(GoRouterRef ref) {
     routes: $appRoutes,
     redirect: (context, state) async {
       final path = state.uri.path;
-      final hasUser = auth.currentUser() != null;
+      final hasUser = auth.currentUserId() != null;
 
       final currentPageIsOnboarding = path.startsWith(OnboardingRoute.path);
 

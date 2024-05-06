@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
+import '../data/user_repository.dart';
 import 'component/sign_in_sns.dart';
 import 'component/sign_up_email.dart';
 
@@ -50,20 +51,26 @@ class _UserNameField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      constraints: const BoxConstraints(maxWidth: 300),
-      child: Column(
-        children: [
-          TextFormField(
-            initialValue: '', // TODO: Set local User Name
-            decoration: const InputDecoration(
-              labelText: 'Your Name',
-              hintText: 'Enter Your Nick Name',
-            ),
+    final user = ref.watch(currentUserProvider);
+    return user.maybeWhen(
+      orElse: CircularProgressIndicator.adaptive,
+      data: (user) {
+        return Container(
+          padding: const EdgeInsets.all(10),
+          constraints: const BoxConstraints(maxWidth: 300),
+          child: Column(
+            children: [
+              TextFormField(
+                initialValue: user?.userName,
+                decoration: const InputDecoration(
+                  labelText: 'Your Name',
+                  hintText: 'Enter Your Nick Name',
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
