@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -6,11 +7,14 @@ import 'component/sign_in_sns.dart';
 import 'component/sign_up_email.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+  SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: appBarAction,
+      ),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -31,6 +35,14 @@ class SignUpPage extends StatelessWidget {
       ),
     );
   }
+
+  // TODO: 開発中
+  final appBarAction = [
+    IconButton(
+      onPressed: () => FirebaseAuth.instance.currentUser?.delete(),
+      icon: const Icon(Icons.logout),
+    ),
+  ];
 }
 
 class _UserNameField extends ConsumerWidget {
