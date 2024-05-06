@@ -38,7 +38,7 @@ final entryUserNameProvider =
 );
 
 typedef _$EntryUserName = AutoDisposeNotifier<String>;
-String _$onboardingStateHash() => r'2ffa268f755afb24e8b350e00adc83cd689de6f9';
+String _$onboardingStateHash() => r'04b89dea95b14d258fbc460b829307c27e56374d';
 
 /// See also [OnboardingState].
 @ProviderFor(OnboardingState)

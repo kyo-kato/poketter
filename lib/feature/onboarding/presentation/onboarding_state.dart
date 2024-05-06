@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../data/onboarding_repository.dart';
+import '../../authentication/data/auth_repository.dart';
 
 part 'onboarding_state.g.dart';
 
@@ -36,11 +36,7 @@ class OnboardingState extends _$OnboardingState {
   Future<bool> complete(String userName) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
-      // dummy wait
-      await Future<void>.delayed(const Duration(seconds: 2));
-      final repo = ref.read(onboardingRepositoryProvider).requireValue;
-      await repo.saveName(userName);
-      await repo.complete();
+      await ref.read(authRepositoryProvider).signInAsGuest();
     });
     return !state.hasError;
   }

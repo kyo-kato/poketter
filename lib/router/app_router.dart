@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../feature/authentication/data/auth_repository.dart';
 import '../feature/authentication/presentation/sign_up_page.dart';
-import '../feature/onboarding/data/onboarding_repository.dart';
 import '../feature/onboarding/presentation/entry_page.dart';
 import '../feature/onboarding/presentation/onboarding_page.dart';
+import 'go_router_refresh_stream.dart';
 import 'scaffold_with_nested_navigation.dart';
 
 part 'app_router.g.dart';
@@ -20,24 +21,23 @@ final accountNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'account');
 
 @riverpod
 GoRouter goRouter(GoRouterRef ref) {
+  final auth = ref.watch(authRepositoryProvider);
   return GoRouter(
+    refreshListenable: GoRouterRefreshStream(auth.authStateChanges()),
     debugLogDiagnostics: true,
     initialLocation: HomeRouteData.path,
     routes: $appRoutes,
     redirect: (context, state) async {
       final path = state.uri.path;
-      // オンボーディングが未実施ならオンボーディングへ
-      final onboardingRepository = await ref
-          .read(onboardingRepositoryProvider.selectAsync((value) => value));
+      final hasUser = auth.currentUser() != null;
 
-      final onboardingCompleted = onboardingRepository.isCompleted();
       final currentPageIsOnboarding = path.startsWith(OnboardingRoute.path);
 
-      if (onboardingCompleted && currentPageIsOnboarding) {
+      if (hasUser && currentPageIsOnboarding) {
         return HomeRouteData.path;
       }
 
-      if (!onboardingCompleted && !currentPageIsOnboarding) {
+      if (!hasUser && !currentPageIsOnboarding) {
         return OnboardingRoute.path;
       }
 
