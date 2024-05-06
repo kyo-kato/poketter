@@ -21,5 +21,6 @@
     "poketter",
     "pokedex",
     "riverpod",
+    "firestore",
   ]
 }

@@ -1,6 +1,11 @@
 FLUTTER := fvm flutter
 DART := fvm dart
 
+# firebase 
+firestore-deploy:
+	firebase deploy --only firestore:rules
+
+# build
 pub-get:
 	${FLUTTER} pub get
 
@@ -10,6 +15,7 @@ run-app-icon:
 build-runner:
 	${DART} pub run build_runner build --delete-conflicting-outputs
 
+# release
 apk-dev:
 	${FLUTTER} build apk --dart-define-from-file=dart_define/dev.env
 

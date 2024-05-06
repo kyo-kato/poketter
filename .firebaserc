@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "poketter-dev",
+    "dev": "poketter-dev",
+    "prod": "poketter-prod"
+  }
+}
