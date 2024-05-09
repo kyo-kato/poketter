@@ -1,3 +1,5 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -17,13 +19,23 @@ class App extends ConsumerWidget {
         useMaterial3: true,
       ),
       routerConfig: router,
-      builder: (context, child) => ResponsiveBreakpoints.builder(
-        child: child!,
-        breakpoints: [
-          const Breakpoint(start: 0, end: 450, name: MOBILE),
-          const Breakpoint(start: 451, end: 1280, name: TABLET),
-          const Breakpoint(start: 1281, end: double.infinity, name: DESKTOP),
-        ],
+      builder: (context, child) => DevicePreview(
+        // ignore: avoid_redundant_argument_values
+        enabled: kIsWeb && kDebugMode,
+        builder: (context) {
+          return ResponsiveBreakpoints.builder(
+            child: child!,
+            breakpoints: [
+              const Breakpoint(start: 0, end: 450, name: MOBILE),
+              const Breakpoint(start: 451, end: 1280, name: TABLET),
+              const Breakpoint(
+                start: 1281,
+                end: double.infinity,
+                name: DESKTOP,
+              ),
+            ],
+          );
+        },
       ),
     );
   }

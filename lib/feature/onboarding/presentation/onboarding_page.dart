@@ -34,27 +34,31 @@ class _BottomPageIndicator extends ConsumerWidget {
   final PageController pageController;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(
-        _pages.length,
-        (index) => Consumer(
-          builder: (context, ref, child) {
-            final state = ref.watch(onboardingIndexProvider);
-            return IconButton(
-              onPressed: () {
-                pageController.animateToPage(
-                  index,
-                  duration: const Duration(milliseconds: 200),
-                  curve: Curves.linear,
-                );
-              },
-              icon: Icon(
-                Icons.abc,
-                color: state == index ? Colors.blue : Colors.grey,
-              ),
-            );
-          },
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.1,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: List.generate(
+          _pages.length,
+          (index) => Consumer(
+            builder: (context, ref, child) {
+              final state = ref.watch(onboardingIndexProvider);
+              return IconButton(
+                iconSize: MediaQuery.of(context).size.height * 0.05,
+                onPressed: () {
+                  pageController.animateToPage(
+                    index,
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.linear,
+                  );
+                },
+                icon: Icon(
+                  Icons.abc,
+                  color: state == index ? Colors.blue : Colors.grey,
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
