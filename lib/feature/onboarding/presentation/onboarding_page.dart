@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../router/app_router.dart';
+import 'component/user_name.dart';
 import 'onboarding_state.dart';
 
 /// オンボーディング
@@ -94,6 +96,8 @@ class _Page extends StatelessWidget {
       padding: const EdgeInsets.all(24),
       child: Column(
         children: [
+          Text('Poketter', style: GoogleFonts.monoton(fontSize: 32)),
+          const Text('~ Flutter and Poke API ~'),
           const Spacer(),
           Expanded(
             flex: 2,
@@ -136,24 +140,25 @@ class _LastPage extends _Page {
       child: Column(
         children: [
           const Spacer(),
-          Expanded(
+          const Expanded(
             flex: 2,
             child: Text(
-              title,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              'では はじめに きみのなまえを\n おしえてもらおう！',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
+          const Expanded(flex: 2, child: UserNameField()),
           Expanded(
-            child: Text(
-              description,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 18),
-            ),
-          ),
-          Expanded(
-            child: TextButton(
-              onPressed: () => GoRouter.of(context).goNamed(nextLocation),
-              child: Text(buttonText),
+            child: Consumer(
+              builder: (context, ref, child) {
+                final userName = ref.watch(entryUserNameProvider);
+                return TextButton(
+                  onPressed: userName.isEmpty
+                      ? null
+                      : () => GoRouter.of(context).goNamed(nextLocation),
+                  child: Text(buttonText),
+                );
+              },
             ),
           ),
           const Spacer(),

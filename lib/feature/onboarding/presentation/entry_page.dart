@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+import 'component/first_partner_selector.dart';
 import 'onboarding_state.dart';
 
 class EntryPage extends StatelessWidget {
@@ -11,24 +11,20 @@ class EntryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
+          controller: ScrollController(),
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              const Spacer(),
-              Text(
-                'Poketter',
-                style:
-                    GoogleFonts.monoton().merge(const TextStyle(fontSize: 32)),
-              ),
-              const Text('~ Flutter and Poke API ~'),
-              const Spacer(),
-              const _UserNameField(),
-              const ColoredBox(color: Colors.yellow),
-              const Spacer(),
-              const _SubmitButton(),
-              const Spacer(),
-            ],
+          child: SizedBox.fromSize(
+            size: MediaQuery.of(context).size,
+            child: const Column(
+              children: [
+                Spacer(),
+                FirstPartnerSelector(),
+                Spacer(),
+                _SubmitButton(),
+                Spacer(),
+              ],
+            ),
           ),
         ),
       ),
@@ -53,18 +49,6 @@ class _SubmitButton extends ConsumerWidget {
             : () => ref.read(onboardingStateProvider.notifier).complete(),
         child: const Text('Start'),
       ),
-    );
-  }
-}
-
-class _UserNameField extends ConsumerWidget {
-  const _UserNameField();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return TextField(
-      decoration: const InputDecoration(hintText: 'Enter Your Nick Name'),
-      onChanged: ref.read(entryUserNameProvider.notifier).updateName,
     );
   }
 }
