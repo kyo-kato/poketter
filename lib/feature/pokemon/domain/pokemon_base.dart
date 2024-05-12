@@ -86,7 +86,7 @@ class Ability with _$Ability {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Ability({
     required String name,
-    required String url,
+    // required String url,
   }) = _Ability;
 
   factory Ability.fromJson(Map<String, dynamic> json) =>
@@ -98,7 +98,7 @@ class Species with _$Species {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Species({
     required String name,
-    @Default('') String url,
+    // @Default('') String url,
   }) = _Species;
 
   factory Species.fromJson(Map<String, dynamic> json) =>
@@ -145,7 +145,7 @@ class VersionGroupDetail with _$VersionGroupDetail {
   const factory VersionGroupDetail({
     required int levelLearnedAt,
     required Species moveLearnMethod,
-    required Species versionGroup,
+    // required Species versionGroup,
   }) = _VersionGroupDetail;
 
   factory VersionGroupDetail.fromJson(Map<String, dynamic> json) =>
@@ -402,7 +402,7 @@ class Form with _$Form {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Form({
     required String name,
-    required String url,
+    // required String url,
   }) = _Form;
 
   factory Form.fromJson(Map<String, dynamic> json) => _$FormFromJson(json);
@@ -413,7 +413,7 @@ class HeldItem with _$HeldItem {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory HeldItem({
     required Form item,
-    required List<VersionDetail> versionDetails,
+    List<VersionDetail>? versionDetails,
   }) = _HeldItem;
 
   factory HeldItem.fromJson(Map<String, dynamic> json) =>

@@ -36,7 +36,7 @@ mixin _$PokemonSpecies {
   int get captureRate => throw _privateConstructorUsedError;
 
   /// 色
-  Color get color => throw _privateConstructorUsedError;
+  NameUrl get color => throw _privateConstructorUsedError;
 
   /// フレーバーテキスト
   List<FlavorTextEntry> get flavorTextEntries =>
@@ -44,15 +44,15 @@ mixin _$PokemonSpecies {
 
   /// 属性
   List<Genus> get genera => throw _privateConstructorUsedError;
-  List<Color> get eggGroups => throw _privateConstructorUsedError;
-  EvolutionChain get evolutionChain => throw _privateConstructorUsedError;
+  List<NameUrl> get eggGroups =>
+      throw _privateConstructorUsedError; // required EvolutionChain evolutionChain,
   EvolvesFromSpecies? get evolvesFromSpecies =>
       throw _privateConstructorUsedError;
   bool get formsSwitchable => throw _privateConstructorUsedError;
   int get genderRate => throw _privateConstructorUsedError;
-  Color get generation => throw _privateConstructorUsedError;
-  Color get growthRate => throw _privateConstructorUsedError;
-  Color get habitat => throw _privateConstructorUsedError;
+  NameUrl get generation => throw _privateConstructorUsedError;
+  NameUrl get growthRate => throw _privateConstructorUsedError;
+  NameUrl get habitat => throw _privateConstructorUsedError;
   bool get hasGenderDifferences => throw _privateConstructorUsedError;
   int get hatchCounter => throw _privateConstructorUsedError;
   bool get isBaby => throw _privateConstructorUsedError;
@@ -60,9 +60,8 @@ mixin _$PokemonSpecies {
   bool get isMythical => throw _privateConstructorUsedError;
   int get order => throw _privateConstructorUsedError;
   List<PalParkEncounter> get palParkEncounters =>
-      throw _privateConstructorUsedError;
-  List<PokedexNumber> get pokedexNumbers => throw _privateConstructorUsedError;
-  Color get shape => throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError; // required List<PokedexNumber> pokedexNumbers,
+  NameUrl get shape => throw _privateConstructorUsedError;
   List<Variety> get varieties => throw _privateConstructorUsedError;
   List<dynamic> get formDescriptions => throw _privateConstructorUsedError;
 
@@ -84,17 +83,16 @@ abstract class $PokemonSpeciesCopyWith<$Res> {
       List<Name> names,
       int baseHappiness,
       int captureRate,
-      Color color,
+      NameUrl color,
       List<FlavorTextEntry> flavorTextEntries,
       List<Genus> genera,
-      List<Color> eggGroups,
-      EvolutionChain evolutionChain,
+      List<NameUrl> eggGroups,
       EvolvesFromSpecies? evolvesFromSpecies,
       bool formsSwitchable,
       int genderRate,
-      Color generation,
-      Color growthRate,
-      Color habitat,
+      NameUrl generation,
+      NameUrl growthRate,
+      NameUrl habitat,
       bool hasGenderDifferences,
       int hatchCounter,
       bool isBaby,
@@ -102,18 +100,16 @@ abstract class $PokemonSpeciesCopyWith<$Res> {
       bool isMythical,
       int order,
       List<PalParkEncounter> palParkEncounters,
-      List<PokedexNumber> pokedexNumbers,
-      Color shape,
+      NameUrl shape,
       List<Variety> varieties,
       List<dynamic> formDescriptions});
 
-  $ColorCopyWith<$Res> get color;
-  $EvolutionChainCopyWith<$Res> get evolutionChain;
+  $NameUrlCopyWith<$Res> get color;
   $EvolvesFromSpeciesCopyWith<$Res>? get evolvesFromSpecies;
-  $ColorCopyWith<$Res> get generation;
-  $ColorCopyWith<$Res> get growthRate;
-  $ColorCopyWith<$Res> get habitat;
-  $ColorCopyWith<$Res> get shape;
+  $NameUrlCopyWith<$Res> get generation;
+  $NameUrlCopyWith<$Res> get growthRate;
+  $NameUrlCopyWith<$Res> get habitat;
+  $NameUrlCopyWith<$Res> get shape;
 }
 
 /// @nodoc
@@ -138,7 +134,6 @@ class _$PokemonSpeciesCopyWithImpl<$Res, $Val extends PokemonSpecies>
     Object? flavorTextEntries = null,
     Object? genera = null,
     Object? eggGroups = null,
-    Object? evolutionChain = null,
     Object? evolvesFromSpecies = freezed,
     Object? formsSwitchable = null,
     Object? genderRate = null,
@@ -152,7 +147,6 @@ class _$PokemonSpeciesCopyWithImpl<$Res, $Val extends PokemonSpecies>
     Object? isMythical = null,
     Object? order = null,
     Object? palParkEncounters = null,
-    Object? pokedexNumbers = null,
     Object? shape = null,
     Object? varieties = null,
     Object? formDescriptions = null,
@@ -181,7 +175,7 @@ class _$PokemonSpeciesCopyWithImpl<$Res, $Val extends PokemonSpecies>
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       flavorTextEntries: null == flavorTextEntries
           ? _value.flavorTextEntries
           : flavorTextEntries // ignore: cast_nullable_to_non_nullable
@@ -193,11 +187,7 @@ class _$PokemonSpeciesCopyWithImpl<$Res, $Val extends PokemonSpecies>
       eggGroups: null == eggGroups
           ? _value.eggGroups
           : eggGroups // ignore: cast_nullable_to_non_nullable
-              as List<Color>,
-      evolutionChain: null == evolutionChain
-          ? _value.evolutionChain
-          : evolutionChain // ignore: cast_nullable_to_non_nullable
-              as EvolutionChain,
+              as List<NameUrl>,
       evolvesFromSpecies: freezed == evolvesFromSpecies
           ? _value.evolvesFromSpecies
           : evolvesFromSpecies // ignore: cast_nullable_to_non_nullable
@@ -213,15 +203,15 @@ class _$PokemonSpeciesCopyWithImpl<$Res, $Val extends PokemonSpecies>
       generation: null == generation
           ? _value.generation
           : generation // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       growthRate: null == growthRate
           ? _value.growthRate
           : growthRate // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       habitat: null == habitat
           ? _value.habitat
           : habitat // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       hasGenderDifferences: null == hasGenderDifferences
           ? _value.hasGenderDifferences
           : hasGenderDifferences // ignore: cast_nullable_to_non_nullable
@@ -250,14 +240,10 @@ class _$PokemonSpeciesCopyWithImpl<$Res, $Val extends PokemonSpecies>
           ? _value.palParkEncounters
           : palParkEncounters // ignore: cast_nullable_to_non_nullable
               as List<PalParkEncounter>,
-      pokedexNumbers: null == pokedexNumbers
-          ? _value.pokedexNumbers
-          : pokedexNumbers // ignore: cast_nullable_to_non_nullable
-              as List<PokedexNumber>,
       shape: null == shape
           ? _value.shape
           : shape // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       varieties: null == varieties
           ? _value.varieties
           : varieties // ignore: cast_nullable_to_non_nullable
@@ -271,17 +257,9 @@ class _$PokemonSpeciesCopyWithImpl<$Res, $Val extends PokemonSpecies>
 
   @override
   @pragma('vm:prefer-inline')
-  $ColorCopyWith<$Res> get color {
-    return $ColorCopyWith<$Res>(_value.color, (value) {
+  $NameUrlCopyWith<$Res> get color {
+    return $NameUrlCopyWith<$Res>(_value.color, (value) {
       return _then(_value.copyWith(color: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $EvolutionChainCopyWith<$Res> get evolutionChain {
-    return $EvolutionChainCopyWith<$Res>(_value.evolutionChain, (value) {
-      return _then(_value.copyWith(evolutionChain: value) as $Val);
     });
   }
 
@@ -300,32 +278,32 @@ class _$PokemonSpeciesCopyWithImpl<$Res, $Val extends PokemonSpecies>
 
   @override
   @pragma('vm:prefer-inline')
-  $ColorCopyWith<$Res> get generation {
-    return $ColorCopyWith<$Res>(_value.generation, (value) {
+  $NameUrlCopyWith<$Res> get generation {
+    return $NameUrlCopyWith<$Res>(_value.generation, (value) {
       return _then(_value.copyWith(generation: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ColorCopyWith<$Res> get growthRate {
-    return $ColorCopyWith<$Res>(_value.growthRate, (value) {
+  $NameUrlCopyWith<$Res> get growthRate {
+    return $NameUrlCopyWith<$Res>(_value.growthRate, (value) {
       return _then(_value.copyWith(growthRate: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ColorCopyWith<$Res> get habitat {
-    return $ColorCopyWith<$Res>(_value.habitat, (value) {
+  $NameUrlCopyWith<$Res> get habitat {
+    return $NameUrlCopyWith<$Res>(_value.habitat, (value) {
       return _then(_value.copyWith(habitat: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ColorCopyWith<$Res> get shape {
-    return $ColorCopyWith<$Res>(_value.shape, (value) {
+  $NameUrlCopyWith<$Res> get shape {
+    return $NameUrlCopyWith<$Res>(_value.shape, (value) {
       return _then(_value.copyWith(shape: value) as $Val);
     });
   }
@@ -345,17 +323,16 @@ abstract class _$$PokemonSpeciesImplCopyWith<$Res>
       List<Name> names,
       int baseHappiness,
       int captureRate,
-      Color color,
+      NameUrl color,
       List<FlavorTextEntry> flavorTextEntries,
       List<Genus> genera,
-      List<Color> eggGroups,
-      EvolutionChain evolutionChain,
+      List<NameUrl> eggGroups,
       EvolvesFromSpecies? evolvesFromSpecies,
       bool formsSwitchable,
       int genderRate,
-      Color generation,
-      Color growthRate,
-      Color habitat,
+      NameUrl generation,
+      NameUrl growthRate,
+      NameUrl habitat,
       bool hasGenderDifferences,
       int hatchCounter,
       bool isBaby,
@@ -363,25 +340,22 @@ abstract class _$$PokemonSpeciesImplCopyWith<$Res>
       bool isMythical,
       int order,
       List<PalParkEncounter> palParkEncounters,
-      List<PokedexNumber> pokedexNumbers,
-      Color shape,
+      NameUrl shape,
       List<Variety> varieties,
       List<dynamic> formDescriptions});
 
   @override
-  $ColorCopyWith<$Res> get color;
-  @override
-  $EvolutionChainCopyWith<$Res> get evolutionChain;
+  $NameUrlCopyWith<$Res> get color;
   @override
   $EvolvesFromSpeciesCopyWith<$Res>? get evolvesFromSpecies;
   @override
-  $ColorCopyWith<$Res> get generation;
+  $NameUrlCopyWith<$Res> get generation;
   @override
-  $ColorCopyWith<$Res> get growthRate;
+  $NameUrlCopyWith<$Res> get growthRate;
   @override
-  $ColorCopyWith<$Res> get habitat;
+  $NameUrlCopyWith<$Res> get habitat;
   @override
-  $ColorCopyWith<$Res> get shape;
+  $NameUrlCopyWith<$Res> get shape;
 }
 
 /// @nodoc
@@ -404,7 +378,6 @@ class __$$PokemonSpeciesImplCopyWithImpl<$Res>
     Object? flavorTextEntries = null,
     Object? genera = null,
     Object? eggGroups = null,
-    Object? evolutionChain = null,
     Object? evolvesFromSpecies = freezed,
     Object? formsSwitchable = null,
     Object? genderRate = null,
@@ -418,7 +391,6 @@ class __$$PokemonSpeciesImplCopyWithImpl<$Res>
     Object? isMythical = null,
     Object? order = null,
     Object? palParkEncounters = null,
-    Object? pokedexNumbers = null,
     Object? shape = null,
     Object? varieties = null,
     Object? formDescriptions = null,
@@ -447,7 +419,7 @@ class __$$PokemonSpeciesImplCopyWithImpl<$Res>
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       flavorTextEntries: null == flavorTextEntries
           ? _value._flavorTextEntries
           : flavorTextEntries // ignore: cast_nullable_to_non_nullable
@@ -459,11 +431,7 @@ class __$$PokemonSpeciesImplCopyWithImpl<$Res>
       eggGroups: null == eggGroups
           ? _value._eggGroups
           : eggGroups // ignore: cast_nullable_to_non_nullable
-              as List<Color>,
-      evolutionChain: null == evolutionChain
-          ? _value.evolutionChain
-          : evolutionChain // ignore: cast_nullable_to_non_nullable
-              as EvolutionChain,
+              as List<NameUrl>,
       evolvesFromSpecies: freezed == evolvesFromSpecies
           ? _value.evolvesFromSpecies
           : evolvesFromSpecies // ignore: cast_nullable_to_non_nullable
@@ -479,15 +447,15 @@ class __$$PokemonSpeciesImplCopyWithImpl<$Res>
       generation: null == generation
           ? _value.generation
           : generation // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       growthRate: null == growthRate
           ? _value.growthRate
           : growthRate // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       habitat: null == habitat
           ? _value.habitat
           : habitat // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       hasGenderDifferences: null == hasGenderDifferences
           ? _value.hasGenderDifferences
           : hasGenderDifferences // ignore: cast_nullable_to_non_nullable
@@ -516,14 +484,10 @@ class __$$PokemonSpeciesImplCopyWithImpl<$Res>
           ? _value._palParkEncounters
           : palParkEncounters // ignore: cast_nullable_to_non_nullable
               as List<PalParkEncounter>,
-      pokedexNumbers: null == pokedexNumbers
-          ? _value._pokedexNumbers
-          : pokedexNumbers // ignore: cast_nullable_to_non_nullable
-              as List<PokedexNumber>,
       shape: null == shape
           ? _value.shape
           : shape // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       varieties: null == varieties
           ? _value._varieties
           : varieties // ignore: cast_nullable_to_non_nullable
@@ -549,8 +513,7 @@ class _$PokemonSpeciesImpl implements _PokemonSpecies {
       required this.color,
       required final List<FlavorTextEntry> flavorTextEntries,
       required final List<Genus> genera,
-      required final List<Color> eggGroups,
-      required this.evolutionChain,
+      required final List<NameUrl> eggGroups,
       this.evolvesFromSpecies,
       required this.formsSwitchable,
       required this.genderRate,
@@ -564,7 +527,6 @@ class _$PokemonSpeciesImpl implements _PokemonSpecies {
       required this.isMythical,
       required this.order,
       required final List<PalParkEncounter> palParkEncounters,
-      required final List<PokedexNumber> pokedexNumbers,
       required this.shape,
       required final List<Variety> varieties,
       final List<dynamic> formDescriptions = const []})
@@ -573,7 +535,6 @@ class _$PokemonSpeciesImpl implements _PokemonSpecies {
         _genera = genera,
         _eggGroups = eggGroups,
         _palParkEncounters = palParkEncounters,
-        _pokedexNumbers = pokedexNumbers,
         _varieties = varieties,
         _formDescriptions = formDescriptions;
 
@@ -609,7 +570,7 @@ class _$PokemonSpeciesImpl implements _PokemonSpecies {
 
   /// 色
   @override
-  final Color color;
+  final NameUrl color;
 
   /// フレーバーテキスト
   final List<FlavorTextEntry> _flavorTextEntries;
@@ -634,16 +595,15 @@ class _$PokemonSpeciesImpl implements _PokemonSpecies {
     return EqualUnmodifiableListView(_genera);
   }
 
-  final List<Color> _eggGroups;
+  final List<NameUrl> _eggGroups;
   @override
-  List<Color> get eggGroups {
+  List<NameUrl> get eggGroups {
     if (_eggGroups is EqualUnmodifiableListView) return _eggGroups;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_eggGroups);
   }
 
-  @override
-  final EvolutionChain evolutionChain;
+// required EvolutionChain evolutionChain,
   @override
   final EvolvesFromSpecies? evolvesFromSpecies;
   @override
@@ -651,11 +611,11 @@ class _$PokemonSpeciesImpl implements _PokemonSpecies {
   @override
   final int genderRate;
   @override
-  final Color generation;
+  final NameUrl generation;
   @override
-  final Color growthRate;
+  final NameUrl growthRate;
   @override
-  final Color habitat;
+  final NameUrl habitat;
   @override
   final bool hasGenderDifferences;
   @override
@@ -677,16 +637,9 @@ class _$PokemonSpeciesImpl implements _PokemonSpecies {
     return EqualUnmodifiableListView(_palParkEncounters);
   }
 
-  final List<PokedexNumber> _pokedexNumbers;
+// required List<PokedexNumber> pokedexNumbers,
   @override
-  List<PokedexNumber> get pokedexNumbers {
-    if (_pokedexNumbers is EqualUnmodifiableListView) return _pokedexNumbers;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_pokedexNumbers);
-  }
-
-  @override
-  final Color shape;
+  final NameUrl shape;
   final List<Variety> _varieties;
   @override
   List<Variety> get varieties {
@@ -707,7 +660,7 @@ class _$PokemonSpeciesImpl implements _PokemonSpecies {
 
   @override
   String toString() {
-    return 'PokemonSpecies(id: $id, name: $name, names: $names, baseHappiness: $baseHappiness, captureRate: $captureRate, color: $color, flavorTextEntries: $flavorTextEntries, genera: $genera, eggGroups: $eggGroups, evolutionChain: $evolutionChain, evolvesFromSpecies: $evolvesFromSpecies, formsSwitchable: $formsSwitchable, genderRate: $genderRate, generation: $generation, growthRate: $growthRate, habitat: $habitat, hasGenderDifferences: $hasGenderDifferences, hatchCounter: $hatchCounter, isBaby: $isBaby, isLegendary: $isLegendary, isMythical: $isMythical, order: $order, palParkEncounters: $palParkEncounters, pokedexNumbers: $pokedexNumbers, shape: $shape, varieties: $varieties, formDescriptions: $formDescriptions)';
+    return 'PokemonSpecies(id: $id, name: $name, names: $names, baseHappiness: $baseHappiness, captureRate: $captureRate, color: $color, flavorTextEntries: $flavorTextEntries, genera: $genera, eggGroups: $eggGroups, evolvesFromSpecies: $evolvesFromSpecies, formsSwitchable: $formsSwitchable, genderRate: $genderRate, generation: $generation, growthRate: $growthRate, habitat: $habitat, hasGenderDifferences: $hasGenderDifferences, hatchCounter: $hatchCounter, isBaby: $isBaby, isLegendary: $isLegendary, isMythical: $isMythical, order: $order, palParkEncounters: $palParkEncounters, shape: $shape, varieties: $varieties, formDescriptions: $formDescriptions)';
   }
 
   @override
@@ -728,8 +681,6 @@ class _$PokemonSpeciesImpl implements _PokemonSpecies {
             const DeepCollectionEquality().equals(other._genera, _genera) &&
             const DeepCollectionEquality()
                 .equals(other._eggGroups, _eggGroups) &&
-            (identical(other.evolutionChain, evolutionChain) ||
-                other.evolutionChain == evolutionChain) &&
             (identical(other.evolvesFromSpecies, evolvesFromSpecies) ||
                 other.evolvesFromSpecies == evolvesFromSpecies) &&
             (identical(other.formsSwitchable, formsSwitchable) ||
@@ -753,8 +704,6 @@ class _$PokemonSpeciesImpl implements _PokemonSpecies {
             (identical(other.order, order) || other.order == order) &&
             const DeepCollectionEquality()
                 .equals(other._palParkEncounters, _palParkEncounters) &&
-            const DeepCollectionEquality()
-                .equals(other._pokedexNumbers, _pokedexNumbers) &&
             (identical(other.shape, shape) || other.shape == shape) &&
             const DeepCollectionEquality()
                 .equals(other._varieties, _varieties) &&
@@ -775,7 +724,6 @@ class _$PokemonSpeciesImpl implements _PokemonSpecies {
         const DeepCollectionEquality().hash(_flavorTextEntries),
         const DeepCollectionEquality().hash(_genera),
         const DeepCollectionEquality().hash(_eggGroups),
-        evolutionChain,
         evolvesFromSpecies,
         formsSwitchable,
         genderRate,
@@ -789,7 +737,6 @@ class _$PokemonSpeciesImpl implements _PokemonSpecies {
         isMythical,
         order,
         const DeepCollectionEquality().hash(_palParkEncounters),
-        const DeepCollectionEquality().hash(_pokedexNumbers),
         shape,
         const DeepCollectionEquality().hash(_varieties),
         const DeepCollectionEquality().hash(_formDescriptions)
@@ -817,17 +764,16 @@ abstract class _PokemonSpecies implements PokemonSpecies {
       required final List<Name> names,
       required final int baseHappiness,
       required final int captureRate,
-      required final Color color,
+      required final NameUrl color,
       required final List<FlavorTextEntry> flavorTextEntries,
       required final List<Genus> genera,
-      required final List<Color> eggGroups,
-      required final EvolutionChain evolutionChain,
+      required final List<NameUrl> eggGroups,
       final EvolvesFromSpecies? evolvesFromSpecies,
       required final bool formsSwitchable,
       required final int genderRate,
-      required final Color generation,
-      required final Color growthRate,
-      required final Color habitat,
+      required final NameUrl generation,
+      required final NameUrl growthRate,
+      required final NameUrl habitat,
       required final bool hasGenderDifferences,
       required final int hatchCounter,
       required final bool isBaby,
@@ -835,8 +781,7 @@ abstract class _PokemonSpecies implements PokemonSpecies {
       required final bool isMythical,
       required final int order,
       required final List<PalParkEncounter> palParkEncounters,
-      required final List<PokedexNumber> pokedexNumbers,
-      required final Color shape,
+      required final NameUrl shape,
       required final List<Variety> varieties,
       final List<dynamic> formDescriptions}) = _$PokemonSpeciesImpl;
 
@@ -866,7 +811,7 @@ abstract class _PokemonSpecies implements PokemonSpecies {
   @override
 
   /// 色
-  Color get color;
+  NameUrl get color;
   @override
 
   /// フレーバーテキスト
@@ -876,21 +821,19 @@ abstract class _PokemonSpecies implements PokemonSpecies {
   /// 属性
   List<Genus> get genera;
   @override
-  List<Color> get eggGroups;
-  @override
-  EvolutionChain get evolutionChain;
-  @override
+  List<NameUrl> get eggGroups;
+  @override // required EvolutionChain evolutionChain,
   EvolvesFromSpecies? get evolvesFromSpecies;
   @override
   bool get formsSwitchable;
   @override
   int get genderRate;
   @override
-  Color get generation;
+  NameUrl get generation;
   @override
-  Color get growthRate;
+  NameUrl get growthRate;
   @override
-  Color get habitat;
+  NameUrl get habitat;
   @override
   bool get hasGenderDifferences;
   @override
@@ -905,10 +848,8 @@ abstract class _PokemonSpecies implements PokemonSpecies {
   int get order;
   @override
   List<PalParkEncounter> get palParkEncounters;
-  @override
-  List<PokedexNumber> get pokedexNumbers;
-  @override
-  Color get shape;
+  @override // required List<PokedexNumber> pokedexNumbers,
+  NameUrl get shape;
   @override
   List<Variety> get varieties;
   @override
@@ -919,32 +860,31 @@ abstract class _PokemonSpecies implements PokemonSpecies {
       throw _privateConstructorUsedError;
 }
 
-Color _$ColorFromJson(Map<String, dynamic> json) {
-  return _Color.fromJson(json);
+NameUrl _$NameUrlFromJson(Map<String, dynamic> json) {
+  return _NameUrl.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Color {
+mixin _$NameUrl {
   String get name => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ColorCopyWith<Color> get copyWith => throw _privateConstructorUsedError;
+  $NameUrlCopyWith<NameUrl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ColorCopyWith<$Res> {
-  factory $ColorCopyWith(Color value, $Res Function(Color) then) =
-      _$ColorCopyWithImpl<$Res, Color>;
+abstract class $NameUrlCopyWith<$Res> {
+  factory $NameUrlCopyWith(NameUrl value, $Res Function(NameUrl) then) =
+      _$NameUrlCopyWithImpl<$Res, NameUrl>;
   @useResult
-  $Res call({String name, String url});
+  $Res call({String name});
 }
 
 /// @nodoc
-class _$ColorCopyWithImpl<$Res, $Val extends Color>
-    implements $ColorCopyWith<$Res> {
-  _$ColorCopyWithImpl(this._value, this._then);
+class _$NameUrlCopyWithImpl<$Res, $Val extends NameUrl>
+    implements $NameUrlCopyWith<$Res> {
+  _$NameUrlCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -955,53 +895,43 @@ class _$ColorCopyWithImpl<$Res, $Val extends Color>
   @override
   $Res call({
     Object? name = null,
-    Object? url = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$ColorImplCopyWith<$Res> implements $ColorCopyWith<$Res> {
-  factory _$$ColorImplCopyWith(
-          _$ColorImpl value, $Res Function(_$ColorImpl) then) =
-      __$$ColorImplCopyWithImpl<$Res>;
+abstract class _$$NameUrlImplCopyWith<$Res> implements $NameUrlCopyWith<$Res> {
+  factory _$$NameUrlImplCopyWith(
+          _$NameUrlImpl value, $Res Function(_$NameUrlImpl) then) =
+      __$$NameUrlImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String url});
+  $Res call({String name});
 }
 
 /// @nodoc
-class __$$ColorImplCopyWithImpl<$Res>
-    extends _$ColorCopyWithImpl<$Res, _$ColorImpl>
-    implements _$$ColorImplCopyWith<$Res> {
-  __$$ColorImplCopyWithImpl(
-      _$ColorImpl _value, $Res Function(_$ColorImpl) _then)
+class __$$NameUrlImplCopyWithImpl<$Res>
+    extends _$NameUrlCopyWithImpl<$Res, _$NameUrlImpl>
+    implements _$$NameUrlImplCopyWith<$Res> {
+  __$$NameUrlImplCopyWithImpl(
+      _$NameUrlImpl _value, $Res Function(_$NameUrlImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? name = null,
-    Object? url = null,
   }) {
-    return _then(_$ColorImpl(
+    return _then(_$NameUrlImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -1010,62 +940,56 @@ class __$$ColorImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _$ColorImpl implements _Color {
-  const _$ColorImpl({required this.name, required this.url});
+class _$NameUrlImpl implements _NameUrl {
+  const _$NameUrlImpl({required this.name});
 
-  factory _$ColorImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ColorImplFromJson(json);
+  factory _$NameUrlImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NameUrlImplFromJson(json);
 
   @override
   final String name;
-  @override
-  final String url;
 
   @override
   String toString() {
-    return 'Color(name: $name, url: $url)';
+    return 'NameUrl(name: $name)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ColorImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.url, url) || other.url == url));
+            other is _$NameUrlImpl &&
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, url);
+  int get hashCode => Object.hash(runtimeType, name);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ColorImplCopyWith<_$ColorImpl> get copyWith =>
-      __$$ColorImplCopyWithImpl<_$ColorImpl>(this, _$identity);
+  _$$NameUrlImplCopyWith<_$NameUrlImpl> get copyWith =>
+      __$$NameUrlImplCopyWithImpl<_$NameUrlImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ColorImplToJson(
+    return _$$NameUrlImplToJson(
       this,
     );
   }
 }
 
-abstract class _Color implements Color {
-  const factory _Color(
-      {required final String name, required final String url}) = _$ColorImpl;
+abstract class _NameUrl implements NameUrl {
+  const factory _NameUrl({required final String name}) = _$NameUrlImpl;
 
-  factory _Color.fromJson(Map<String, dynamic> json) = _$ColorImpl.fromJson;
+  factory _NameUrl.fromJson(Map<String, dynamic> json) = _$NameUrlImpl.fromJson;
 
   @override
   String get name;
   @override
-  String get url;
-  @override
   @JsonKey(ignore: true)
-  _$$ColorImplCopyWith<_$ColorImpl> get copyWith =>
+  _$$NameUrlImplCopyWith<_$NameUrlImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1215,8 +1139,8 @@ FlavorTextEntry _$FlavorTextEntryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$FlavorTextEntry {
   String get flavorText => throw _privateConstructorUsedError;
-  Color get language => throw _privateConstructorUsedError;
-  Color get version => throw _privateConstructorUsedError;
+  NameUrl get language => throw _privateConstructorUsedError;
+  NameUrl get version => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1230,10 +1154,10 @@ abstract class $FlavorTextEntryCopyWith<$Res> {
           FlavorTextEntry value, $Res Function(FlavorTextEntry) then) =
       _$FlavorTextEntryCopyWithImpl<$Res, FlavorTextEntry>;
   @useResult
-  $Res call({String flavorText, Color language, Color version});
+  $Res call({String flavorText, NameUrl language, NameUrl version});
 
-  $ColorCopyWith<$Res> get language;
-  $ColorCopyWith<$Res> get version;
+  $NameUrlCopyWith<$Res> get language;
+  $NameUrlCopyWith<$Res> get version;
 }
 
 /// @nodoc
@@ -1261,26 +1185,26 @@ class _$FlavorTextEntryCopyWithImpl<$Res, $Val extends FlavorTextEntry>
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       version: null == version
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ColorCopyWith<$Res> get language {
-    return $ColorCopyWith<$Res>(_value.language, (value) {
+  $NameUrlCopyWith<$Res> get language {
+    return $NameUrlCopyWith<$Res>(_value.language, (value) {
       return _then(_value.copyWith(language: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ColorCopyWith<$Res> get version {
-    return $ColorCopyWith<$Res>(_value.version, (value) {
+  $NameUrlCopyWith<$Res> get version {
+    return $NameUrlCopyWith<$Res>(_value.version, (value) {
       return _then(_value.copyWith(version: value) as $Val);
     });
   }
@@ -1294,12 +1218,12 @@ abstract class _$$FlavorTextEntryImplCopyWith<$Res>
       __$$FlavorTextEntryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String flavorText, Color language, Color version});
+  $Res call({String flavorText, NameUrl language, NameUrl version});
 
   @override
-  $ColorCopyWith<$Res> get language;
+  $NameUrlCopyWith<$Res> get language;
   @override
-  $ColorCopyWith<$Res> get version;
+  $NameUrlCopyWith<$Res> get version;
 }
 
 /// @nodoc
@@ -1325,11 +1249,11 @@ class __$$FlavorTextEntryImplCopyWithImpl<$Res>
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       version: null == version
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
     ));
   }
 }
@@ -1349,9 +1273,9 @@ class _$FlavorTextEntryImpl implements _FlavorTextEntry {
   @override
   final String flavorText;
   @override
-  final Color language;
+  final NameUrl language;
   @override
-  final Color version;
+  final NameUrl version;
 
   @override
   String toString() {
@@ -1392,8 +1316,8 @@ class _$FlavorTextEntryImpl implements _FlavorTextEntry {
 abstract class _FlavorTextEntry implements FlavorTextEntry {
   const factory _FlavorTextEntry(
       {required final String flavorText,
-      required final Color language,
-      required final Color version}) = _$FlavorTextEntryImpl;
+      required final NameUrl language,
+      required final NameUrl version}) = _$FlavorTextEntryImpl;
 
   factory _FlavorTextEntry.fromJson(Map<String, dynamic> json) =
       _$FlavorTextEntryImpl.fromJson;
@@ -1401,9 +1325,9 @@ abstract class _FlavorTextEntry implements FlavorTextEntry {
   @override
   String get flavorText;
   @override
-  Color get language;
+  NameUrl get language;
   @override
-  Color get version;
+  NameUrl get version;
   @override
   @JsonKey(ignore: true)
   _$$FlavorTextEntryImplCopyWith<_$FlavorTextEntryImpl> get copyWith =>
@@ -1417,7 +1341,7 @@ Genus _$GenusFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Genus {
   String get genus => throw _privateConstructorUsedError;
-  Color get language => throw _privateConstructorUsedError;
+  NameUrl get language => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1429,9 +1353,9 @@ abstract class $GenusCopyWith<$Res> {
   factory $GenusCopyWith(Genus value, $Res Function(Genus) then) =
       _$GenusCopyWithImpl<$Res, Genus>;
   @useResult
-  $Res call({String genus, Color language});
+  $Res call({String genus, NameUrl language});
 
-  $ColorCopyWith<$Res> get language;
+  $NameUrlCopyWith<$Res> get language;
 }
 
 /// @nodoc
@@ -1458,14 +1382,14 @@ class _$GenusCopyWithImpl<$Res, $Val extends Genus>
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ColorCopyWith<$Res> get language {
-    return $ColorCopyWith<$Res>(_value.language, (value) {
+  $NameUrlCopyWith<$Res> get language {
+    return $NameUrlCopyWith<$Res>(_value.language, (value) {
       return _then(_value.copyWith(language: value) as $Val);
     });
   }
@@ -1478,10 +1402,10 @@ abstract class _$$GenusImplCopyWith<$Res> implements $GenusCopyWith<$Res> {
       __$$GenusImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String genus, Color language});
+  $Res call({String genus, NameUrl language});
 
   @override
-  $ColorCopyWith<$Res> get language;
+  $NameUrlCopyWith<$Res> get language;
 }
 
 /// @nodoc
@@ -1506,7 +1430,7 @@ class __$$GenusImplCopyWithImpl<$Res>
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
     ));
   }
 }
@@ -1523,7 +1447,7 @@ class _$GenusImpl implements _Genus {
   @override
   final String genus;
   @override
-  final Color language;
+  final NameUrl language;
 
   @override
   String toString() {
@@ -1561,14 +1485,14 @@ class _$GenusImpl implements _Genus {
 abstract class _Genus implements Genus {
   const factory _Genus(
       {required final String genus,
-      required final Color language}) = _$GenusImpl;
+      required final NameUrl language}) = _$GenusImpl;
 
   factory _Genus.fromJson(Map<String, dynamic> json) = _$GenusImpl.fromJson;
 
   @override
   String get genus;
   @override
-  Color get language;
+  NameUrl get language;
   @override
   @JsonKey(ignore: true)
   _$$GenusImplCopyWith<_$GenusImpl> get copyWith =>
@@ -1581,7 +1505,7 @@ Name _$NameFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Name {
-  Color get language => throw _privateConstructorUsedError;
+  NameUrl get language => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1594,9 +1518,9 @@ abstract class $NameCopyWith<$Res> {
   factory $NameCopyWith(Name value, $Res Function(Name) then) =
       _$NameCopyWithImpl<$Res, Name>;
   @useResult
-  $Res call({Color language, String name});
+  $Res call({NameUrl language, String name});
 
-  $ColorCopyWith<$Res> get language;
+  $NameUrlCopyWith<$Res> get language;
 }
 
 /// @nodoc
@@ -1619,7 +1543,7 @@ class _$NameCopyWithImpl<$Res, $Val extends Name>
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1629,8 +1553,8 @@ class _$NameCopyWithImpl<$Res, $Val extends Name>
 
   @override
   @pragma('vm:prefer-inline')
-  $ColorCopyWith<$Res> get language {
-    return $ColorCopyWith<$Res>(_value.language, (value) {
+  $NameUrlCopyWith<$Res> get language {
+    return $NameUrlCopyWith<$Res>(_value.language, (value) {
       return _then(_value.copyWith(language: value) as $Val);
     });
   }
@@ -1643,10 +1567,10 @@ abstract class _$$NameImplCopyWith<$Res> implements $NameCopyWith<$Res> {
       __$$NameImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Color language, String name});
+  $Res call({NameUrl language, String name});
 
   @override
-  $ColorCopyWith<$Res> get language;
+  $NameUrlCopyWith<$Res> get language;
 }
 
 /// @nodoc
@@ -1666,7 +1590,7 @@ class __$$NameImplCopyWithImpl<$Res>
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1685,7 +1609,7 @@ class _$NameImpl implements _Name {
       _$$NameImplFromJson(json);
 
   @override
-  final Color language;
+  final NameUrl language;
   @override
   final String name;
 
@@ -1724,12 +1648,13 @@ class _$NameImpl implements _Name {
 
 abstract class _Name implements Name {
   const factory _Name(
-      {required final Color language, required final String name}) = _$NameImpl;
+      {required final NameUrl language,
+      required final String name}) = _$NameImpl;
 
   factory _Name.fromJson(Map<String, dynamic> json) = _$NameImpl.fromJson;
 
   @override
-  Color get language;
+  NameUrl get language;
   @override
   String get name;
   @override
@@ -1744,7 +1669,7 @@ PalParkEncounter _$PalParkEncounterFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PalParkEncounter {
-  Color get area => throw _privateConstructorUsedError;
+  NameUrl get area => throw _privateConstructorUsedError;
   int get baseScore => throw _privateConstructorUsedError;
   int get rate => throw _privateConstructorUsedError;
 
@@ -1760,9 +1685,9 @@ abstract class $PalParkEncounterCopyWith<$Res> {
           PalParkEncounter value, $Res Function(PalParkEncounter) then) =
       _$PalParkEncounterCopyWithImpl<$Res, PalParkEncounter>;
   @useResult
-  $Res call({Color area, int baseScore, int rate});
+  $Res call({NameUrl area, int baseScore, int rate});
 
-  $ColorCopyWith<$Res> get area;
+  $NameUrlCopyWith<$Res> get area;
 }
 
 /// @nodoc
@@ -1786,7 +1711,7 @@ class _$PalParkEncounterCopyWithImpl<$Res, $Val extends PalParkEncounter>
       area: null == area
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       baseScore: null == baseScore
           ? _value.baseScore
           : baseScore // ignore: cast_nullable_to_non_nullable
@@ -1800,8 +1725,8 @@ class _$PalParkEncounterCopyWithImpl<$Res, $Val extends PalParkEncounter>
 
   @override
   @pragma('vm:prefer-inline')
-  $ColorCopyWith<$Res> get area {
-    return $ColorCopyWith<$Res>(_value.area, (value) {
+  $NameUrlCopyWith<$Res> get area {
+    return $NameUrlCopyWith<$Res>(_value.area, (value) {
       return _then(_value.copyWith(area: value) as $Val);
     });
   }
@@ -1815,10 +1740,10 @@ abstract class _$$PalParkEncounterImplCopyWith<$Res>
       __$$PalParkEncounterImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Color area, int baseScore, int rate});
+  $Res call({NameUrl area, int baseScore, int rate});
 
   @override
-  $ColorCopyWith<$Res> get area;
+  $NameUrlCopyWith<$Res> get area;
 }
 
 /// @nodoc
@@ -1840,7 +1765,7 @@ class __$$PalParkEncounterImplCopyWithImpl<$Res>
       area: null == area
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
       baseScore: null == baseScore
           ? _value.baseScore
           : baseScore // ignore: cast_nullable_to_non_nullable
@@ -1864,7 +1789,7 @@ class _$PalParkEncounterImpl implements _PalParkEncounter {
       _$$PalParkEncounterImplFromJson(json);
 
   @override
-  final Color area;
+  final NameUrl area;
   @override
   final int baseScore;
   @override
@@ -1907,7 +1832,7 @@ class _$PalParkEncounterImpl implements _PalParkEncounter {
 
 abstract class _PalParkEncounter implements PalParkEncounter {
   const factory _PalParkEncounter(
-      {required final Color area,
+      {required final NameUrl area,
       required final int baseScore,
       required final int rate}) = _$PalParkEncounterImpl;
 
@@ -1915,7 +1840,7 @@ abstract class _PalParkEncounter implements PalParkEncounter {
       _$PalParkEncounterImpl.fromJson;
 
   @override
-  Color get area;
+  NameUrl get area;
   @override
   int get baseScore;
   @override
@@ -1933,7 +1858,7 @@ PokedexNumber _$PokedexNumberFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PokedexNumber {
   int get entryNumber => throw _privateConstructorUsedError;
-  Color get pokedex => throw _privateConstructorUsedError;
+  NameUrl get pokedex => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1947,9 +1872,9 @@ abstract class $PokedexNumberCopyWith<$Res> {
           PokedexNumber value, $Res Function(PokedexNumber) then) =
       _$PokedexNumberCopyWithImpl<$Res, PokedexNumber>;
   @useResult
-  $Res call({int entryNumber, Color pokedex});
+  $Res call({int entryNumber, NameUrl pokedex});
 
-  $ColorCopyWith<$Res> get pokedex;
+  $NameUrlCopyWith<$Res> get pokedex;
 }
 
 /// @nodoc
@@ -1976,14 +1901,14 @@ class _$PokedexNumberCopyWithImpl<$Res, $Val extends PokedexNumber>
       pokedex: null == pokedex
           ? _value.pokedex
           : pokedex // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ColorCopyWith<$Res> get pokedex {
-    return $ColorCopyWith<$Res>(_value.pokedex, (value) {
+  $NameUrlCopyWith<$Res> get pokedex {
+    return $NameUrlCopyWith<$Res>(_value.pokedex, (value) {
       return _then(_value.copyWith(pokedex: value) as $Val);
     });
   }
@@ -1997,10 +1922,10 @@ abstract class _$$PokedexNumberImplCopyWith<$Res>
       __$$PokedexNumberImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int entryNumber, Color pokedex});
+  $Res call({int entryNumber, NameUrl pokedex});
 
   @override
-  $ColorCopyWith<$Res> get pokedex;
+  $NameUrlCopyWith<$Res> get pokedex;
 }
 
 /// @nodoc
@@ -2025,7 +1950,7 @@ class __$$PokedexNumberImplCopyWithImpl<$Res>
       pokedex: null == pokedex
           ? _value.pokedex
           : pokedex // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
     ));
   }
 }
@@ -2042,7 +1967,7 @@ class _$PokedexNumberImpl implements _PokedexNumber {
   @override
   final int entryNumber;
   @override
-  final Color pokedex;
+  final NameUrl pokedex;
 
   @override
   String toString() {
@@ -2080,7 +2005,7 @@ class _$PokedexNumberImpl implements _PokedexNumber {
 abstract class _PokedexNumber implements PokedexNumber {
   const factory _PokedexNumber(
       {required final int entryNumber,
-      required final Color pokedex}) = _$PokedexNumberImpl;
+      required final NameUrl pokedex}) = _$PokedexNumberImpl;
 
   factory _PokedexNumber.fromJson(Map<String, dynamic> json) =
       _$PokedexNumberImpl.fromJson;
@@ -2088,7 +2013,7 @@ abstract class _PokedexNumber implements PokedexNumber {
   @override
   int get entryNumber;
   @override
-  Color get pokedex;
+  NameUrl get pokedex;
   @override
   @JsonKey(ignore: true)
   _$$PokedexNumberImplCopyWith<_$PokedexNumberImpl> get copyWith =>
@@ -2102,7 +2027,7 @@ Variety _$VarietyFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Variety {
   bool get isDefault => throw _privateConstructorUsedError;
-  Color get pokemon => throw _privateConstructorUsedError;
+  NameUrl get pokemon => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2114,9 +2039,9 @@ abstract class $VarietyCopyWith<$Res> {
   factory $VarietyCopyWith(Variety value, $Res Function(Variety) then) =
       _$VarietyCopyWithImpl<$Res, Variety>;
   @useResult
-  $Res call({bool isDefault, Color pokemon});
+  $Res call({bool isDefault, NameUrl pokemon});
 
-  $ColorCopyWith<$Res> get pokemon;
+  $NameUrlCopyWith<$Res> get pokemon;
 }
 
 /// @nodoc
@@ -2143,14 +2068,14 @@ class _$VarietyCopyWithImpl<$Res, $Val extends Variety>
       pokemon: null == pokemon
           ? _value.pokemon
           : pokemon // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ColorCopyWith<$Res> get pokemon {
-    return $ColorCopyWith<$Res>(_value.pokemon, (value) {
+  $NameUrlCopyWith<$Res> get pokemon {
+    return $NameUrlCopyWith<$Res>(_value.pokemon, (value) {
       return _then(_value.copyWith(pokemon: value) as $Val);
     });
   }
@@ -2163,10 +2088,10 @@ abstract class _$$VarietyImplCopyWith<$Res> implements $VarietyCopyWith<$Res> {
       __$$VarietyImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isDefault, Color pokemon});
+  $Res call({bool isDefault, NameUrl pokemon});
 
   @override
-  $ColorCopyWith<$Res> get pokemon;
+  $NameUrlCopyWith<$Res> get pokemon;
 }
 
 /// @nodoc
@@ -2191,7 +2116,7 @@ class __$$VarietyImplCopyWithImpl<$Res>
       pokemon: null == pokemon
           ? _value.pokemon
           : pokemon // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as NameUrl,
     ));
   }
 }
@@ -2208,7 +2133,7 @@ class _$VarietyImpl implements _Variety {
   @override
   final bool isDefault;
   @override
-  final Color pokemon;
+  final NameUrl pokemon;
 
   @override
   String toString() {
@@ -2246,14 +2171,14 @@ class _$VarietyImpl implements _Variety {
 abstract class _Variety implements Variety {
   const factory _Variety(
       {required final bool isDefault,
-      required final Color pokemon}) = _$VarietyImpl;
+      required final NameUrl pokemon}) = _$VarietyImpl;
 
   factory _Variety.fromJson(Map<String, dynamic> json) = _$VarietyImpl.fromJson;
 
   @override
   bool get isDefault;
   @override
-  Color get pokemon;
+  NameUrl get pokemon;
   @override
   @JsonKey(ignore: true)
   _$$VarietyImplCopyWith<_$VarietyImpl> get copyWith =>
@@ -2267,7 +2192,6 @@ EvolvesFromSpecies _$EvolvesFromSpeciesFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$EvolvesFromSpecies {
   String get name => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2281,7 +2205,7 @@ abstract class $EvolvesFromSpeciesCopyWith<$Res> {
           EvolvesFromSpecies value, $Res Function(EvolvesFromSpecies) then) =
       _$EvolvesFromSpeciesCopyWithImpl<$Res, EvolvesFromSpecies>;
   @useResult
-  $Res call({String name, String url});
+  $Res call({String name});
 }
 
 /// @nodoc
@@ -2298,16 +2222,11 @@ class _$EvolvesFromSpeciesCopyWithImpl<$Res, $Val extends EvolvesFromSpecies>
   @override
   $Res call({
     Object? name = null,
-    Object? url = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -2321,7 +2240,7 @@ abstract class _$$EvolvesFromSpeciesImplCopyWith<$Res>
       __$$EvolvesFromSpeciesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String url});
+  $Res call({String name});
 }
 
 /// @nodoc
@@ -2336,16 +2255,11 @@ class __$$EvolvesFromSpeciesImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? url = null,
   }) {
     return _then(_$EvolvesFromSpeciesImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -2355,19 +2269,17 @@ class __$$EvolvesFromSpeciesImplCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$EvolvesFromSpeciesImpl implements _EvolvesFromSpecies {
-  const _$EvolvesFromSpeciesImpl({required this.name, required this.url});
+  const _$EvolvesFromSpeciesImpl({required this.name});
 
   factory _$EvolvesFromSpeciesImpl.fromJson(Map<String, dynamic> json) =>
       _$$EvolvesFromSpeciesImplFromJson(json);
 
   @override
   final String name;
-  @override
-  final String url;
 
   @override
   String toString() {
-    return 'EvolvesFromSpecies(name: $name, url: $url)';
+    return 'EvolvesFromSpecies(name: $name)';
   }
 
   @override
@@ -2375,13 +2287,12 @@ class _$EvolvesFromSpeciesImpl implements _EvolvesFromSpecies {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EvolvesFromSpeciesImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.url, url) || other.url == url));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, url);
+  int get hashCode => Object.hash(runtimeType, name);
 
   @JsonKey(ignore: true)
   @override
@@ -2399,17 +2310,14 @@ class _$EvolvesFromSpeciesImpl implements _EvolvesFromSpecies {
 }
 
 abstract class _EvolvesFromSpecies implements EvolvesFromSpecies {
-  const factory _EvolvesFromSpecies(
-      {required final String name,
-      required final String url}) = _$EvolvesFromSpeciesImpl;
+  const factory _EvolvesFromSpecies({required final String name}) =
+      _$EvolvesFromSpeciesImpl;
 
   factory _EvolvesFromSpecies.fromJson(Map<String, dynamic> json) =
       _$EvolvesFromSpeciesImpl.fromJson;
 
   @override
   String get name;
-  @override
-  String get url;
   @override
   @JsonKey(ignore: true)
   _$$EvolvesFromSpeciesImplCopyWith<_$EvolvesFromSpeciesImpl> get copyWith =>

@@ -15,7 +15,7 @@ _$PokemonSpeciesImpl _$$PokemonSpeciesImplFromJson(Map<String, dynamic> json) =>
           .toList(),
       baseHappiness: (json['base_happiness'] as num).toInt(),
       captureRate: (json['capture_rate'] as num).toInt(),
-      color: Color.fromJson(json['color'] as Map<String, dynamic>),
+      color: NameUrl.fromJson(json['color'] as Map<String, dynamic>),
       flavorTextEntries: (json['flavor_text_entries'] as List<dynamic>)
           .map((e) => FlavorTextEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -23,19 +23,17 @@ _$PokemonSpeciesImpl _$$PokemonSpeciesImplFromJson(Map<String, dynamic> json) =>
           .map((e) => Genus.fromJson(e as Map<String, dynamic>))
           .toList(),
       eggGroups: (json['egg_groups'] as List<dynamic>)
-          .map((e) => Color.fromJson(e as Map<String, dynamic>))
+          .map((e) => NameUrl.fromJson(e as Map<String, dynamic>))
           .toList(),
-      evolutionChain: EvolutionChain.fromJson(
-          json['evolution_chain'] as Map<String, dynamic>),
       evolvesFromSpecies: json['evolves_from_species'] == null
           ? null
           : EvolvesFromSpecies.fromJson(
               json['evolves_from_species'] as Map<String, dynamic>),
       formsSwitchable: json['forms_switchable'] as bool,
       genderRate: (json['gender_rate'] as num).toInt(),
-      generation: Color.fromJson(json['generation'] as Map<String, dynamic>),
-      growthRate: Color.fromJson(json['growth_rate'] as Map<String, dynamic>),
-      habitat: Color.fromJson(json['habitat'] as Map<String, dynamic>),
+      generation: NameUrl.fromJson(json['generation'] as Map<String, dynamic>),
+      growthRate: NameUrl.fromJson(json['growth_rate'] as Map<String, dynamic>),
+      habitat: NameUrl.fromJson(json['habitat'] as Map<String, dynamic>),
       hasGenderDifferences: json['has_gender_differences'] as bool,
       hatchCounter: (json['hatch_counter'] as num).toInt(),
       isBaby: json['is_baby'] as bool,
@@ -45,10 +43,7 @@ _$PokemonSpeciesImpl _$$PokemonSpeciesImplFromJson(Map<String, dynamic> json) =>
       palParkEncounters: (json['pal_park_encounters'] as List<dynamic>)
           .map((e) => PalParkEncounter.fromJson(e as Map<String, dynamic>))
           .toList(),
-      pokedexNumbers: (json['pokedex_numbers'] as List<dynamic>)
-          .map((e) => PokedexNumber.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      shape: Color.fromJson(json['shape'] as Map<String, dynamic>),
+      shape: NameUrl.fromJson(json['shape'] as Map<String, dynamic>),
       varieties: (json['varieties'] as List<dynamic>)
           .map((e) => Variety.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -67,7 +62,6 @@ Map<String, dynamic> _$$PokemonSpeciesImplToJson(
       'flavor_text_entries': instance.flavorTextEntries,
       'genera': instance.genera,
       'egg_groups': instance.eggGroups,
-      'evolution_chain': instance.evolutionChain,
       'evolves_from_species': instance.evolvesFromSpecies,
       'forms_switchable': instance.formsSwitchable,
       'gender_rate': instance.genderRate,
@@ -81,21 +75,19 @@ Map<String, dynamic> _$$PokemonSpeciesImplToJson(
       'is_mythical': instance.isMythical,
       'order': instance.order,
       'pal_park_encounters': instance.palParkEncounters,
-      'pokedex_numbers': instance.pokedexNumbers,
       'shape': instance.shape,
       'varieties': instance.varieties,
       'form_descriptions': instance.formDescriptions,
     };
 
-_$ColorImpl _$$ColorImplFromJson(Map<String, dynamic> json) => _$ColorImpl(
+_$NameUrlImpl _$$NameUrlImplFromJson(Map<String, dynamic> json) =>
+    _$NameUrlImpl(
       name: json['name'] as String,
-      url: json['url'] as String,
     );
 
-Map<String, dynamic> _$$ColorImplToJson(_$ColorImpl instance) =>
+Map<String, dynamic> _$$NameUrlImplToJson(_$NameUrlImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'url': instance.url,
     };
 
 _$EvolutionChainImpl _$$EvolutionChainImplFromJson(Map<String, dynamic> json) =>
@@ -113,8 +105,8 @@ _$FlavorTextEntryImpl _$$FlavorTextEntryImplFromJson(
         Map<String, dynamic> json) =>
     _$FlavorTextEntryImpl(
       flavorText: json['flavor_text'] as String,
-      language: Color.fromJson(json['language'] as Map<String, dynamic>),
-      version: Color.fromJson(json['version'] as Map<String, dynamic>),
+      language: NameUrl.fromJson(json['language'] as Map<String, dynamic>),
+      version: NameUrl.fromJson(json['version'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$FlavorTextEntryImplToJson(
@@ -127,7 +119,7 @@ Map<String, dynamic> _$$FlavorTextEntryImplToJson(
 
 _$GenusImpl _$$GenusImplFromJson(Map<String, dynamic> json) => _$GenusImpl(
       genus: json['genus'] as String,
-      language: Color.fromJson(json['language'] as Map<String, dynamic>),
+      language: NameUrl.fromJson(json['language'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$GenusImplToJson(_$GenusImpl instance) =>
@@ -137,7 +129,7 @@ Map<String, dynamic> _$$GenusImplToJson(_$GenusImpl instance) =>
     };
 
 _$NameImpl _$$NameImplFromJson(Map<String, dynamic> json) => _$NameImpl(
-      language: Color.fromJson(json['language'] as Map<String, dynamic>),
+      language: NameUrl.fromJson(json['language'] as Map<String, dynamic>),
       name: json['name'] as String,
     );
 
@@ -150,7 +142,7 @@ Map<String, dynamic> _$$NameImplToJson(_$NameImpl instance) =>
 _$PalParkEncounterImpl _$$PalParkEncounterImplFromJson(
         Map<String, dynamic> json) =>
     _$PalParkEncounterImpl(
-      area: Color.fromJson(json['area'] as Map<String, dynamic>),
+      area: NameUrl.fromJson(json['area'] as Map<String, dynamic>),
       baseScore: (json['base_score'] as num).toInt(),
       rate: (json['rate'] as num).toInt(),
     );
@@ -166,7 +158,7 @@ Map<String, dynamic> _$$PalParkEncounterImplToJson(
 _$PokedexNumberImpl _$$PokedexNumberImplFromJson(Map<String, dynamic> json) =>
     _$PokedexNumberImpl(
       entryNumber: (json['entry_number'] as num).toInt(),
-      pokedex: Color.fromJson(json['pokedex'] as Map<String, dynamic>),
+      pokedex: NameUrl.fromJson(json['pokedex'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PokedexNumberImplToJson(_$PokedexNumberImpl instance) =>
@@ -178,7 +170,7 @@ Map<String, dynamic> _$$PokedexNumberImplToJson(_$PokedexNumberImpl instance) =>
 _$VarietyImpl _$$VarietyImplFromJson(Map<String, dynamic> json) =>
     _$VarietyImpl(
       isDefault: json['is_default'] as bool,
-      pokemon: Color.fromJson(json['pokemon'] as Map<String, dynamic>),
+      pokemon: NameUrl.fromJson(json['pokemon'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$VarietyImplToJson(_$VarietyImpl instance) =>
@@ -191,12 +183,10 @@ _$EvolvesFromSpeciesImpl _$$EvolvesFromSpeciesImplFromJson(
         Map<String, dynamic> json) =>
     _$EvolvesFromSpeciesImpl(
       name: json['name'] as String,
-      url: json['url'] as String,
     );
 
 Map<String, dynamic> _$$EvolvesFromSpeciesImplToJson(
         _$EvolvesFromSpeciesImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'url': instance.url,
     };

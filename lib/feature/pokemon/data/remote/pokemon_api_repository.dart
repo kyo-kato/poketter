@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../exception/pokemon_exceptions.dart';
+import '../../../../util/logger.dart';
 import '../../domain/my_pokemon.dart';
 import '../../domain/pokemon_base.dart';
 import '../../domain/pokemon_species.dart';
@@ -43,10 +44,30 @@ class PokemonApiRepository {
     );
 
     if (response.statusCode != 200 || response.data == null) {
+      logger.e('fetchPokemonBase: Failed to fetch pokemon base info. id: $id');
       throw NotFoundPokemonException(statusCode: response.statusCode, id: id);
     }
+    logger.i('fetchPokemonBase: Fetched pokemon base info. id: $id');
+    return _excludeBaseInfo(PokemonBase.fromJson(response.data!));
+  }
 
-    return PokemonBase.fromJson(response.data!);
+  PokemonBase _excludeBaseInfo(PokemonBase pokemonBase) {
+    // レベルアップで覚える技とタマゴ技のみを取得する
+    final origMoves = pokemonBase.moves.where((move) {
+      return move.versionGroupDetails.any(
+        (value) => ['egg', 'level-up'].contains(value.moveLearnMethod.name),
+      );
+    }).toList();
+
+    final heldItems = pokemonBase.heldItems
+        .map((item) => item.copyWith(versionDetails: null))
+        .toList();
+
+    // 不要な情報を削除する
+    return pokemonBase.copyWith(
+      heldItems: heldItems,
+      moves: origMoves,
+    );
   }
 
   /// pokemon-speciesの情報を取得する
@@ -57,9 +78,35 @@ class PokemonApiRepository {
     );
 
     if (response.statusCode != 200 || response.data == null) {
+      logger.e('fetchPokemonSpecies: Failed to fetch pokemon species. id: $id');
       throw NotFoundPokemonException(statusCode: response.statusCode, id: id);
     }
 
-    return PokemonSpecies.fromJson(response.data!);
+    logger.i('fetchPokemonSpecies: Fetched pokemon species. id: $id');
+    return _excludeSpeciesInfo(PokemonSpecies.fromJson(response.data!));
+  }
+
+  PokemonSpecies _excludeSpeciesInfo(PokemonSpecies pokemonSpecies) {
+    // 日本語と英語のフレーバーテキストのみを取得する
+    final flavorText = pokemonSpecies.flavorTextEntries.where((value) {
+      return ['ja', 'en'].contains(value.language.name);
+    }).toList();
+
+    // 日本語と英語の分類のみを取得する
+    final genera = pokemonSpecies.genera.where((value) {
+      return ['ja', 'en'].contains(value.language.name);
+    }).toList();
+
+    // 日本語と英語の名前のみを取得する
+    final names = pokemonSpecies.names.where((value) {
+      return ['ja', 'en'].contains(value.language.name);
+    }).toList();
+
+    // 不要な情報を削除する
+    return pokemonSpecies.copyWith(
+      flavorTextEntries: flavorText,
+      genera: genera,
+      names: names,
+    );
   }
 }

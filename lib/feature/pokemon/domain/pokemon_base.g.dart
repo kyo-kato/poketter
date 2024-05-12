@@ -78,25 +78,21 @@ Map<String, dynamic> _$$AbilitiesImplToJson(_$AbilitiesImpl instance) =>
 _$AbilityImpl _$$AbilityImplFromJson(Map<String, dynamic> json) =>
     _$AbilityImpl(
       name: json['name'] as String,
-      url: json['url'] as String,
     );
 
 Map<String, dynamic> _$$AbilityImplToJson(_$AbilityImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'url': instance.url,
     };
 
 _$SpeciesImpl _$$SpeciesImplFromJson(Map<String, dynamic> json) =>
     _$SpeciesImpl(
       name: json['name'] as String,
-      url: json['url'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$SpeciesImplToJson(_$SpeciesImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'url': instance.url,
     };
 
 _$CriesImpl _$$CriesImplFromJson(Map<String, dynamic> json) => _$CriesImpl(
@@ -141,8 +137,6 @@ _$VersionGroupDetailImpl _$$VersionGroupDetailImplFromJson(
       levelLearnedAt: (json['level_learned_at'] as num).toInt(),
       moveLearnMethod:
           Species.fromJson(json['move_learn_method'] as Map<String, dynamic>),
-      versionGroup:
-          Species.fromJson(json['version_group'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$VersionGroupDetailImplToJson(
@@ -150,7 +144,6 @@ Map<String, dynamic> _$$VersionGroupDetailImplToJson(
     <String, dynamic>{
       'level_learned_at': instance.levelLearnedAt,
       'move_learn_method': instance.moveLearnMethod,
-      'version_group': instance.versionGroup,
     };
 
 _$GenerationVImpl _$$GenerationVImplFromJson(Map<String, dynamic> json) =>
@@ -474,20 +467,18 @@ Map<String, dynamic> _$$TypeImplToJson(_$TypeImpl instance) =>
 
 _$FormImpl _$$FormImplFromJson(Map<String, dynamic> json) => _$FormImpl(
       name: json['name'] as String,
-      url: json['url'] as String,
     );
 
 Map<String, dynamic> _$$FormImplToJson(_$FormImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'url': instance.url,
     };
 
 _$HeldItemImpl _$$HeldItemImplFromJson(Map<String, dynamic> json) =>
     _$HeldItemImpl(
       item: Form.fromJson(json['item'] as Map<String, dynamic>),
-      versionDetails: (json['version_details'] as List<dynamic>)
-          .map((e) => VersionDetail.fromJson(e as Map<String, dynamic>))
+      versionDetails: (json['version_details'] as List<dynamic>?)
+          ?.map((e) => VersionDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

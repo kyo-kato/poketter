@@ -877,7 +877,6 @@ Ability _$AbilityFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Ability {
   String get name => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -889,7 +888,7 @@ abstract class $AbilityCopyWith<$Res> {
   factory $AbilityCopyWith(Ability value, $Res Function(Ability) then) =
       _$AbilityCopyWithImpl<$Res, Ability>;
   @useResult
-  $Res call({String name, String url});
+  $Res call({String name});
 }
 
 /// @nodoc
@@ -906,16 +905,11 @@ class _$AbilityCopyWithImpl<$Res, $Val extends Ability>
   @override
   $Res call({
     Object? name = null,
-    Object? url = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -928,7 +922,7 @@ abstract class _$$AbilityImplCopyWith<$Res> implements $AbilityCopyWith<$Res> {
       __$$AbilityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String url});
+  $Res call({String name});
 }
 
 /// @nodoc
@@ -943,16 +937,11 @@ class __$$AbilityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? url = null,
   }) {
     return _then(_$AbilityImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -962,19 +951,17 @@ class __$$AbilityImplCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$AbilityImpl implements _Ability {
-  const _$AbilityImpl({required this.name, required this.url});
+  const _$AbilityImpl({required this.name});
 
   factory _$AbilityImpl.fromJson(Map<String, dynamic> json) =>
       _$$AbilityImplFromJson(json);
 
   @override
   final String name;
-  @override
-  final String url;
 
   @override
   String toString() {
-    return 'Ability(name: $name, url: $url)';
+    return 'Ability(name: $name)';
   }
 
   @override
@@ -982,13 +969,12 @@ class _$AbilityImpl implements _Ability {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AbilityImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.url, url) || other.url == url));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, url);
+  int get hashCode => Object.hash(runtimeType, name);
 
   @JsonKey(ignore: true)
   @override
@@ -1005,15 +991,12 @@ class _$AbilityImpl implements _Ability {
 }
 
 abstract class _Ability implements Ability {
-  const factory _Ability(
-      {required final String name, required final String url}) = _$AbilityImpl;
+  const factory _Ability({required final String name}) = _$AbilityImpl;
 
   factory _Ability.fromJson(Map<String, dynamic> json) = _$AbilityImpl.fromJson;
 
   @override
   String get name;
-  @override
-  String get url;
   @override
   @JsonKey(ignore: true)
   _$$AbilityImplCopyWith<_$AbilityImpl> get copyWith =>
@@ -1027,7 +1010,6 @@ Species _$SpeciesFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Species {
   String get name => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1039,7 +1021,7 @@ abstract class $SpeciesCopyWith<$Res> {
   factory $SpeciesCopyWith(Species value, $Res Function(Species) then) =
       _$SpeciesCopyWithImpl<$Res, Species>;
   @useResult
-  $Res call({String name, String url});
+  $Res call({String name});
 }
 
 /// @nodoc
@@ -1056,16 +1038,11 @@ class _$SpeciesCopyWithImpl<$Res, $Val extends Species>
   @override
   $Res call({
     Object? name = null,
-    Object? url = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -1078,7 +1055,7 @@ abstract class _$$SpeciesImplCopyWith<$Res> implements $SpeciesCopyWith<$Res> {
       __$$SpeciesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String url});
+  $Res call({String name});
 }
 
 /// @nodoc
@@ -1093,16 +1070,11 @@ class __$$SpeciesImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? url = null,
   }) {
     return _then(_$SpeciesImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -1112,20 +1084,17 @@ class __$$SpeciesImplCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$SpeciesImpl implements _Species {
-  const _$SpeciesImpl({required this.name, this.url = ''});
+  const _$SpeciesImpl({required this.name});
 
   factory _$SpeciesImpl.fromJson(Map<String, dynamic> json) =>
       _$$SpeciesImplFromJson(json);
 
   @override
   final String name;
-  @override
-  @JsonKey()
-  final String url;
 
   @override
   String toString() {
-    return 'Species(name: $name, url: $url)';
+    return 'Species(name: $name)';
   }
 
   @override
@@ -1133,13 +1102,12 @@ class _$SpeciesImpl implements _Species {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SpeciesImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.url, url) || other.url == url));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, url);
+  int get hashCode => Object.hash(runtimeType, name);
 
   @JsonKey(ignore: true)
   @override
@@ -1156,15 +1124,12 @@ class _$SpeciesImpl implements _Species {
 }
 
 abstract class _Species implements Species {
-  const factory _Species({required final String name, final String url}) =
-      _$SpeciesImpl;
+  const factory _Species({required final String name}) = _$SpeciesImpl;
 
   factory _Species.fromJson(Map<String, dynamic> json) = _$SpeciesImpl.fromJson;
 
   @override
   String get name;
-  @override
-  String get url;
   @override
   @JsonKey(ignore: true)
   _$$SpeciesImplCopyWith<_$SpeciesImpl> get copyWith =>
@@ -1674,7 +1639,6 @@ VersionGroupDetail _$VersionGroupDetailFromJson(Map<String, dynamic> json) {
 mixin _$VersionGroupDetail {
   int get levelLearnedAt => throw _privateConstructorUsedError;
   Species get moveLearnMethod => throw _privateConstructorUsedError;
-  Species get versionGroup => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1688,11 +1652,9 @@ abstract class $VersionGroupDetailCopyWith<$Res> {
           VersionGroupDetail value, $Res Function(VersionGroupDetail) then) =
       _$VersionGroupDetailCopyWithImpl<$Res, VersionGroupDetail>;
   @useResult
-  $Res call(
-      {int levelLearnedAt, Species moveLearnMethod, Species versionGroup});
+  $Res call({int levelLearnedAt, Species moveLearnMethod});
 
   $SpeciesCopyWith<$Res> get moveLearnMethod;
-  $SpeciesCopyWith<$Res> get versionGroup;
 }
 
 /// @nodoc
@@ -1710,7 +1672,6 @@ class _$VersionGroupDetailCopyWithImpl<$Res, $Val extends VersionGroupDetail>
   $Res call({
     Object? levelLearnedAt = null,
     Object? moveLearnMethod = null,
-    Object? versionGroup = null,
   }) {
     return _then(_value.copyWith(
       levelLearnedAt: null == levelLearnedAt
@@ -1721,10 +1682,6 @@ class _$VersionGroupDetailCopyWithImpl<$Res, $Val extends VersionGroupDetail>
           ? _value.moveLearnMethod
           : moveLearnMethod // ignore: cast_nullable_to_non_nullable
               as Species,
-      versionGroup: null == versionGroup
-          ? _value.versionGroup
-          : versionGroup // ignore: cast_nullable_to_non_nullable
-              as Species,
     ) as $Val);
   }
 
@@ -1733,14 +1690,6 @@ class _$VersionGroupDetailCopyWithImpl<$Res, $Val extends VersionGroupDetail>
   $SpeciesCopyWith<$Res> get moveLearnMethod {
     return $SpeciesCopyWith<$Res>(_value.moveLearnMethod, (value) {
       return _then(_value.copyWith(moveLearnMethod: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SpeciesCopyWith<$Res> get versionGroup {
-    return $SpeciesCopyWith<$Res>(_value.versionGroup, (value) {
-      return _then(_value.copyWith(versionGroup: value) as $Val);
     });
   }
 }
@@ -1753,13 +1702,10 @@ abstract class _$$VersionGroupDetailImplCopyWith<$Res>
       __$$VersionGroupDetailImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int levelLearnedAt, Species moveLearnMethod, Species versionGroup});
+  $Res call({int levelLearnedAt, Species moveLearnMethod});
 
   @override
   $SpeciesCopyWith<$Res> get moveLearnMethod;
-  @override
-  $SpeciesCopyWith<$Res> get versionGroup;
 }
 
 /// @nodoc
@@ -1775,7 +1721,6 @@ class __$$VersionGroupDetailImplCopyWithImpl<$Res>
   $Res call({
     Object? levelLearnedAt = null,
     Object? moveLearnMethod = null,
-    Object? versionGroup = null,
   }) {
     return _then(_$VersionGroupDetailImpl(
       levelLearnedAt: null == levelLearnedAt
@@ -1786,10 +1731,6 @@ class __$$VersionGroupDetailImplCopyWithImpl<$Res>
           ? _value.moveLearnMethod
           : moveLearnMethod // ignore: cast_nullable_to_non_nullable
               as Species,
-      versionGroup: null == versionGroup
-          ? _value.versionGroup
-          : versionGroup // ignore: cast_nullable_to_non_nullable
-              as Species,
     ));
   }
 }
@@ -1799,9 +1740,7 @@ class __$$VersionGroupDetailImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$VersionGroupDetailImpl implements _VersionGroupDetail {
   const _$VersionGroupDetailImpl(
-      {required this.levelLearnedAt,
-      required this.moveLearnMethod,
-      required this.versionGroup});
+      {required this.levelLearnedAt, required this.moveLearnMethod});
 
   factory _$VersionGroupDetailImpl.fromJson(Map<String, dynamic> json) =>
       _$$VersionGroupDetailImplFromJson(json);
@@ -1810,12 +1749,10 @@ class _$VersionGroupDetailImpl implements _VersionGroupDetail {
   final int levelLearnedAt;
   @override
   final Species moveLearnMethod;
-  @override
-  final Species versionGroup;
 
   @override
   String toString() {
-    return 'VersionGroupDetail(levelLearnedAt: $levelLearnedAt, moveLearnMethod: $moveLearnMethod, versionGroup: $versionGroup)';
+    return 'VersionGroupDetail(levelLearnedAt: $levelLearnedAt, moveLearnMethod: $moveLearnMethod)';
   }
 
   @override
@@ -1826,15 +1763,12 @@ class _$VersionGroupDetailImpl implements _VersionGroupDetail {
             (identical(other.levelLearnedAt, levelLearnedAt) ||
                 other.levelLearnedAt == levelLearnedAt) &&
             (identical(other.moveLearnMethod, moveLearnMethod) ||
-                other.moveLearnMethod == moveLearnMethod) &&
-            (identical(other.versionGroup, versionGroup) ||
-                other.versionGroup == versionGroup));
+                other.moveLearnMethod == moveLearnMethod));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, levelLearnedAt, moveLearnMethod, versionGroup);
+  int get hashCode => Object.hash(runtimeType, levelLearnedAt, moveLearnMethod);
 
   @JsonKey(ignore: true)
   @override
@@ -1854,8 +1788,7 @@ class _$VersionGroupDetailImpl implements _VersionGroupDetail {
 abstract class _VersionGroupDetail implements VersionGroupDetail {
   const factory _VersionGroupDetail(
       {required final int levelLearnedAt,
-      required final Species moveLearnMethod,
-      required final Species versionGroup}) = _$VersionGroupDetailImpl;
+      required final Species moveLearnMethod}) = _$VersionGroupDetailImpl;
 
   factory _VersionGroupDetail.fromJson(Map<String, dynamic> json) =
       _$VersionGroupDetailImpl.fromJson;
@@ -1864,8 +1797,6 @@ abstract class _VersionGroupDetail implements VersionGroupDetail {
   int get levelLearnedAt;
   @override
   Species get moveLearnMethod;
-  @override
-  Species get versionGroup;
   @override
   @JsonKey(ignore: true)
   _$$VersionGroupDetailImplCopyWith<_$VersionGroupDetailImpl> get copyWith =>
@@ -5879,7 +5810,6 @@ Form _$FormFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Form {
   String get name => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -5891,7 +5821,7 @@ abstract class $FormCopyWith<$Res> {
   factory $FormCopyWith(Form value, $Res Function(Form) then) =
       _$FormCopyWithImpl<$Res, Form>;
   @useResult
-  $Res call({String name, String url});
+  $Res call({String name});
 }
 
 /// @nodoc
@@ -5908,16 +5838,11 @@ class _$FormCopyWithImpl<$Res, $Val extends Form>
   @override
   $Res call({
     Object? name = null,
-    Object? url = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -5930,7 +5855,7 @@ abstract class _$$FormImplCopyWith<$Res> implements $FormCopyWith<$Res> {
       __$$FormImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String url});
+  $Res call({String name});
 }
 
 /// @nodoc
@@ -5944,16 +5869,11 @@ class __$$FormImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? url = null,
   }) {
     return _then(_$FormImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -5963,19 +5883,17 @@ class __$$FormImplCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$FormImpl implements _Form {
-  const _$FormImpl({required this.name, required this.url});
+  const _$FormImpl({required this.name});
 
   factory _$FormImpl.fromJson(Map<String, dynamic> json) =>
       _$$FormImplFromJson(json);
 
   @override
   final String name;
-  @override
-  final String url;
 
   @override
   String toString() {
-    return 'Form(name: $name, url: $url)';
+    return 'Form(name: $name)';
   }
 
   @override
@@ -5983,13 +5901,12 @@ class _$FormImpl implements _Form {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FormImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.url, url) || other.url == url));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, url);
+  int get hashCode => Object.hash(runtimeType, name);
 
   @JsonKey(ignore: true)
   @override
@@ -6006,15 +5923,12 @@ class _$FormImpl implements _Form {
 }
 
 abstract class _Form implements Form {
-  const factory _Form({required final String name, required final String url}) =
-      _$FormImpl;
+  const factory _Form({required final String name}) = _$FormImpl;
 
   factory _Form.fromJson(Map<String, dynamic> json) = _$FormImpl.fromJson;
 
   @override
   String get name;
-  @override
-  String get url;
   @override
   @JsonKey(ignore: true)
   _$$FormImplCopyWith<_$FormImpl> get copyWith =>
@@ -6028,7 +5942,7 @@ HeldItem _$HeldItemFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$HeldItem {
   Form get item => throw _privateConstructorUsedError;
-  List<VersionDetail> get versionDetails => throw _privateConstructorUsedError;
+  List<VersionDetail>? get versionDetails => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -6041,7 +5955,7 @@ abstract class $HeldItemCopyWith<$Res> {
   factory $HeldItemCopyWith(HeldItem value, $Res Function(HeldItem) then) =
       _$HeldItemCopyWithImpl<$Res, HeldItem>;
   @useResult
-  $Res call({Form item, List<VersionDetail> versionDetails});
+  $Res call({Form item, List<VersionDetail>? versionDetails});
 
   $FormCopyWith<$Res> get item;
 }
@@ -6060,17 +5974,17 @@ class _$HeldItemCopyWithImpl<$Res, $Val extends HeldItem>
   @override
   $Res call({
     Object? item = null,
-    Object? versionDetails = null,
+    Object? versionDetails = freezed,
   }) {
     return _then(_value.copyWith(
       item: null == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
               as Form,
-      versionDetails: null == versionDetails
+      versionDetails: freezed == versionDetails
           ? _value.versionDetails
           : versionDetails // ignore: cast_nullable_to_non_nullable
-              as List<VersionDetail>,
+              as List<VersionDetail>?,
     ) as $Val);
   }
 
@@ -6091,7 +6005,7 @@ abstract class _$$HeldItemImplCopyWith<$Res>
       __$$HeldItemImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Form item, List<VersionDetail> versionDetails});
+  $Res call({Form item, List<VersionDetail>? versionDetails});
 
   @override
   $FormCopyWith<$Res> get item;
@@ -6109,17 +6023,17 @@ class __$$HeldItemImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? item = null,
-    Object? versionDetails = null,
+    Object? versionDetails = freezed,
   }) {
     return _then(_$HeldItemImpl(
       item: null == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
               as Form,
-      versionDetails: null == versionDetails
+      versionDetails: freezed == versionDetails
           ? _value._versionDetails
           : versionDetails // ignore: cast_nullable_to_non_nullable
-              as List<VersionDetail>,
+              as List<VersionDetail>?,
     ));
   }
 }
@@ -6129,7 +6043,7 @@ class __$$HeldItemImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$HeldItemImpl implements _HeldItem {
   const _$HeldItemImpl(
-      {required this.item, required final List<VersionDetail> versionDetails})
+      {required this.item, final List<VersionDetail>? versionDetails})
       : _versionDetails = versionDetails;
 
   factory _$HeldItemImpl.fromJson(Map<String, dynamic> json) =>
@@ -6137,12 +6051,14 @@ class _$HeldItemImpl implements _HeldItem {
 
   @override
   final Form item;
-  final List<VersionDetail> _versionDetails;
+  final List<VersionDetail>? _versionDetails;
   @override
-  List<VersionDetail> get versionDetails {
+  List<VersionDetail>? get versionDetails {
+    final value = _versionDetails;
+    if (value == null) return null;
     if (_versionDetails is EqualUnmodifiableListView) return _versionDetails;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_versionDetails);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -6182,7 +6098,7 @@ class _$HeldItemImpl implements _HeldItem {
 abstract class _HeldItem implements HeldItem {
   const factory _HeldItem(
       {required final Form item,
-      required final List<VersionDetail> versionDetails}) = _$HeldItemImpl;
+      final List<VersionDetail>? versionDetails}) = _$HeldItemImpl;
 
   factory _HeldItem.fromJson(Map<String, dynamic> json) =
       _$HeldItemImpl.fromJson;
@@ -6190,7 +6106,7 @@ abstract class _HeldItem implements HeldItem {
   @override
   Form get item;
   @override
-  List<VersionDetail> get versionDetails;
+  List<VersionDetail>? get versionDetails;
   @override
   @JsonKey(ignore: true)
   _$$HeldItemImplCopyWith<_$HeldItemImpl> get copyWith =>

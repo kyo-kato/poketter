@@ -25,21 +25,21 @@ class PokemonSpecies with _$PokemonSpecies {
     required int captureRate,
 
     /// 色
-    required Color color,
+    required NameUrl color,
 
     /// フレーバーテキスト
     required List<FlavorTextEntry> flavorTextEntries,
 
     /// 属性
     required List<Genus> genera,
-    required List<Color> eggGroups,
-    required EvolutionChain evolutionChain,
+    required List<NameUrl> eggGroups,
+    // required EvolutionChain evolutionChain,
     EvolvesFromSpecies? evolvesFromSpecies,
     required bool formsSwitchable,
     required int genderRate,
-    required Color generation,
-    required Color growthRate,
-    required Color habitat,
+    required NameUrl generation,
+    required NameUrl growthRate,
+    required NameUrl habitat,
     required bool hasGenderDifferences,
     required int hatchCounter,
     required bool isBaby,
@@ -47,8 +47,8 @@ class PokemonSpecies with _$PokemonSpecies {
     required bool isMythical,
     required int order,
     required List<PalParkEncounter> palParkEncounters,
-    required List<PokedexNumber> pokedexNumbers,
-    required Color shape,
+    // required List<PokedexNumber> pokedexNumbers,
+    required NameUrl shape,
     required List<Variety> varieties,
     @Default([]) List<dynamic> formDescriptions,
   }) = _PokemonSpecies;
@@ -58,14 +58,15 @@ class PokemonSpecies with _$PokemonSpecies {
 }
 
 @freezed
-class Color with _$Color {
+class NameUrl with _$NameUrl {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory Color({
+  const factory NameUrl({
     required String name,
-    required String url,
-  }) = _Color;
+    // required String url,
+  }) = _NameUrl;
 
-  factory Color.fromJson(Map<String, dynamic> json) => _$ColorFromJson(json);
+  factory NameUrl.fromJson(Map<String, dynamic> json) =>
+      _$NameUrlFromJson(json);
 }
 
 @freezed
@@ -84,8 +85,8 @@ class FlavorTextEntry with _$FlavorTextEntry {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory FlavorTextEntry({
     required String flavorText,
-    required Color language,
-    required Color version,
+    required NameUrl language,
+    required NameUrl version,
   }) = _FlavorTextEntry;
 
   factory FlavorTextEntry.fromJson(Map<String, dynamic> json) =>
@@ -97,7 +98,7 @@ class Genus with _$Genus {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Genus({
     required String genus,
-    required Color language,
+    required NameUrl language,
   }) = _Genus;
 
   factory Genus.fromJson(Map<String, dynamic> json) => _$GenusFromJson(json);
@@ -107,7 +108,7 @@ class Genus with _$Genus {
 class Name with _$Name {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Name({
-    required Color language,
+    required NameUrl language,
     required String name,
   }) = _Name;
 
@@ -118,7 +119,7 @@ class Name with _$Name {
 class PalParkEncounter with _$PalParkEncounter {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory PalParkEncounter({
-    required Color area,
+    required NameUrl area,
     required int baseScore,
     required int rate,
   }) = _PalParkEncounter;
@@ -132,7 +133,7 @@ class PokedexNumber with _$PokedexNumber {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory PokedexNumber({
     required int entryNumber,
-    required Color pokedex,
+    required NameUrl pokedex,
   }) = _PokedexNumber;
 
   factory PokedexNumber.fromJson(Map<String, dynamic> json) =>
@@ -144,7 +145,7 @@ class Variety with _$Variety {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Variety({
     required bool isDefault,
-    required Color pokemon,
+    required NameUrl pokemon,
   }) = _Variety;
 
   factory Variety.fromJson(Map<String, dynamic> json) =>
@@ -156,7 +157,7 @@ class EvolvesFromSpecies with _$EvolvesFromSpecies {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory EvolvesFromSpecies({
     required String name,
-    required String url,
+    // required String url,
   }) = _EvolvesFromSpecies;
 
   factory EvolvesFromSpecies.fromJson(Map<String, dynamic> json) =>
