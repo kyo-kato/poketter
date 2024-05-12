@@ -17,6 +17,11 @@
     "source.organizeImports": "explicit",
     "quickfix.insertSemicolon": "explicit"
   },
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.dart": "$(capture).g.dart, $(capture).freezed.dart"
+  },
   "cSpell.words": [
     "poketter",
     "pokedex",
