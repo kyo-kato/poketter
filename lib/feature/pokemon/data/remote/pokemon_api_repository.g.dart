@@ -1,27 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'pokemon_repository.dart';
+part of 'pokemon_api_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$pokemonRepositoryHash() => r'faefb1344c29a67a057f3f3ddef01f17734a379b';
+String _$pokemonApiRepositoryHash() =>
+    r'46699b78b43a0be1fd2f85b0c03e6507d02440ec';
 
-/// See also [pokemonRepository].
-@ProviderFor(pokemonRepository)
-final pokemonRepositoryProvider = Provider<PokemonRepository>.internal(
-  pokemonRepository,
-  name: r'pokemonRepositoryProvider',
+/// See also [pokemonApiRepository].
+@ProviderFor(pokemonApiRepository)
+final pokemonApiRepositoryProvider = Provider<PokemonApiRepository>.internal(
+  pokemonApiRepository,
+  name: r'pokemonApiRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$pokemonRepositoryHash,
+      : _$pokemonApiRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef PokemonRepositoryRef = ProviderRef<PokemonRepository>;
-String _$fetchPokemonHash() => r'aeb0cbaf2297f07cbcd0624df573c428b29a50b0';
+typedef PokemonApiRepositoryRef = ProviderRef<PokemonApiRepository>;
+String _$fetchPokemonHash() => r'407aaa6cde4356b605377798013a9ee475976ea0';
 
 /// Copied from Dart SDK
 class _SystemHash {

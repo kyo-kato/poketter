@@ -1,18 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../exception/pokemon_exceptions.dart';
-import '../domain/my_pokemon.dart';
-import '../domain/pokemon_base.dart';
-import '../domain/pokemon_species.dart';
+import '../../../../exception/pokemon_exceptions.dart';
+import '../../domain/my_pokemon.dart';
+import '../../domain/pokemon_base.dart';
+import '../../domain/pokemon_species.dart';
 
-part 'pokemon_repository.g.dart';
+part 'pokemon_api_repository.g.dart';
 
 @Riverpod(keepAlive: true)
-PokemonRepository pokemonRepository(
-  PokemonRepositoryRef ref,
+PokemonApiRepository pokemonApiRepository(
+  PokemonApiRepositoryRef ref,
 ) =>
-    PokemonRepository(Dio());
+    PokemonApiRepository(Dio());
 
 @riverpod
 Future<Pokemon> fetchPokemon(
@@ -20,9 +20,9 @@ Future<Pokemon> fetchPokemon(
   int id,
 ) async {
   final pokemonBase =
-      await ref.read(pokemonRepositoryProvider).fetchPokemonBase(id);
+      await ref.read(pokemonApiRepositoryProvider).fetchPokemonBase(id);
   final pokemonSpecies =
-      await ref.read(pokemonRepositoryProvider).fetchPokemonSpecies(id);
+      await ref.read(pokemonApiRepositoryProvider).fetchPokemonSpecies(id);
   return Pokemon(
     id: id,
     pokemon: pokemonBase,
@@ -31,8 +31,8 @@ Future<Pokemon> fetchPokemon(
 }
 
 /// ポケモンの情報を取得するリポジトリ
-class PokemonRepository {
-  PokemonRepository(this._dio);
+class PokemonApiRepository {
+  PokemonApiRepository(this._dio);
   final Dio _dio;
 
   /// ポケモンの基礎情報を取得する
