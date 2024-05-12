@@ -18,7 +18,7 @@ class FirstPartnersRepository {
 
   /// 御三家のデータ登録
   /// マスターデータの登録なので、繰り返し呼ぶ必要はない
-  void register({FirstPartnersByGens data = gens}) {
+  void register({required FirstPartnersByGens gens}) {
     logger.d(gens);
     _firstPartnerRef().set(gens);
   }

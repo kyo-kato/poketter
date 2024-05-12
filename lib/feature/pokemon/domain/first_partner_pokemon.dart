@@ -6,85 +6,179 @@ part 'first_partner_pokemon.g.dart';
 // TODO: FireStoreに登録するためのマスターデータ。アプリに組み込むのは微妙
 
 /// 世代別のポケモン御三家のID
-const gens = FirstPartnersByGens(
-  generations: [
-    FirstPartnersByGen(
+
+const firstPartnersByGen = FirstPartnersByGens(
+  list: [
+    FirstPartnerPokemon(
       generation: 0,
-      pokemons: [
-        FirstPartnerPokemon(id: 25, name: 'Pikachu', nameJa: 'ピカチュウ'),
-      ],
+      id: 25,
+      name: 'pikachu',
+      nameJa: 'ピカチュウ',
     ),
-    FirstPartnersByGen(
+
+    FirstPartnerPokemon(
       generation: 1,
-      pokemons: [
-        FirstPartnerPokemon(id: 1, name: 'Bulbasaur', nameJa: 'フシギダネ'),
-        FirstPartnerPokemon(id: 4, name: 'Charmander', nameJa: 'ヒトカゲ'),
-        FirstPartnerPokemon(id: 7, name: 'Squirtle', nameJa: 'ゼニガメ'),
-      ],
+      id: 1,
+      name: 'bulbasaur',
+      nameJa: 'フシギダネ',
     ),
-    FirstPartnersByGen(
+    FirstPartnerPokemon(
+      generation: 1,
+      id: 4,
+      name: 'charmander',
+      nameJa: 'ヒトカゲ',
+    ),
+    FirstPartnerPokemon(
+      generation: 1,
+      id: 7,
+      name: 'squirtle',
+      nameJa: 'ゼニガメ',
+    ),
+    FirstPartnerPokemon(
       generation: 2,
-      pokemons: [
-        FirstPartnerPokemon(id: 152, name: 'Chikorita', nameJa: 'チコリータ'),
-        FirstPartnerPokemon(id: 155, name: 'Cyndaquil', nameJa: 'ヒノアラシ'),
-        FirstPartnerPokemon(id: 158, name: 'Totodile', nameJa: 'ワニノコ'),
-      ],
+      id: 152,
+      name: 'chikorita',
+      nameJa: 'チコリータ',
     ),
-    FirstPartnersByGen(
+    FirstPartnerPokemon(
+      generation: 2,
+      id: 155,
+      name: 'cyndaquil',
+      nameJa: 'ヒノアラシ',
+    ),
+    FirstPartnerPokemon(
+      generation: 2,
+      id: 158,
+      name: 'totodile',
+      nameJa: 'ワニノコ',
+    ),
+    FirstPartnerPokemon(
       generation: 3,
-      pokemons: [
-        FirstPartnerPokemon(id: 252, name: 'Treecko', nameJa: 'キモリ'),
-        FirstPartnerPokemon(id: 255, name: 'Torchic', nameJa: 'アチャモ'),
-        FirstPartnerPokemon(id: 258, name: 'Mudkip', nameJa: 'ミズゴロウ'),
-      ],
+      id: 252,
+      name: 'treecko',
+      nameJa: 'キモリ',
     ),
-    FirstPartnersByGen(
+    FirstPartnerPokemon(
+      generation: 3,
+      id: 255,
+      name: 'torchic',
+      nameJa: 'アチャモ',
+    ),
+    FirstPartnerPokemon(
+      generation: 3,
+      id: 258,
+      name: 'mudkip',
+      nameJa: 'ミズゴロウ',
+    ),
+    FirstPartnerPokemon(
       generation: 4,
-      pokemons: [
-        FirstPartnerPokemon(id: 387, name: 'Turtwig', nameJa: 'ナエトル'),
-        FirstPartnerPokemon(id: 390, name: 'Chimchar', nameJa: 'ヒコザル'),
-        FirstPartnerPokemon(id: 393, name: 'Piplup', nameJa: 'ポッチャマ'),
-      ],
+      id: 387,
+      name: 'turtwig',
+      nameJa: 'ナエトル',
     ),
-    FirstPartnersByGen(
+    FirstPartnerPokemon(
+      generation: 4,
+      id: 390,
+      name: 'chimchar',
+      nameJa: 'ヒコザル',
+    ),
+    FirstPartnerPokemon(
+      generation: 4,
+      id: 393,
+      name: 'piplup',
+      nameJa: 'ポッチャマ',
+    ),
+    FirstPartnerPokemon(
       generation: 5,
-      pokemons: [
-        FirstPartnerPokemon(id: 495, name: 'Snivy', nameJa: 'ツタージャ'),
-        FirstPartnerPokemon(id: 498, name: 'Tepig', nameJa: 'ポカブ'),
-        FirstPartnerPokemon(id: 501, name: 'Oshawott', nameJa: 'ミジュマル'),
-      ],
+      id: 495,
+      name: 'snivy',
+      nameJa: 'ツタージャ',
     ),
-    FirstPartnersByGen(
+    FirstPartnerPokemon(
+      generation: 5,
+      id: 498,
+      name: 'tepig',
+      nameJa: 'ポカブ',
+    ),
+    FirstPartnerPokemon(
+      generation: 5,
+      id: 501,
+      name: 'oshawott',
+      nameJa: 'ミジュマル',
+    ),
+    FirstPartnerPokemon(
       generation: 6,
-      pokemons: [
-        FirstPartnerPokemon(id: 650, name: 'Chespin', nameJa: 'ハリマロン'),
-        FirstPartnerPokemon(id: 653, name: 'Fennekin', nameJa: 'フォッコ'),
-        FirstPartnerPokemon(id: 656, name: 'Froakie', nameJa: 'ケロマツ'),
-      ],
+      id: 650,
+      name: 'chespin',
+      nameJa: 'ハリマロン',
     ),
-    FirstPartnersByGen(
+    FirstPartnerPokemon(
+      generation: 6,
+      id: 653,
+      name: 'fennekin',
+      nameJa: 'フォッコ',
+    ),
+    FirstPartnerPokemon(
+      generation: 6,
+      id: 656,
+      name: 'froakie',
+      nameJa: 'ケロマツ',
+    ),
+
+    FirstPartnerPokemon(
       generation: 7,
-      pokemons: [
-        FirstPartnerPokemon(id: 722, name: 'Rowlet', nameJa: 'モクロー'),
-        FirstPartnerPokemon(id: 725, name: 'Litten', nameJa: 'ニャビー'),
-        FirstPartnerPokemon(id: 728, name: 'Popplio', nameJa: 'アシマリ'),
-      ],
+      id: 722,
+      name: 'rowlet',
+      nameJa: 'モクロー',
     ),
-    FirstPartnersByGen(
+    FirstPartnerPokemon(
+      generation: 7,
+      id: 725,
+      name: 'litten',
+      nameJa: 'ニャビー',
+    ),
+    FirstPartnerPokemon(
+      generation: 7,
+      id: 728,
+      name: 'popplio',
+      nameJa: 'アシマリ',
+    ),
+
+    FirstPartnerPokemon(
       generation: 8,
-      pokemons: [
-        FirstPartnerPokemon(id: 810, name: 'Grookey', nameJa: 'サルノリ'),
-        FirstPartnerPokemon(id: 813, name: 'Scorbunny', nameJa: 'ヒバニー'),
-        FirstPartnerPokemon(id: 816, name: 'Sobble', nameJa: 'メッソン'),
-      ],
+      id: 810,
+      name: 'grookey',
+      nameJa: 'サルノリ',
     ),
-    FirstPartnersByGen(
+    FirstPartnerPokemon(
+      generation: 8,
+      id: 813,
+      name: 'scorbunny',
+      nameJa: 'ヒバニー',
+    ),
+    FirstPartnerPokemon(
+      generation: 8,
+      id: 816,
+      name: 'sobble',
+      nameJa: 'メッソン',
+    ),
+    FirstPartnerPokemon(
       generation: 9,
-      pokemons: [
-        FirstPartnerPokemon(id: 906, name: 'Sprigatito', nameJa: 'ニャオハ'),
-        FirstPartnerPokemon(id: 909, name: 'Fuecoco', nameJa: 'ホゲータ'),
-        FirstPartnerPokemon(id: 912, name: 'Quaxly', nameJa: 'クワッス'),
-      ],
+      id: 906,
+      name: 'sprigatito',
+      nameJa: 'ニャオハ',
+    ),
+    FirstPartnerPokemon(
+      generation: 9,
+      id: 909,
+      name: 'fuecoco',
+      nameJa: 'ホゲータ',
+    ),
+    FirstPartnerPokemon(
+      generation: 9,
+      id: 912,
+      name: 'quaxly',
+      nameJa: 'クワッス',
     ),
   ],
 );
@@ -93,28 +187,18 @@ const gens = FirstPartnersByGens(
 class FirstPartnersByGens with _$FirstPartnersByGens {
   @JsonSerializable(explicitToJson: true)
   const factory FirstPartnersByGens({
-    required List<FirstPartnersByGen> generations,
+    required List<FirstPartnerPokemon> list,
   }) = _FirstPartnersByGens;
 
   factory FirstPartnersByGens.fromJson(Map<String, Object?> json) =>
       _$FirstPartnersByGensFromJson(json);
 }
 
-@freezed
-class FirstPartnersByGen with _$FirstPartnersByGen {
-  @JsonSerializable(explicitToJson: true)
-  const factory FirstPartnersByGen({
-    required int generation,
-    required List<FirstPartnerPokemon> pokemons,
-  }) = _FirstPartnersByGen;
-
-  factory FirstPartnersByGen.fromJson(Map<String, Object?> json) =>
-      _$FirstPartnersByGenFromJson(json);
-}
 
 @freezed
 class FirstPartnerPokemon with _$FirstPartnerPokemon {
   const factory FirstPartnerPokemon({
+    required int generation,
     required int id,
     required String name,
     @Default('') String nameJa,

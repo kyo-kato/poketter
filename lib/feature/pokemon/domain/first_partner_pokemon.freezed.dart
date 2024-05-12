@@ -20,8 +20,7 @@ FirstPartnersByGens _$FirstPartnersByGensFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FirstPartnersByGens {
-  List<FirstPartnersByGen> get generations =>
-      throw _privateConstructorUsedError;
+  List<FirstPartnerPokemon> get list => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +34,7 @@ abstract class $FirstPartnersByGensCopyWith<$Res> {
           FirstPartnersByGens value, $Res Function(FirstPartnersByGens) then) =
       _$FirstPartnersByGensCopyWithImpl<$Res, FirstPartnersByGens>;
   @useResult
-  $Res call({List<FirstPartnersByGen> generations});
+  $Res call({List<FirstPartnerPokemon> list});
 }
 
 /// @nodoc
@@ -51,13 +50,13 @@ class _$FirstPartnersByGensCopyWithImpl<$Res, $Val extends FirstPartnersByGens>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? generations = null,
+    Object? list = null,
   }) {
     return _then(_value.copyWith(
-      generations: null == generations
-          ? _value.generations
-          : generations // ignore: cast_nullable_to_non_nullable
-              as List<FirstPartnersByGen>,
+      list: null == list
+          ? _value.list
+          : list // ignore: cast_nullable_to_non_nullable
+              as List<FirstPartnerPokemon>,
     ) as $Val);
   }
 }
@@ -70,7 +69,7 @@ abstract class _$$FirstPartnersByGensImplCopyWith<$Res>
       __$$FirstPartnersByGensImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<FirstPartnersByGen> generations});
+  $Res call({List<FirstPartnerPokemon> list});
 }
 
 /// @nodoc
@@ -84,13 +83,13 @@ class __$$FirstPartnersByGensImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? generations = null,
+    Object? list = null,
   }) {
     return _then(_$FirstPartnersByGensImpl(
-      generations: null == generations
-          ? _value._generations
-          : generations // ignore: cast_nullable_to_non_nullable
-              as List<FirstPartnersByGen>,
+      list: null == list
+          ? _value._list
+          : list // ignore: cast_nullable_to_non_nullable
+              as List<FirstPartnerPokemon>,
     ));
   }
 }
@@ -100,23 +99,23 @@ class __$$FirstPartnersByGensImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$FirstPartnersByGensImpl implements _FirstPartnersByGens {
   const _$FirstPartnersByGensImpl(
-      {required final List<FirstPartnersByGen> generations})
-      : _generations = generations;
+      {required final List<FirstPartnerPokemon> list})
+      : _list = list;
 
   factory _$FirstPartnersByGensImpl.fromJson(Map<String, dynamic> json) =>
       _$$FirstPartnersByGensImplFromJson(json);
 
-  final List<FirstPartnersByGen> _generations;
+  final List<FirstPartnerPokemon> _list;
   @override
-  List<FirstPartnersByGen> get generations {
-    if (_generations is EqualUnmodifiableListView) return _generations;
+  List<FirstPartnerPokemon> get list {
+    if (_list is EqualUnmodifiableListView) return _list;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_generations);
+    return EqualUnmodifiableListView(_list);
   }
 
   @override
   String toString() {
-    return 'FirstPartnersByGens(generations: $generations)';
+    return 'FirstPartnersByGens(list: $list)';
   }
 
   @override
@@ -124,14 +123,13 @@ class _$FirstPartnersByGensImpl implements _FirstPartnersByGens {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FirstPartnersByGensImpl &&
-            const DeepCollectionEquality()
-                .equals(other._generations, _generations));
+            const DeepCollectionEquality().equals(other._list, _list));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_generations));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_list));
 
   @JsonKey(ignore: true)
   @override
@@ -150,184 +148,17 @@ class _$FirstPartnersByGensImpl implements _FirstPartnersByGens {
 
 abstract class _FirstPartnersByGens implements FirstPartnersByGens {
   const factory _FirstPartnersByGens(
-          {required final List<FirstPartnersByGen> generations}) =
+          {required final List<FirstPartnerPokemon> list}) =
       _$FirstPartnersByGensImpl;
 
   factory _FirstPartnersByGens.fromJson(Map<String, dynamic> json) =
       _$FirstPartnersByGensImpl.fromJson;
 
   @override
-  List<FirstPartnersByGen> get generations;
+  List<FirstPartnerPokemon> get list;
   @override
   @JsonKey(ignore: true)
   _$$FirstPartnersByGensImplCopyWith<_$FirstPartnersByGensImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-FirstPartnersByGen _$FirstPartnersByGenFromJson(Map<String, dynamic> json) {
-  return _FirstPartnersByGen.fromJson(json);
-}
-
-/// @nodoc
-mixin _$FirstPartnersByGen {
-  int get generation => throw _privateConstructorUsedError;
-  List<FirstPartnerPokemon> get pokemons => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $FirstPartnersByGenCopyWith<FirstPartnersByGen> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $FirstPartnersByGenCopyWith<$Res> {
-  factory $FirstPartnersByGenCopyWith(
-          FirstPartnersByGen value, $Res Function(FirstPartnersByGen) then) =
-      _$FirstPartnersByGenCopyWithImpl<$Res, FirstPartnersByGen>;
-  @useResult
-  $Res call({int generation, List<FirstPartnerPokemon> pokemons});
-}
-
-/// @nodoc
-class _$FirstPartnersByGenCopyWithImpl<$Res, $Val extends FirstPartnersByGen>
-    implements $FirstPartnersByGenCopyWith<$Res> {
-  _$FirstPartnersByGenCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? generation = null,
-    Object? pokemons = null,
-  }) {
-    return _then(_value.copyWith(
-      generation: null == generation
-          ? _value.generation
-          : generation // ignore: cast_nullable_to_non_nullable
-              as int,
-      pokemons: null == pokemons
-          ? _value.pokemons
-          : pokemons // ignore: cast_nullable_to_non_nullable
-              as List<FirstPartnerPokemon>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$FirstPartnersByGenImplCopyWith<$Res>
-    implements $FirstPartnersByGenCopyWith<$Res> {
-  factory _$$FirstPartnersByGenImplCopyWith(_$FirstPartnersByGenImpl value,
-          $Res Function(_$FirstPartnersByGenImpl) then) =
-      __$$FirstPartnersByGenImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int generation, List<FirstPartnerPokemon> pokemons});
-}
-
-/// @nodoc
-class __$$FirstPartnersByGenImplCopyWithImpl<$Res>
-    extends _$FirstPartnersByGenCopyWithImpl<$Res, _$FirstPartnersByGenImpl>
-    implements _$$FirstPartnersByGenImplCopyWith<$Res> {
-  __$$FirstPartnersByGenImplCopyWithImpl(_$FirstPartnersByGenImpl _value,
-      $Res Function(_$FirstPartnersByGenImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? generation = null,
-    Object? pokemons = null,
-  }) {
-    return _then(_$FirstPartnersByGenImpl(
-      generation: null == generation
-          ? _value.generation
-          : generation // ignore: cast_nullable_to_non_nullable
-              as int,
-      pokemons: null == pokemons
-          ? _value._pokemons
-          : pokemons // ignore: cast_nullable_to_non_nullable
-              as List<FirstPartnerPokemon>,
-    ));
-  }
-}
-
-/// @nodoc
-
-@JsonSerializable(explicitToJson: true)
-class _$FirstPartnersByGenImpl implements _FirstPartnersByGen {
-  const _$FirstPartnersByGenImpl(
-      {required this.generation,
-      required final List<FirstPartnerPokemon> pokemons})
-      : _pokemons = pokemons;
-
-  factory _$FirstPartnersByGenImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FirstPartnersByGenImplFromJson(json);
-
-  @override
-  final int generation;
-  final List<FirstPartnerPokemon> _pokemons;
-  @override
-  List<FirstPartnerPokemon> get pokemons {
-    if (_pokemons is EqualUnmodifiableListView) return _pokemons;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_pokemons);
-  }
-
-  @override
-  String toString() {
-    return 'FirstPartnersByGen(generation: $generation, pokemons: $pokemons)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FirstPartnersByGenImpl &&
-            (identical(other.generation, generation) ||
-                other.generation == generation) &&
-            const DeepCollectionEquality().equals(other._pokemons, _pokemons));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, generation, const DeepCollectionEquality().hash(_pokemons));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FirstPartnersByGenImplCopyWith<_$FirstPartnersByGenImpl> get copyWith =>
-      __$$FirstPartnersByGenImplCopyWithImpl<_$FirstPartnersByGenImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$FirstPartnersByGenImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _FirstPartnersByGen implements FirstPartnersByGen {
-  const factory _FirstPartnersByGen(
-          {required final int generation,
-          required final List<FirstPartnerPokemon> pokemons}) =
-      _$FirstPartnersByGenImpl;
-
-  factory _FirstPartnersByGen.fromJson(Map<String, dynamic> json) =
-      _$FirstPartnersByGenImpl.fromJson;
-
-  @override
-  int get generation;
-  @override
-  List<FirstPartnerPokemon> get pokemons;
-  @override
-  @JsonKey(ignore: true)
-  _$$FirstPartnersByGenImplCopyWith<_$FirstPartnersByGenImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -337,6 +168,7 @@ FirstPartnerPokemon _$FirstPartnerPokemonFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FirstPartnerPokemon {
+  int get generation => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get nameJa => throw _privateConstructorUsedError;
@@ -353,7 +185,7 @@ abstract class $FirstPartnerPokemonCopyWith<$Res> {
           FirstPartnerPokemon value, $Res Function(FirstPartnerPokemon) then) =
       _$FirstPartnerPokemonCopyWithImpl<$Res, FirstPartnerPokemon>;
   @useResult
-  $Res call({int id, String name, String nameJa});
+  $Res call({int generation, int id, String name, String nameJa});
 }
 
 /// @nodoc
@@ -369,11 +201,16 @@ class _$FirstPartnerPokemonCopyWithImpl<$Res, $Val extends FirstPartnerPokemon>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? generation = null,
     Object? id = null,
     Object? name = null,
     Object? nameJa = null,
   }) {
     return _then(_value.copyWith(
+      generation: null == generation
+          ? _value.generation
+          : generation // ignore: cast_nullable_to_non_nullable
+              as int,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -398,7 +235,7 @@ abstract class _$$FirstPartnerPokemonImplCopyWith<$Res>
       __$$FirstPartnerPokemonImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, String nameJa});
+  $Res call({int generation, int id, String name, String nameJa});
 }
 
 /// @nodoc
@@ -412,11 +249,16 @@ class __$$FirstPartnerPokemonImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? generation = null,
     Object? id = null,
     Object? name = null,
     Object? nameJa = null,
   }) {
     return _then(_$FirstPartnerPokemonImpl(
+      generation: null == generation
+          ? _value.generation
+          : generation // ignore: cast_nullable_to_non_nullable
+              as int,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -437,12 +279,17 @@ class __$$FirstPartnerPokemonImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$FirstPartnerPokemonImpl extends _FirstPartnerPokemon {
   const _$FirstPartnerPokemonImpl(
-      {required this.id, required this.name, this.nameJa = ''})
+      {required this.generation,
+      required this.id,
+      required this.name,
+      this.nameJa = ''})
       : super._();
 
   factory _$FirstPartnerPokemonImpl.fromJson(Map<String, dynamic> json) =>
       _$$FirstPartnerPokemonImplFromJson(json);
 
+  @override
+  final int generation;
   @override
   final int id;
   @override
@@ -453,7 +300,7 @@ class _$FirstPartnerPokemonImpl extends _FirstPartnerPokemon {
 
   @override
   String toString() {
-    return 'FirstPartnerPokemon(id: $id, name: $name, nameJa: $nameJa)';
+    return 'FirstPartnerPokemon(generation: $generation, id: $id, name: $name, nameJa: $nameJa)';
   }
 
   @override
@@ -461,6 +308,8 @@ class _$FirstPartnerPokemonImpl extends _FirstPartnerPokemon {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FirstPartnerPokemonImpl &&
+            (identical(other.generation, generation) ||
+                other.generation == generation) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.nameJa, nameJa) || other.nameJa == nameJa));
@@ -468,7 +317,7 @@ class _$FirstPartnerPokemonImpl extends _FirstPartnerPokemon {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, nameJa);
+  int get hashCode => Object.hash(runtimeType, generation, id, name, nameJa);
 
   @JsonKey(ignore: true)
   @override
@@ -487,7 +336,8 @@ class _$FirstPartnerPokemonImpl extends _FirstPartnerPokemon {
 
 abstract class _FirstPartnerPokemon extends FirstPartnerPokemon {
   const factory _FirstPartnerPokemon(
-      {required final int id,
+      {required final int generation,
+      required final int id,
       required final String name,
       final String nameJa}) = _$FirstPartnerPokemonImpl;
   const _FirstPartnerPokemon._() : super._();
@@ -495,6 +345,8 @@ abstract class _FirstPartnerPokemon extends FirstPartnerPokemon {
   factory _FirstPartnerPokemon.fromJson(Map<String, dynamic> json) =
       _$FirstPartnerPokemonImpl.fromJson;
 
+  @override
+  int get generation;
   @override
   int get id;
   @override

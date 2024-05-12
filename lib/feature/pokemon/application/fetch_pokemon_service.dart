@@ -36,7 +36,7 @@ class FetchPokemonService extends _$FetchPokemonService {
 
     // ローカルに保存
     final db = await ref.read(pokemonDbRepositoryProvider.future);
-    db.storePokemon(PokemonDto.fromPokemon(id: id, pokemon: pokemon));
+    await db.storePokemon(PokemonDto.fromPokemon(id: id, pokemon: pokemon));
     return pokemon;
   }
 

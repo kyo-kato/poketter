@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,6 +14,7 @@ class FirstPartnerSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const pokemons = firstPartnersByGen;
     return Column(
       children: [
         const Gap(20),
@@ -25,36 +28,70 @@ class FirstPartnerSelector extends StatelessWidget {
           },
         ),
         const Gap(20),
-        _PokemonSelector(generations: gens.generations),
+        _PokemonSelector(pokemons: pokemons.list),
+        const Gap(20),
+        _SubmitButton(pokemons: pokemons.list),
       ],
     );
   }
 }
 
-class _PokemonSelector extends ConsumerWidget {
-  _PokemonSelector({required this.generations});
+class _SubmitButton extends ConsumerWidget {
+  const _SubmitButton({required this.pokemons});
+  final List<FirstPartnerPokemon> pokemons;
 
-  final List<FirstPartnersByGen> generations;
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userName = ref.watch(entryUserNameProvider);
+    final state = ref.watch(onboardingStateProvider);
+
+    return state.when(
+      error: (e, st) => Text(e.toString()),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      data: (_) => ElevatedButton(
+        onPressed: userName.isEmpty
+            ? null
+            : () {
+                final index =
+                    pokemons[ref.read(currentPokemonIndexProvider)].id;
+                ref
+                    .read(onboardingStateProvider.notifier)
+                    .complete(pokemonId: index);
+              },
+        child: const Text('Start'),
+      ),
+    );
+  }
+}
+
+class _PokemonSelector extends ConsumerWidget {
+  _PokemonSelector({required this.pokemons});
+
+  final List<FirstPartnerPokemon> pokemons;
   final PageController _pageController = PageController();
 
-  void prevPage() => _pageController.previousPage(
+  void prevPage(int current) => _pageController.animateToPage(
+        max(0, current - 3),
         duration: Durations.short4,
         curve: Curves.linear,
       );
 
-  void nextPage() => _pageController.nextPage(
+  void nextPage(int current) => _pageController.animateToPage(
+        min(pokemons.length, current == 0 ? current + 1 : current + 3),
         duration: Durations.short4,
         curve: Curves.linear,
       );
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final current = ref.watch(currentGenerationIndexProvider);
+    final current = ref.watch(currentPokemonIndexProvider);
     return Column(
       children: [
         _GenerationHeader(
-          onPrevPage: current == 0 ? null : prevPage,
-          onNextPage: current == generations.length - 1 ? null : nextPage,
+          pokemons: pokemons,
+          onPrevPage: current == 0 ? null : () => prevPage(current),
+          onNextPage:
+              current == pokemons.length - 1 ? null : () => nextPage(current),
         ),
         const Gap(10),
         SizedBox(
@@ -62,12 +99,17 @@ class _PokemonSelector extends ConsumerWidget {
           child: PageView.builder(
             controller: _pageController,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: generations.length,
+            itemCount: pokemons.length,
             itemBuilder: (context, index) {
-              return _Page(pokemons: generations[index].pokemons);
+              return _Page(
+                itemCount: pokemons.length,
+                pokemon: pokemons[index],
+                pageController: _pageController,
+              );
             },
-            onPageChanged:
-                ref.read(currentGenerationIndexProvider.notifier).update,
+            onPageChanged: (index) {
+              ref.read(currentPokemonIndexProvider.notifier).update(index);
+            },
           ),
         ),
       ],
@@ -76,14 +118,20 @@ class _PokemonSelector extends ConsumerWidget {
 }
 
 class _GenerationHeader extends ConsumerWidget {
-  const _GenerationHeader({this.onPrevPage, this.onNextPage});
+  const _GenerationHeader({
+    required this.pokemons,
+    this.onPrevPage,
+    this.onNextPage,
+  });
 
+  final List<FirstPartnerPokemon> pokemons;
   final VoidCallback? onPrevPage;
   final VoidCallback? onNextPage;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final current = ref.watch(currentGenerationIndexProvider);
+    final current = ref.watch(currentPokemonIndexProvider);
+    final gen = pokemons[current].generation;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -94,7 +142,7 @@ class _GenerationHeader extends ConsumerWidget {
             icon: const Icon(Icons.arrow_left, size: 48),
           ),
         ),
-        current == 0 ? const Text('世代を選ぶ') : Text(' 第 $current 世代 '),
+        gen == 0 ? const Text('世代を選ぶ') : Text(' 第 $gen 世代 '),
         Align(
           alignment: Alignment.centerRight,
           child: IconButton(
@@ -139,17 +187,22 @@ class _PokemonSwitcher extends ConsumerWidget {
 }
 
 class _Page extends ConsumerWidget {
-  _Page({required this.pokemons});
+  const _Page({
+    required this.itemCount,
+    required this.pokemon,
+    required this.pageController,
+  });
 
-  final List<FirstPartnerPokemon> pokemons;
-  final _pageController = PageController(viewportFraction: 0.6);
+  final int itemCount;
+  final FirstPartnerPokemon pokemon;
+  final PageController pageController;
 
-  void prevPage() => _pageController.previousPage(
+  void prevPage() => pageController.previousPage(
         duration: Durations.short4,
         curve: Curves.easeIn,
       );
 
-  void nextPage() => _pageController.nextPage(
+  void nextPage() => pageController.nextPage(
         duration: Durations.short4,
         curve: Curves.linear,
       );
@@ -158,18 +211,12 @@ class _Page extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final current = ref.watch(currentPokemonIndexProvider);
     return Stack(
+      alignment: Alignment.center,
       children: [
-        PageView.builder(
-          controller: _pageController,
-          physics: const BouncingScrollPhysics(),
-          itemCount: pokemons.length,
-          itemBuilder: (context, index) {
-            return _Pokemon(pokemon: pokemons[index]);
-          },
-        ),
+        _Pokemon(pokemon: pokemon),
         _PokemonSwitcher(
           onPrevPage: current == 0 ? null : prevPage,
-          onNextPage: current == pokemons.length - 1 ? null : nextPage,
+          onNextPage: itemCount - 1 == current ? null : nextPage,
         ),
       ],
     );
@@ -182,34 +229,31 @@ class _Pokemon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          RichText(
-            text: TextSpan(
-              children: [
-                const WidgetSpan(
-                  alignment: PlaceholderAlignment.middle,
-                  child: Icon(Icons.catching_pokemon, color: Colors.red),
-                ),
-                const WidgetSpan(child: Gap(10)),
-                TextSpan(
-                  text: pokemon.nameJa,
-                  style: const TextStyle(color: Colors.black),
-                ),
-              ],
-            ),
+    return Column(
+      children: [
+        RichText(
+          text: TextSpan(
+            children: [
+              const WidgetSpan(
+                alignment: PlaceholderAlignment.middle,
+                child: Icon(Icons.catching_pokemon, color: Colors.red),
+              ),
+              const WidgetSpan(child: Gap(10)),
+              TextSpan(
+                text: pokemon.nameJa,
+                style: const TextStyle(color: Colors.black),
+              ),
+            ],
           ),
-          Expanded(
-            child: CachedNetworkImage(
-              fit: BoxFit.cover,
-              imageUrl:
-                  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png',
-            ),
+        ),
+        Expanded(
+          child: CachedNetworkImage(
+            fit: BoxFit.cover,
+            imageUrl:
+                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png',
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

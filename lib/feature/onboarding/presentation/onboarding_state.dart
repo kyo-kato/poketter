@@ -35,7 +35,7 @@ class OnboardingState extends _$OnboardingState {
   @override
   FutureOr<void> build() {}
 
-  Future<bool> complete() async {
+  Future<bool> complete({required int pokemonId}) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final localUserName = ref.read(entryUserNameProvider);
