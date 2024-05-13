@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
+import '../../../authentication/application/create_guest_user_service.dart';
 import '../../../pokemon/domain/first_partner_pokemon.dart';
 import '../onboarding_state.dart';
 import 'first_partner_selector_state.dart';
@@ -43,7 +44,7 @@ class _SubmitButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userName = ref.watch(entryUserNameProvider);
-    final state = ref.watch(onboardingStateProvider);
+    final state = ref.watch(createGuestUserServiceProvider);
 
     return state.when(
       error: (e, st) => Text(e.toString()),
@@ -51,12 +52,12 @@ class _SubmitButton extends ConsumerWidget {
       data: (_) => ElevatedButton(
         onPressed: userName.isEmpty
             ? null
-            : () {
+            : () async {
                 final index =
                     pokemons[ref.read(currentPokemonIndexProvider)].id;
-                ref
-                    .read(onboardingStateProvider.notifier)
-                    .complete(pokemonId: index);
+                await ref
+                    .read(createGuestUserServiceProvider.notifier)
+                    .createGuestUser(userName: userName, pokemonId: index);
               },
         child: const Text('Start'),
       ),

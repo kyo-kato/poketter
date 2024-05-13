@@ -26,8 +26,8 @@ class UserDataRepository {
   const UserDataRepository(this._firestore);
   final FirebaseFirestore _firestore;
 
-  void createUserData(AppUser user) {
-    _userRef(user.id).set(user);
+  Future<void> createUserData(AppUser user) async {
+    await _userRef(user.id).set(user);
   }
 
   Future<AppUser?> fetchUserData(String userId) async {
