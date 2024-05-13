@@ -17,22 +17,19 @@ class PokemonService extends _$PokemonService {
   Future<void> fetch(int id) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
-      return await _fetchLocal(id) ?? await _fetchRemote(id);
+      return _fetchAndSave(id);
     });
+  }
+
+  // ポケモン情報を取得し、ローカルに保存する
+  Future<Pokemon?> _fetchAndSave(int id) async {
+    return await _fetchLocal(id) ?? await _fetchRemote(id);
   }
 
   /// サーバーからポケモン情報を取得する
   Future<Pokemon?> _fetchRemote(int id) async {
-    final pokemonBase =
-        await ref.read(pokemonApiRepositoryProvider).fetchPokemonBase(id);
-    final pokemonSpecies =
-        await ref.read(pokemonApiRepositoryProvider).fetchPokemonSpecies(id);
-
-    final pokemon = Pokemon(
-      id: id,
-      pokemon: pokemonBase,
-      species: pokemonSpecies,
-    );
+    final pokemon =
+        await ref.read(pokemonApiRepositoryProvider).fetchPokemon(id);
 
     // ローカルに保存
     final db = await ref.read(pokemonDbRepositoryProvider.future);

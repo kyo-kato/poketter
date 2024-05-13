@@ -15,29 +15,23 @@ PokemonApiRepository pokemonApiRepository(
 ) =>
     PokemonApiRepository(Dio());
 
-@riverpod
-Future<Pokemon> fetchPokemon(
-  FetchPokemonRef ref,
-  int id,
-) async {
-  final pokemonBase =
-      await ref.read(pokemonApiRepositoryProvider).fetchPokemonBase(id);
-  final pokemonSpecies =
-      await ref.read(pokemonApiRepositoryProvider).fetchPokemonSpecies(id);
-  return Pokemon(
-    id: id,
-    pokemon: pokemonBase,
-    species: pokemonSpecies,
-  );
-}
-
 /// ポケモンの情報を取得するリポジトリ
 class PokemonApiRepository {
   PokemonApiRepository(this._dio);
   final Dio _dio;
 
+  Future<Pokemon> fetchPokemon(int id) async {
+    final pokemonBase = await _fetchPokemonBase(id);
+    final pokemonSpecies = await _fetchPokemonSpecies(id);
+    return Pokemon(
+      id: id,
+      pokemon: pokemonBase,
+      species: pokemonSpecies,
+    );
+  }
+
   /// ポケモンの基礎情報を取得する
-  Future<PokemonBase> fetchPokemonBase(int id) async {
+  Future<PokemonBase> _fetchPokemonBase(int id) async {
     final response = await _dio.get<Map<String, dynamic>>(
       'https://pokeapi.co/api/v2/pokemon/$id',
       options: Options(responseType: ResponseType.json),
@@ -71,7 +65,7 @@ class PokemonApiRepository {
   }
 
   /// pokemon-speciesの情報を取得する
-  Future<PokemonSpecies> fetchPokemonSpecies(int id) async {
+  Future<PokemonSpecies> _fetchPokemonSpecies(int id) async {
     final response = await _dio.get<Map<String, dynamic>>(
       'https://pokeapi.co/api/v2/pokemon-species/$id',
       options: Options(responseType: ResponseType.json),
