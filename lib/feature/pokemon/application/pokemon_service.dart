@@ -5,10 +5,10 @@ import '../data/remote/pokemon_api_repository.dart';
 import '../domain/my_pokemon.dart';
 import 'dto/pokemon_dto.dart';
 
-part 'fetch_pokemon_service.g.dart';
+part 'pokemon_service.g.dart';
 
 @riverpod
-class FetchPokemonService extends _$FetchPokemonService {
+class PokemonService extends _$PokemonService {
   @override
   Future<Pokemon?> build() async {
     return null;
