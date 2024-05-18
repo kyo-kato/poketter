@@ -6,20 +6,6 @@ part of 'first_partner_pokemon.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$FirstPartnersByGensImpl _$$FirstPartnersByGensImplFromJson(
-        Map<String, dynamic> json) =>
-    _$FirstPartnersByGensImpl(
-      list: (json['list'] as List<dynamic>)
-          .map((e) => FirstPartnerPokemon.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-
-Map<String, dynamic> _$$FirstPartnersByGensImplToJson(
-        _$FirstPartnersByGensImpl instance) =>
-    <String, dynamic>{
-      'list': instance.list.map((e) => e.toJson()).toList(),
-    };
-
 _$FirstPartnerPokemonImpl _$$FirstPartnerPokemonImplFromJson(
         Map<String, dynamic> json) =>
     _$FirstPartnerPokemonImpl(
@@ -37,3 +23,28 @@ Map<String, dynamic> _$$FirstPartnerPokemonImplToJson(
       'name': instance.name,
       'nameJa': instance.nameJa,
     };
+
+// **************************************************************************
+// RiverpodGenerator
+// **************************************************************************
+
+String _$firstPartnerListHash() => r'7cbb9bd311f2ffaf405613959d2b835cf05eb7dc';
+
+/// 世代別のポケモン御三家のID
+///
+/// Copied from [firstPartnerList].
+@ProviderFor(firstPartnerList)
+final firstPartnerListProvider =
+    AutoDisposeProvider<List<FirstPartnerPokemon>>.internal(
+  firstPartnerList,
+  name: r'firstPartnerListProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$firstPartnerListHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef FirstPartnerListRef = AutoDisposeProviderRef<List<FirstPartnerPokemon>>;
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -5,33 +5,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
-import '../../../authentication/application/create_guest_user_service.dart';
+import '../../../pokemon/application/catch_pokemon_service.dart';
 import '../../../pokemon/domain/first_partner_pokemon.dart';
-import '../onboarding_state.dart';
 import 'first_partner_selector_state.dart';
 
-class FirstPartnerSelector extends StatelessWidget {
+class FirstPartnerSelector extends ConsumerWidget {
   const FirstPartnerSelector({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    const pokemons = firstPartnersByGen;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final pokemons = ref.read(firstPartnerListProvider);
     return Column(
       children: [
         const Gap(20),
         Consumer(
           builder: (context, ref, child) {
-            final userName = ref.watch(entryUserNameProvider);
-            return Text(
-              '$userName ! 好きな ポケモン を一匹選ぶんじゃ',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            return const Text(
+              '好きな ポケモン を一匹選ぶんじゃ',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             );
           },
         ),
-        const Gap(20),
-        _PokemonSelector(pokemons: pokemons.list),
-        const Gap(20),
-        _SubmitButton(pokemons: pokemons.list),
+        const Gap(10),
+        _PokemonSelector(pokemons: pokemons),
+        _SubmitButton(pokemons: pokemons),
       ],
     );
   }
@@ -43,22 +40,19 @@ class _SubmitButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userName = ref.watch(entryUserNameProvider);
-    final state = ref.watch(createGuestUserServiceProvider);
+    final index = ref.watch(currentPokemonIndexProvider);
+    final state = ref.watch(catchPokemonServiceProvider);
 
     return state.when(
-      error: (e, st) => Text(e.toString()),
+      error: (e, st) => const SizedBox(),
       loading: () => const Center(child: CircularProgressIndicator()),
       data: (_) => ElevatedButton(
-        onPressed: userName.isEmpty
+        onPressed: state.isLoading
             ? null
-            : () async {
-                final index =
-                    pokemons[ref.read(currentPokemonIndexProvider)].id;
-                await ref
-                    .read(createGuestUserServiceProvider.notifier)
-                    .createGuestUser(userName: userName, pokemonId: index);
-              },
+            : () => ref
+                .read(catchPokemonServiceProvider.notifier)
+                .catchPokemon(pokemons[index].id)
+                .then((value) => Navigator.pop(context)),
         child: const Text('Start'),
       ),
     );

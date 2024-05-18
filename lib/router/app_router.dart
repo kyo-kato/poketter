@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../feature/authentication/data/auth_repository.dart';
 import '../feature/authentication/presentation/sign_up_page.dart';
-import '../feature/onboarding/presentation/entry_page.dart';
+import '../feature/home/presentation/home_page.dart';
 import '../feature/onboarding/presentation/onboarding_page.dart';
 import 'go_router_refresh_stream.dart';
 import 'scaffold_with_nested_navigation.dart';
@@ -48,9 +48,7 @@ GoRouter goRouter(GoRouterRef ref) {
 
 @TypedGoRoute<OnboardingRoute>(
   path: OnboardingRoute.path,
-  routes: <TypedGoRoute<GoRouteData>>[
-    TypedGoRoute<EntryRoute>(path: EntryRoute.name, name: EntryRoute.name),
-  ],
+  routes: <TypedGoRoute<GoRouteData>>[],
 )
 class OnboardingRoute extends GoRouteData {
   const OnboardingRoute();
@@ -60,16 +58,6 @@ class OnboardingRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) => OnboardingPage();
 }
-
-class EntryRoute extends GoRouteData {
-  const EntryRoute();
-  static const name = 'entry';
-  static const path = name;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) => const EntryPage();
-}
-
 // タブ
 
 @TypedStatefulShellRoute<AppShellRouteData>(
@@ -147,7 +135,7 @@ class HomeRouteData extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const Scaffold(body: Text(name));
+    return const HomePage();
   }
 }
 

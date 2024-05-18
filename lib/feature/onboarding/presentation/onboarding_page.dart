@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../router/app_router.dart';
 import '../../authentication/application/create_guest_user_service.dart';
 import 'component/user_name.dart';
 import 'onboarding_state.dart';
@@ -76,7 +75,6 @@ final _pages = <_Page>[
     title: 'Page Last',
     description: 'last',
     buttonText: '始める',
-    nextLocation: EntryRoute.path,
   ),
 ];
 
@@ -127,11 +125,9 @@ class _LastPage extends _Page {
     required super.title,
     required super.description,
     required this.buttonText,
-    required this.nextLocation,
   });
 
   final String buttonText;
-  final String nextLocation;
 
   @override
   Widget build(BuildContext context) {

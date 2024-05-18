@@ -207,6 +207,153 @@ abstract class _Pokemon implements Pokemon {
       throw _privateConstructorUsedError;
 }
 
+MyPokemons _$MyPokemonsFromJson(Map<String, dynamic> json) {
+  return _MyPokemons.fromJson(json);
+}
+
+/// @nodoc
+mixin _$MyPokemons {
+  List<MyPokemon> get pokemons => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $MyPokemonsCopyWith<MyPokemons> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MyPokemonsCopyWith<$Res> {
+  factory $MyPokemonsCopyWith(
+          MyPokemons value, $Res Function(MyPokemons) then) =
+      _$MyPokemonsCopyWithImpl<$Res, MyPokemons>;
+  @useResult
+  $Res call({List<MyPokemon> pokemons});
+}
+
+/// @nodoc
+class _$MyPokemonsCopyWithImpl<$Res, $Val extends MyPokemons>
+    implements $MyPokemonsCopyWith<$Res> {
+  _$MyPokemonsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pokemons = null,
+  }) {
+    return _then(_value.copyWith(
+      pokemons: null == pokemons
+          ? _value.pokemons
+          : pokemons // ignore: cast_nullable_to_non_nullable
+              as List<MyPokemon>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$MyPokemonsImplCopyWith<$Res>
+    implements $MyPokemonsCopyWith<$Res> {
+  factory _$$MyPokemonsImplCopyWith(
+          _$MyPokemonsImpl value, $Res Function(_$MyPokemonsImpl) then) =
+      __$$MyPokemonsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<MyPokemon> pokemons});
+}
+
+/// @nodoc
+class __$$MyPokemonsImplCopyWithImpl<$Res>
+    extends _$MyPokemonsCopyWithImpl<$Res, _$MyPokemonsImpl>
+    implements _$$MyPokemonsImplCopyWith<$Res> {
+  __$$MyPokemonsImplCopyWithImpl(
+      _$MyPokemonsImpl _value, $Res Function(_$MyPokemonsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pokemons = null,
+  }) {
+    return _then(_$MyPokemonsImpl(
+      pokemons: null == pokemons
+          ? _value._pokemons
+          : pokemons // ignore: cast_nullable_to_non_nullable
+              as List<MyPokemon>,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+class _$MyPokemonsImpl extends _MyPokemons {
+  _$MyPokemonsImpl({final List<MyPokemon> pokemons = const []})
+      : _pokemons = pokemons,
+        super._();
+
+  factory _$MyPokemonsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MyPokemonsImplFromJson(json);
+
+  final List<MyPokemon> _pokemons;
+  @override
+  @JsonKey()
+  List<MyPokemon> get pokemons {
+    if (_pokemons is EqualUnmodifiableListView) return _pokemons;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_pokemons);
+  }
+
+  @override
+  String toString() {
+    return 'MyPokemons(pokemons: $pokemons)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MyPokemonsImpl &&
+            const DeepCollectionEquality().equals(other._pokemons, _pokemons));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_pokemons));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MyPokemonsImplCopyWith<_$MyPokemonsImpl> get copyWith =>
+      __$$MyPokemonsImplCopyWithImpl<_$MyPokemonsImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$MyPokemonsImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _MyPokemons extends MyPokemons {
+  factory _MyPokemons({final List<MyPokemon> pokemons}) = _$MyPokemonsImpl;
+  _MyPokemons._() : super._();
+
+  factory _MyPokemons.fromJson(Map<String, dynamic> json) =
+      _$MyPokemonsImpl.fromJson;
+
+  @override
+  List<MyPokemon> get pokemons;
+  @override
+  @JsonKey(ignore: true)
+  _$$MyPokemonsImplCopyWith<_$MyPokemonsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 MyPokemon _$MyPokemonFromJson(Map<String, dynamic> json) {
   return _MyPokemon.fromJson(json);
 }
@@ -214,12 +361,14 @@ MyPokemon _$MyPokemonFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MyPokemon {
   String get uuid => throw _privateConstructorUsedError;
+  int get pokemonId => throw _privateConstructorUsedError;
   String get nickName => throw _privateConstructorUsedError;
   int get level => throw _privateConstructorUsedError;
   int get exp => throw _privateConstructorUsedError;
   List<Stat> get currentStats => throw _privateConstructorUsedError;
   List<Move> get currentMoves => throw _privateConstructorUsedError;
-  Pokemon get pokemon => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false)
+  Pokemon? get pokemon => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -234,14 +383,15 @@ abstract class $MyPokemonCopyWith<$Res> {
   @useResult
   $Res call(
       {String uuid,
+      int pokemonId,
       String nickName,
       int level,
       int exp,
       List<Stat> currentStats,
       List<Move> currentMoves,
-      Pokemon pokemon});
+      @JsonKey(includeToJson: false) Pokemon? pokemon});
 
-  $PokemonCopyWith<$Res> get pokemon;
+  $PokemonCopyWith<$Res>? get pokemon;
 }
 
 /// @nodoc
@@ -258,18 +408,23 @@ class _$MyPokemonCopyWithImpl<$Res, $Val extends MyPokemon>
   @override
   $Res call({
     Object? uuid = null,
+    Object? pokemonId = null,
     Object? nickName = null,
     Object? level = null,
     Object? exp = null,
     Object? currentStats = null,
     Object? currentMoves = null,
-    Object? pokemon = null,
+    Object? pokemon = freezed,
   }) {
     return _then(_value.copyWith(
       uuid: null == uuid
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
+      pokemonId: null == pokemonId
+          ? _value.pokemonId
+          : pokemonId // ignore: cast_nullable_to_non_nullable
+              as int,
       nickName: null == nickName
           ? _value.nickName
           : nickName // ignore: cast_nullable_to_non_nullable
@@ -290,17 +445,21 @@ class _$MyPokemonCopyWithImpl<$Res, $Val extends MyPokemon>
           ? _value.currentMoves
           : currentMoves // ignore: cast_nullable_to_non_nullable
               as List<Move>,
-      pokemon: null == pokemon
+      pokemon: freezed == pokemon
           ? _value.pokemon
           : pokemon // ignore: cast_nullable_to_non_nullable
-              as Pokemon,
+              as Pokemon?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PokemonCopyWith<$Res> get pokemon {
-    return $PokemonCopyWith<$Res>(_value.pokemon, (value) {
+  $PokemonCopyWith<$Res>? get pokemon {
+    if (_value.pokemon == null) {
+      return null;
+    }
+
+    return $PokemonCopyWith<$Res>(_value.pokemon!, (value) {
       return _then(_value.copyWith(pokemon: value) as $Val);
     });
   }
@@ -316,15 +475,16 @@ abstract class _$$MyPokemonImplCopyWith<$Res>
   @useResult
   $Res call(
       {String uuid,
+      int pokemonId,
       String nickName,
       int level,
       int exp,
       List<Stat> currentStats,
       List<Move> currentMoves,
-      Pokemon pokemon});
+      @JsonKey(includeToJson: false) Pokemon? pokemon});
 
   @override
-  $PokemonCopyWith<$Res> get pokemon;
+  $PokemonCopyWith<$Res>? get pokemon;
 }
 
 /// @nodoc
@@ -339,18 +499,23 @@ class __$$MyPokemonImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? uuid = null,
+    Object? pokemonId = null,
     Object? nickName = null,
     Object? level = null,
     Object? exp = null,
     Object? currentStats = null,
     Object? currentMoves = null,
-    Object? pokemon = null,
+    Object? pokemon = freezed,
   }) {
     return _then(_$MyPokemonImpl(
       uuid: null == uuid
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
+      pokemonId: null == pokemonId
+          ? _value.pokemonId
+          : pokemonId // ignore: cast_nullable_to_non_nullable
+              as int,
       nickName: null == nickName
           ? _value.nickName
           : nickName // ignore: cast_nullable_to_non_nullable
@@ -371,26 +536,27 @@ class __$$MyPokemonImplCopyWithImpl<$Res>
           ? _value._currentMoves
           : currentMoves // ignore: cast_nullable_to_non_nullable
               as List<Move>,
-      pokemon: null == pokemon
+      pokemon: freezed == pokemon
           ? _value.pokemon
           : pokemon // ignore: cast_nullable_to_non_nullable
-              as Pokemon,
+              as Pokemon?,
     ));
   }
 }
 
 /// @nodoc
 
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$MyPokemonImpl extends _MyPokemon {
   const _$MyPokemonImpl(
       {required this.uuid,
+      required this.pokemonId,
       required this.nickName,
       this.level = 1,
       this.exp = 0,
       final List<Stat> currentStats = const [],
       final List<Move> currentMoves = const [],
-      required this.pokemon})
+      @JsonKey(includeToJson: false) this.pokemon})
       : _currentStats = currentStats,
         _currentMoves = currentMoves,
         super._();
@@ -400,6 +566,8 @@ class _$MyPokemonImpl extends _MyPokemon {
 
   @override
   final String uuid;
+  @override
+  final int pokemonId;
   @override
   final String nickName;
   @override
@@ -427,11 +595,12 @@ class _$MyPokemonImpl extends _MyPokemon {
   }
 
   @override
-  final Pokemon pokemon;
+  @JsonKey(includeToJson: false)
+  final Pokemon? pokemon;
 
   @override
   String toString() {
-    return 'MyPokemon(uuid: $uuid, nickName: $nickName, level: $level, exp: $exp, currentStats: $currentStats, currentMoves: $currentMoves, pokemon: $pokemon)';
+    return 'MyPokemon(uuid: $uuid, pokemonId: $pokemonId, nickName: $nickName, level: $level, exp: $exp, currentStats: $currentStats, currentMoves: $currentMoves, pokemon: $pokemon)';
   }
 
   @override
@@ -440,6 +609,8 @@ class _$MyPokemonImpl extends _MyPokemon {
         (other.runtimeType == runtimeType &&
             other is _$MyPokemonImpl &&
             (identical(other.uuid, uuid) || other.uuid == uuid) &&
+            (identical(other.pokemonId, pokemonId) ||
+                other.pokemonId == pokemonId) &&
             (identical(other.nickName, nickName) ||
                 other.nickName == nickName) &&
             (identical(other.level, level) || other.level == level) &&
@@ -456,6 +627,7 @@ class _$MyPokemonImpl extends _MyPokemon {
   int get hashCode => Object.hash(
       runtimeType,
       uuid,
+      pokemonId,
       nickName,
       level,
       exp,
@@ -480,12 +652,13 @@ class _$MyPokemonImpl extends _MyPokemon {
 abstract class _MyPokemon extends MyPokemon {
   const factory _MyPokemon(
       {required final String uuid,
+      required final int pokemonId,
       required final String nickName,
       final int level,
       final int exp,
       final List<Stat> currentStats,
       final List<Move> currentMoves,
-      required final Pokemon pokemon}) = _$MyPokemonImpl;
+      @JsonKey(includeToJson: false) final Pokemon? pokemon}) = _$MyPokemonImpl;
   const _MyPokemon._() : super._();
 
   factory _MyPokemon.fromJson(Map<String, dynamic> json) =
@@ -493,6 +666,8 @@ abstract class _MyPokemon extends MyPokemon {
 
   @override
   String get uuid;
+  @override
+  int get pokemonId;
   @override
   String get nickName;
   @override
@@ -504,7 +679,8 @@ abstract class _MyPokemon extends MyPokemon {
   @override
   List<Move> get currentMoves;
   @override
-  Pokemon get pokemon;
+  @JsonKey(includeToJson: false)
+  Pokemon? get pokemon;
   @override
   @JsonKey(ignore: true)
   _$$MyPokemonImplCopyWith<_$MyPokemonImpl> get copyWith =>

@@ -10,5 +10,9 @@ service cloud.firestore {
     match /users/{userId} {
       allow read, write: if isUserAuthed(userId);
     }
+
+    match /myPokemons/{userId} {
+      allow read, write: if isUserAuthed(userId);
+    }
   }
 }
