@@ -26,7 +26,6 @@ class EntryUser with _$EntryUser {
   }) = _EntryUser;
 }
 
-
 @riverpod
 class EntryUserState extends _$EntryUserState {
   @override

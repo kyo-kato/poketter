@@ -21,6 +21,6 @@ class AppUser with _$AppUser {
 
   factory AppUser.fromJson(Map<String, Object?> json) =>
       _$AppUserFromJson(json);
-  
+
   String get formattedMoney => NumberFormat('#,###').format(money);
 }

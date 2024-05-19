@@ -24,9 +24,7 @@ class CreateGuestUserService extends _$CreateGuestUserService {
       if (user == null) {
         throw UserAuthException();
       }
-      await ref
-          .read(userDataRepositoryProvider)
-          .createUserData(
+      await ref.read(userDataRepositoryProvider).createUserData(
             user.copyWith(
               userName: userName,
               gender: gender,
