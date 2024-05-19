@@ -8,6 +8,26 @@ import 'dto/pokemon_dto.dart';
 part 'fetch_pokemon_service.g.dart';
 
 @riverpod
+Future<Pokemon?> fetchPokemon(FetchPokemonRef ref, int pokemonId) async {
+  // ローカルから取得
+  final local = await ref.read(pokemonDbRepositoryProvider.future);
+  final localPokemon = local.fetchPokemon(pokemonId);
+  if (localPokemon != null) {
+    return localPokemon;
+  }
+  // サーバーから取得
+  final remote = ref.read(pokemonApiRepositoryProvider);
+  final remotePokemon = await remote.fetchPokemon(pokemonId);
+
+  // ローカルに保存
+  final db = await ref.read(pokemonDbRepositoryProvider.future);
+  await db.storePokemon(
+    PokemonDto.fromPokemon(id: pokemonId, pokemon: remotePokemon),
+  );
+  return remotePokemon;
+}
+
+@riverpod
 class FetchPokemonService extends _$FetchPokemonService {
   @override
   Future<Pokemon?> build() async {
@@ -17,29 +37,7 @@ class FetchPokemonService extends _$FetchPokemonService {
   Future<void> fetch(int id) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
-      return _fetchAndSave(id);
+      return ref.read(fetchPokemonProvider(id).future);
     });
-  }
-
-  // ポケモン情報を取得し、ローカルに保存する
-  Future<Pokemon?> _fetchAndSave(int id) async {
-    return await _fetchLocal(id) ?? await _fetchRemote(id);
-  }
-
-  /// サーバーからポケモン情報を取得する
-  Future<Pokemon?> _fetchRemote(int id) async {
-    final pokemon =
-        await ref.read(pokemonApiRepositoryProvider).fetchPokemon(id);
-
-    // ローカルに保存
-    final db = await ref.read(pokemonDbRepositoryProvider.future);
-    await db.storePokemon(PokemonDto.fromPokemon(id: id, pokemon: pokemon));
-    return pokemon;
-  }
-
-  /// ローカルからポケモン情報を取得する
-  Future<Pokemon?> _fetchLocal(int id) async {
-    final db = await ref.read(pokemonDbRepositoryProvider.future);
-    return db.fetchPokemon(id);
   }
 }

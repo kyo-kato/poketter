@@ -3,6 +3,7 @@ import 'package:uuid/v4.dart';
 
 import 'pokemon_base.dart';
 import 'pokemon_species.dart';
+import 'pokemon_stats.dart';
 
 part 'my_pokemon.freezed.dart';
 part 'my_pokemon.g.dart';
@@ -18,21 +19,38 @@ class Pokemon with _$Pokemon {
     required PokemonSpecies species,
   }) = _Pokemon;
 
+  const Pokemon._();
+
   factory Pokemon.fromJson(Map<String, Object?> json) =>
       _$PokemonFromJson(json);
+
+  String get name {
+    return species.names
+        .firstWhere(
+          (e) => e.language.name == 'ja',
+          orElse: () => species.names.first,
+        )
+        .name;
+  }
 }
 
 @freezed
 class MyPokemons with _$MyPokemons {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   factory MyPokemons({
-    @Default([]) List<MyPokemon> pokemons,
+    @Default({}) Map<String, MyPokemon> pokemons,
   }) = _MyPokemons;
 
   factory MyPokemons.fromJson(Map<String, Object?> json) =>
       _$MyPokemonsFromJson(json);
 
   const MyPokemons._();
+
+  factory MyPokemons.fromFireStoreJson(Map<String, Object?> json) =>
+      _$MyPokemonsFromJson({'pokemons': json});
+
+  Map<String, Object?> toFireStoreJson() =>
+      toJson()['pokemons'] as Map<String, Object?>;
 }
 
 /// 捕まえたポケモン
@@ -43,10 +61,15 @@ class MyPokemon with _$MyPokemon {
     required String uuid,
     required int pokemonId,
     required String nickName,
+    @Default(0) int currentHp,
     @Default(1) int level,
     @Default(0) int exp,
-    @Default([]) List<Stat> currentStats,
+
+    /// 0: オス, 1: メス
+    @Default(0) int gender,
+    @Default({}) Map<String, PokemonStats> currentStats,
     @Default([]) List<Move> currentMoves,
+    @Default(false) bool isParty,
     @JsonKey(includeToJson: false) Pokemon? pokemon,
   }) = _MyPokemon;
 
@@ -55,8 +78,10 @@ class MyPokemon with _$MyPokemon {
     String nickName = '',
     int level = 1,
     int exp = 0,
-    List<Stat> currentStats = const [],
+    int gender = 0,
     List<Move> currentMoves = const [],
+    bool isParty = false,
+    Pokemon? pokemon,
   }) =>
       MyPokemon(
         uuid: const UuidV4().generate(),
@@ -64,8 +89,11 @@ class MyPokemon with _$MyPokemon {
         nickName: nickName,
         level: level,
         exp: exp,
-        currentStats: currentStats,
+        gender: gender,
+        currentStats: pokemon?.pokemon.stats ?? {},
         currentMoves: currentMoves,
+        isParty: isParty,
+        pokemon: pokemon,
       );
 
   const MyPokemon._();
@@ -73,7 +101,9 @@ class MyPokemon with _$MyPokemon {
   factory MyPokemon.fromJson(Map<String, Object?> json) =>
       _$MyPokemonFromJson(json);
 
-  /// Firestore に保存するための JSON に変換
-  /// データ量削減のため、固定データとなる pokemon を除外
-  Map<String, Object?> toFireStoreJson() => toJson()..remove('pokemon');
+  MyPokemon toWrite() {
+    return copyWith(pokemon: null);
+  }
+
+  String get name => nickName.isNotEmpty ? nickName : pokemon?.name ?? '';
 }

@@ -80,16 +80,6 @@ Map<String, dynamic> _$$PokemonSpeciesImplToJson(
       'form_descriptions': instance.formDescriptions,
     };
 
-_$NameUrlImpl _$$NameUrlImplFromJson(Map<String, dynamic> json) =>
-    _$NameUrlImpl(
-      name: json['name'] as String,
-    );
-
-Map<String, dynamic> _$$NameUrlImplToJson(_$NameUrlImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-    };
-
 _$EvolutionChainImpl _$$EvolutionChainImplFromJson(Map<String, dynamic> json) =>
     _$EvolutionChainImpl(
       url: json['url'] as String,

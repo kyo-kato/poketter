@@ -7,7 +7,7 @@ part of 'catch_pokemon_service.dart';
 // **************************************************************************
 
 String _$catchPokemonServiceHash() =>
-    r'bdd8ce9fb745529273a257ee27b3821cc3dd7e1b';
+    r'47b09215f7ad89da503b30762cd58e2cbab1c23f';
 
 /// See also [CatchPokemonService].
 @ProviderFor(CatchPokemonService)

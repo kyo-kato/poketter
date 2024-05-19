@@ -1,5 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../util/converter.dart';
+import 'pokemon_stats.dart';
+
 part 'pokemon_base.freezed.dart';
 part 'pokemon_base.g.dart';
 
@@ -25,7 +28,7 @@ class PokemonBase with _$PokemonBase {
     required int weight,
 
     /// 種族値
-    required List<Stat> stats,
+    @PokeStatsConverter() required Map<String, PokemonStats> stats,
 
     /// タイプ
     required List<Type> types,
@@ -121,7 +124,7 @@ class GameIndex with _$GameIndex {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GameIndex({
     required int gameIndex,
-    required Species version,
+    @NameUrlConverter() required String version,
   }) = _GameIndex;
 
   factory GameIndex.fromJson(Map<String, dynamic> json) =>
@@ -132,7 +135,7 @@ class GameIndex with _$GameIndex {
 class Move with _$Move {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Move({
-    required Species move,
+    @NameUrlConverter() required String move,
     required List<VersionGroupDetail> versionGroupDetails,
   }) = _Move;
 
@@ -376,11 +379,11 @@ class GenerationViii with _$GenerationViii {
 
 @freezed
 class Stat with _$Stat {
-  @JsonSerializable(fieldRename: FieldRename.snake)
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory Stat({
     required int baseStat,
     required int effort,
-    required Species stat,
+    @NameUrlConverter() required String stat,
   }) = _Stat;
 
   factory Stat.fromJson(Map<String, dynamic> json) => _$StatFromJson(json);
@@ -388,7 +391,7 @@ class Stat with _$Stat {
 
 @freezed
 class Type with _$Type {
-  @JsonSerializable(fieldRename: FieldRename.snake)
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory Type({
     required int slot,
     required Species type,
@@ -430,4 +433,16 @@ class VersionDetail with _$VersionDetail {
 
   factory VersionDetail.fromJson(Map<String, dynamic> json) =>
       _$VersionDetailFromJson(json);
+}
+
+@freezed
+class NameUrl with _$NameUrl {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory NameUrl({
+    required String name,
+    // required String url,
+  }) = _NameUrl;
+
+  factory NameUrl.fromJson(Map<String, dynamic> json) =>
+      _$NameUrlFromJson(json);
 }

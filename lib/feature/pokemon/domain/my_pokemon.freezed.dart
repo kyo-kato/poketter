@@ -140,9 +140,10 @@ class __$$PokemonImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _$PokemonImpl implements _Pokemon {
+class _$PokemonImpl extends _Pokemon {
   const _$PokemonImpl(
-      {required this.id, required this.pokemon, required this.species});
+      {required this.id, required this.pokemon, required this.species})
+      : super._();
 
   factory _$PokemonImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokemonImplFromJson(json);
@@ -187,11 +188,12 @@ class _$PokemonImpl implements _Pokemon {
   }
 }
 
-abstract class _Pokemon implements Pokemon {
+abstract class _Pokemon extends Pokemon {
   const factory _Pokemon(
       {required final int id,
       required final PokemonBase pokemon,
       required final PokemonSpecies species}) = _$PokemonImpl;
+  const _Pokemon._() : super._();
 
   factory _Pokemon.fromJson(Map<String, dynamic> json) = _$PokemonImpl.fromJson;
 
@@ -213,7 +215,7 @@ MyPokemons _$MyPokemonsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MyPokemons {
-  List<MyPokemon> get pokemons => throw _privateConstructorUsedError;
+  Map<String, MyPokemon> get pokemons => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -227,7 +229,7 @@ abstract class $MyPokemonsCopyWith<$Res> {
           MyPokemons value, $Res Function(MyPokemons) then) =
       _$MyPokemonsCopyWithImpl<$Res, MyPokemons>;
   @useResult
-  $Res call({List<MyPokemon> pokemons});
+  $Res call({Map<String, MyPokemon> pokemons});
 }
 
 /// @nodoc
@@ -249,7 +251,7 @@ class _$MyPokemonsCopyWithImpl<$Res, $Val extends MyPokemons>
       pokemons: null == pokemons
           ? _value.pokemons
           : pokemons // ignore: cast_nullable_to_non_nullable
-              as List<MyPokemon>,
+              as Map<String, MyPokemon>,
     ) as $Val);
   }
 }
@@ -262,7 +264,7 @@ abstract class _$$MyPokemonsImplCopyWith<$Res>
       __$$MyPokemonsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<MyPokemon> pokemons});
+  $Res call({Map<String, MyPokemon> pokemons});
 }
 
 /// @nodoc
@@ -282,7 +284,7 @@ class __$$MyPokemonsImplCopyWithImpl<$Res>
       pokemons: null == pokemons
           ? _value._pokemons
           : pokemons // ignore: cast_nullable_to_non_nullable
-              as List<MyPokemon>,
+              as Map<String, MyPokemon>,
     ));
   }
 }
@@ -291,20 +293,20 @@ class __$$MyPokemonsImplCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$MyPokemonsImpl extends _MyPokemons {
-  _$MyPokemonsImpl({final List<MyPokemon> pokemons = const []})
+  _$MyPokemonsImpl({final Map<String, MyPokemon> pokemons = const {}})
       : _pokemons = pokemons,
         super._();
 
   factory _$MyPokemonsImpl.fromJson(Map<String, dynamic> json) =>
       _$$MyPokemonsImplFromJson(json);
 
-  final List<MyPokemon> _pokemons;
+  final Map<String, MyPokemon> _pokemons;
   @override
   @JsonKey()
-  List<MyPokemon> get pokemons {
-    if (_pokemons is EqualUnmodifiableListView) return _pokemons;
+  Map<String, MyPokemon> get pokemons {
+    if (_pokemons is EqualUnmodifiableMapView) return _pokemons;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_pokemons);
+    return EqualUnmodifiableMapView(_pokemons);
   }
 
   @override
@@ -340,14 +342,15 @@ class _$MyPokemonsImpl extends _MyPokemons {
 }
 
 abstract class _MyPokemons extends MyPokemons {
-  factory _MyPokemons({final List<MyPokemon> pokemons}) = _$MyPokemonsImpl;
+  factory _MyPokemons({final Map<String, MyPokemon> pokemons}) =
+      _$MyPokemonsImpl;
   _MyPokemons._() : super._();
 
   factory _MyPokemons.fromJson(Map<String, dynamic> json) =
       _$MyPokemonsImpl.fromJson;
 
   @override
-  List<MyPokemon> get pokemons;
+  Map<String, MyPokemon> get pokemons;
   @override
   @JsonKey(ignore: true)
   _$$MyPokemonsImplCopyWith<_$MyPokemonsImpl> get copyWith =>
@@ -363,10 +366,16 @@ mixin _$MyPokemon {
   String get uuid => throw _privateConstructorUsedError;
   int get pokemonId => throw _privateConstructorUsedError;
   String get nickName => throw _privateConstructorUsedError;
+  int get currentHp => throw _privateConstructorUsedError;
   int get level => throw _privateConstructorUsedError;
   int get exp => throw _privateConstructorUsedError;
-  List<Stat> get currentStats => throw _privateConstructorUsedError;
+
+  /// 0: オス, 1: メス
+  int get gender => throw _privateConstructorUsedError;
+  Map<String, PokemonStats> get currentStats =>
+      throw _privateConstructorUsedError;
   List<Move> get currentMoves => throw _privateConstructorUsedError;
+  bool get isParty => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false)
   Pokemon? get pokemon => throw _privateConstructorUsedError;
 
@@ -385,10 +394,13 @@ abstract class $MyPokemonCopyWith<$Res> {
       {String uuid,
       int pokemonId,
       String nickName,
+      int currentHp,
       int level,
       int exp,
-      List<Stat> currentStats,
+      int gender,
+      Map<String, PokemonStats> currentStats,
       List<Move> currentMoves,
+      bool isParty,
       @JsonKey(includeToJson: false) Pokemon? pokemon});
 
   $PokemonCopyWith<$Res>? get pokemon;
@@ -410,10 +422,13 @@ class _$MyPokemonCopyWithImpl<$Res, $Val extends MyPokemon>
     Object? uuid = null,
     Object? pokemonId = null,
     Object? nickName = null,
+    Object? currentHp = null,
     Object? level = null,
     Object? exp = null,
+    Object? gender = null,
     Object? currentStats = null,
     Object? currentMoves = null,
+    Object? isParty = null,
     Object? pokemon = freezed,
   }) {
     return _then(_value.copyWith(
@@ -429,6 +444,10 @@ class _$MyPokemonCopyWithImpl<$Res, $Val extends MyPokemon>
           ? _value.nickName
           : nickName // ignore: cast_nullable_to_non_nullable
               as String,
+      currentHp: null == currentHp
+          ? _value.currentHp
+          : currentHp // ignore: cast_nullable_to_non_nullable
+              as int,
       level: null == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
@@ -437,14 +456,22 @@ class _$MyPokemonCopyWithImpl<$Res, $Val extends MyPokemon>
           ? _value.exp
           : exp // ignore: cast_nullable_to_non_nullable
               as int,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as int,
       currentStats: null == currentStats
           ? _value.currentStats
           : currentStats // ignore: cast_nullable_to_non_nullable
-              as List<Stat>,
+              as Map<String, PokemonStats>,
       currentMoves: null == currentMoves
           ? _value.currentMoves
           : currentMoves // ignore: cast_nullable_to_non_nullable
               as List<Move>,
+      isParty: null == isParty
+          ? _value.isParty
+          : isParty // ignore: cast_nullable_to_non_nullable
+              as bool,
       pokemon: freezed == pokemon
           ? _value.pokemon
           : pokemon // ignore: cast_nullable_to_non_nullable
@@ -477,10 +504,13 @@ abstract class _$$MyPokemonImplCopyWith<$Res>
       {String uuid,
       int pokemonId,
       String nickName,
+      int currentHp,
       int level,
       int exp,
-      List<Stat> currentStats,
+      int gender,
+      Map<String, PokemonStats> currentStats,
       List<Move> currentMoves,
+      bool isParty,
       @JsonKey(includeToJson: false) Pokemon? pokemon});
 
   @override
@@ -501,10 +531,13 @@ class __$$MyPokemonImplCopyWithImpl<$Res>
     Object? uuid = null,
     Object? pokemonId = null,
     Object? nickName = null,
+    Object? currentHp = null,
     Object? level = null,
     Object? exp = null,
+    Object? gender = null,
     Object? currentStats = null,
     Object? currentMoves = null,
+    Object? isParty = null,
     Object? pokemon = freezed,
   }) {
     return _then(_$MyPokemonImpl(
@@ -520,6 +553,10 @@ class __$$MyPokemonImplCopyWithImpl<$Res>
           ? _value.nickName
           : nickName // ignore: cast_nullable_to_non_nullable
               as String,
+      currentHp: null == currentHp
+          ? _value.currentHp
+          : currentHp // ignore: cast_nullable_to_non_nullable
+              as int,
       level: null == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
@@ -528,14 +565,22 @@ class __$$MyPokemonImplCopyWithImpl<$Res>
           ? _value.exp
           : exp // ignore: cast_nullable_to_non_nullable
               as int,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as int,
       currentStats: null == currentStats
           ? _value._currentStats
           : currentStats // ignore: cast_nullable_to_non_nullable
-              as List<Stat>,
+              as Map<String, PokemonStats>,
       currentMoves: null == currentMoves
           ? _value._currentMoves
           : currentMoves // ignore: cast_nullable_to_non_nullable
               as List<Move>,
+      isParty: null == isParty
+          ? _value.isParty
+          : isParty // ignore: cast_nullable_to_non_nullable
+              as bool,
       pokemon: freezed == pokemon
           ? _value.pokemon
           : pokemon // ignore: cast_nullable_to_non_nullable
@@ -552,10 +597,13 @@ class _$MyPokemonImpl extends _MyPokemon {
       {required this.uuid,
       required this.pokemonId,
       required this.nickName,
+      this.currentHp = 0,
       this.level = 1,
       this.exp = 0,
-      final List<Stat> currentStats = const [],
+      this.gender = 0,
+      final Map<String, PokemonStats> currentStats = const {},
       final List<Move> currentMoves = const [],
+      this.isParty = false,
       @JsonKey(includeToJson: false) this.pokemon})
       : _currentStats = currentStats,
         _currentMoves = currentMoves,
@@ -572,17 +620,25 @@ class _$MyPokemonImpl extends _MyPokemon {
   final String nickName;
   @override
   @JsonKey()
+  final int currentHp;
+  @override
+  @JsonKey()
   final int level;
   @override
   @JsonKey()
   final int exp;
-  final List<Stat> _currentStats;
+
+  /// 0: オス, 1: メス
   @override
   @JsonKey()
-  List<Stat> get currentStats {
-    if (_currentStats is EqualUnmodifiableListView) return _currentStats;
+  final int gender;
+  final Map<String, PokemonStats> _currentStats;
+  @override
+  @JsonKey()
+  Map<String, PokemonStats> get currentStats {
+    if (_currentStats is EqualUnmodifiableMapView) return _currentStats;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_currentStats);
+    return EqualUnmodifiableMapView(_currentStats);
   }
 
   final List<Move> _currentMoves;
@@ -595,12 +651,15 @@ class _$MyPokemonImpl extends _MyPokemon {
   }
 
   @override
+  @JsonKey()
+  final bool isParty;
+  @override
   @JsonKey(includeToJson: false)
   final Pokemon? pokemon;
 
   @override
   String toString() {
-    return 'MyPokemon(uuid: $uuid, pokemonId: $pokemonId, nickName: $nickName, level: $level, exp: $exp, currentStats: $currentStats, currentMoves: $currentMoves, pokemon: $pokemon)';
+    return 'MyPokemon(uuid: $uuid, pokemonId: $pokemonId, nickName: $nickName, currentHp: $currentHp, level: $level, exp: $exp, gender: $gender, currentStats: $currentStats, currentMoves: $currentMoves, isParty: $isParty, pokemon: $pokemon)';
   }
 
   @override
@@ -613,12 +672,16 @@ class _$MyPokemonImpl extends _MyPokemon {
                 other.pokemonId == pokemonId) &&
             (identical(other.nickName, nickName) ||
                 other.nickName == nickName) &&
+            (identical(other.currentHp, currentHp) ||
+                other.currentHp == currentHp) &&
             (identical(other.level, level) || other.level == level) &&
             (identical(other.exp, exp) || other.exp == exp) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
             const DeepCollectionEquality()
                 .equals(other._currentStats, _currentStats) &&
             const DeepCollectionEquality()
                 .equals(other._currentMoves, _currentMoves) &&
+            (identical(other.isParty, isParty) || other.isParty == isParty) &&
             (identical(other.pokemon, pokemon) || other.pokemon == pokemon));
   }
 
@@ -629,10 +692,13 @@ class _$MyPokemonImpl extends _MyPokemon {
       uuid,
       pokemonId,
       nickName,
+      currentHp,
       level,
       exp,
+      gender,
       const DeepCollectionEquality().hash(_currentStats),
       const DeepCollectionEquality().hash(_currentMoves),
+      isParty,
       pokemon);
 
   @JsonKey(ignore: true)
@@ -654,10 +720,13 @@ abstract class _MyPokemon extends MyPokemon {
       {required final String uuid,
       required final int pokemonId,
       required final String nickName,
+      final int currentHp,
       final int level,
       final int exp,
-      final List<Stat> currentStats,
+      final int gender,
+      final Map<String, PokemonStats> currentStats,
       final List<Move> currentMoves,
+      final bool isParty,
       @JsonKey(includeToJson: false) final Pokemon? pokemon}) = _$MyPokemonImpl;
   const _MyPokemon._() : super._();
 
@@ -671,13 +740,21 @@ abstract class _MyPokemon extends MyPokemon {
   @override
   String get nickName;
   @override
+  int get currentHp;
+  @override
   int get level;
   @override
   int get exp;
   @override
-  List<Stat> get currentStats;
+
+  /// 0: オス, 1: メス
+  int get gender;
+  @override
+  Map<String, PokemonStats> get currentStats;
   @override
   List<Move> get currentMoves;
+  @override
+  bool get isParty;
   @override
   @JsonKey(includeToJson: false)
   Pokemon? get pokemon;

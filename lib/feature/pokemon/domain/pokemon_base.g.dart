@@ -13,9 +13,7 @@ _$PokemonBaseImpl _$$PokemonBaseImplFromJson(Map<String, dynamic> json) =>
       baseExperience: (json['base_experience'] as num).toInt(),
       height: (json['height'] as num).toInt(),
       weight: (json['weight'] as num).toInt(),
-      stats: (json['stats'] as List<dynamic>)
-          .map((e) => Stat.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      stats: const PokeStatsConverter().fromJson(json['stats'] as List),
       types: (json['types'] as List<dynamic>)
           .map((e) => Type.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -47,7 +45,7 @@ Map<String, dynamic> _$$PokemonBaseImplToJson(_$PokemonBaseImpl instance) =>
       'base_experience': instance.baseExperience,
       'height': instance.height,
       'weight': instance.weight,
-      'stats': instance.stats,
+      'stats': const PokeStatsConverter().toJson(instance.stats),
       'types': instance.types,
       'order': instance.order,
       'is_default': instance.isDefault,
@@ -109,17 +107,19 @@ Map<String, dynamic> _$$CriesImplToJson(_$CriesImpl instance) =>
 _$GameIndexImpl _$$GameIndexImplFromJson(Map<String, dynamic> json) =>
     _$GameIndexImpl(
       gameIndex: (json['game_index'] as num).toInt(),
-      version: Species.fromJson(json['version'] as Map<String, dynamic>),
+      version: const NameUrlConverter()
+          .fromJson(json['version'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$GameIndexImplToJson(_$GameIndexImpl instance) =>
     <String, dynamic>{
       'game_index': instance.gameIndex,
-      'version': instance.version,
+      'version': const NameUrlConverter().toJson(instance.version),
     };
 
 _$MoveImpl _$$MoveImplFromJson(Map<String, dynamic> json) => _$MoveImpl(
-      move: Species.fromJson(json['move'] as Map<String, dynamic>),
+      move: const NameUrlConverter()
+          .fromJson(json['move'] as Map<String, dynamic>),
       versionGroupDetails: (json['version_group_details'] as List<dynamic>)
           .map((e) => VersionGroupDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -127,7 +127,7 @@ _$MoveImpl _$$MoveImplFromJson(Map<String, dynamic> json) => _$MoveImpl(
 
 Map<String, dynamic> _$$MoveImplToJson(_$MoveImpl instance) =>
     <String, dynamic>{
-      'move': instance.move,
+      'move': const NameUrlConverter().toJson(instance.move),
       'version_group_details': instance.versionGroupDetails,
     };
 
@@ -444,14 +444,15 @@ Map<String, dynamic> _$$GenerationViiiImplToJson(
 _$StatImpl _$$StatImplFromJson(Map<String, dynamic> json) => _$StatImpl(
       baseStat: (json['base_stat'] as num).toInt(),
       effort: (json['effort'] as num).toInt(),
-      stat: Species.fromJson(json['stat'] as Map<String, dynamic>),
+      stat: const NameUrlConverter()
+          .fromJson(json['stat'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$StatImplToJson(_$StatImpl instance) =>
     <String, dynamic>{
       'base_stat': instance.baseStat,
       'effort': instance.effort,
-      'stat': instance.stat,
+      'stat': const NameUrlConverter().toJson(instance.stat),
     };
 
 _$TypeImpl _$$TypeImplFromJson(Map<String, dynamic> json) => _$TypeImpl(
@@ -462,7 +463,7 @@ _$TypeImpl _$$TypeImplFromJson(Map<String, dynamic> json) => _$TypeImpl(
 Map<String, dynamic> _$$TypeImplToJson(_$TypeImpl instance) =>
     <String, dynamic>{
       'slot': instance.slot,
-      'type': instance.type,
+      'type': instance.type.toJson(),
     };
 
 _$FormImpl _$$FormImplFromJson(Map<String, dynamic> json) => _$FormImpl(
@@ -498,4 +499,14 @@ Map<String, dynamic> _$$VersionDetailImplToJson(_$VersionDetailImpl instance) =>
     <String, dynamic>{
       'rarity': instance.rarity,
       'version': instance.version,
+    };
+
+_$NameUrlImpl _$$NameUrlImplFromJson(Map<String, dynamic> json) =>
+    _$NameUrlImpl(
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$$NameUrlImplToJson(_$NameUrlImpl instance) =>
+    <String, dynamic>{
+      'name': instance.name,
     };

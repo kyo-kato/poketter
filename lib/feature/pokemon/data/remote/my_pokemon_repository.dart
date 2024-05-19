@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../authentication/data/auth_repository.dart';
+import '../../application/fetch_pokemon_service.dart';
 import '../../domain/my_pokemon.dart';
 
 part 'my_pokemon_repository.g.dart';
@@ -23,13 +24,17 @@ class MyPokemonRepository {
   final FirebaseFirestore _firestore;
   final Ref _ref;
 
-  Future<void> catchPokemon(MyPokemon myPokemon) async {
+  Future<void> catchPokemon(int pokemonId) async {
+    final pokemon = await _ref.read(fetchPokemonProvider(pokemonId).future);
+    final myPokemon = MyPokemon.unique(pokemonId: pokemonId, pokemon: pokemon);
+
     final current = await fetchMyPokemon();
+
     final update = current.copyWith(
-      pokemons: [
+      pokemons: {
         ...current.pokemons,
-        myPokemon,
-      ],
+        myPokemon.uuid: myPokemon.toWrite(),
+      },
     );
     await _myPokemonsDocumentRef()?.set(update);
   }
@@ -51,8 +56,8 @@ class MyPokemonRepository {
     }
 
     return _firestore.collection('myPokemons').doc(userId).withConverter(
-          fromFirestore: (doc, _) => MyPokemons.fromJson(doc.data()!),
-          toFirestore: (pokemons, _) => pokemons.toJson(),
+          fromFirestore: (doc, _) => MyPokemons.fromFireStoreJson(doc.data()!),
+          toFirestore: (pokemons, _) => pokemons.toFireStoreJson(),
         );
   }
 }

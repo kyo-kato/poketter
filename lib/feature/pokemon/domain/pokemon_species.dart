@@ -1,5 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../util/converter.dart';
+import 'pokemon_base.dart';
+
 part 'pokemon_species.freezed.dart';
 part 'pokemon_species.g.dart';
 
@@ -55,18 +58,6 @@ class PokemonSpecies with _$PokemonSpecies {
 
   factory PokemonSpecies.fromJson(Map<String, dynamic> json) =>
       _$PokemonSpeciesFromJson(json);
-}
-
-@freezed
-class NameUrl with _$NameUrl {
-  @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory NameUrl({
-    required String name,
-    // required String url,
-  }) = _NameUrl;
-
-  factory NameUrl.fromJson(Map<String, dynamic> json) =>
-      _$NameUrlFromJson(json);
 }
 
 @freezed

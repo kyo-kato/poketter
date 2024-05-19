@@ -36,7 +36,8 @@ mixin _$PokemonBase {
   int get weight => throw _privateConstructorUsedError;
 
   /// 種族値
-  List<Stat> get stats => throw _privateConstructorUsedError;
+  @PokeStatsConverter()
+  Map<String, PokemonStats> get stats => throw _privateConstructorUsedError;
 
   /// タイプ
   List<Type> get types => throw _privateConstructorUsedError;
@@ -89,7 +90,7 @@ abstract class $PokemonBaseCopyWith<$Res> {
       int baseExperience,
       int height,
       int weight,
-      List<Stat> stats,
+      @PokeStatsConverter() Map<String, PokemonStats> stats,
       List<Type> types,
       int order,
       bool isDefault,
@@ -162,7 +163,7 @@ class _$PokemonBaseCopyWithImpl<$Res, $Val extends PokemonBase>
       stats: null == stats
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
-              as List<Stat>,
+              as Map<String, PokemonStats>,
       types: null == types
           ? _value.types
           : types // ignore: cast_nullable_to_non_nullable
@@ -249,7 +250,7 @@ abstract class _$$PokemonBaseImplCopyWith<$Res>
       int baseExperience,
       int height,
       int weight,
-      List<Stat> stats,
+      @PokeStatsConverter() Map<String, PokemonStats> stats,
       List<Type> types,
       int order,
       bool isDefault,
@@ -323,7 +324,7 @@ class __$$PokemonBaseImplCopyWithImpl<$Res>
       stats: null == stats
           ? _value._stats
           : stats // ignore: cast_nullable_to_non_nullable
-              as List<Stat>,
+              as Map<String, PokemonStats>,
       types: null == types
           ? _value._types
           : types // ignore: cast_nullable_to_non_nullable
@@ -382,7 +383,7 @@ class _$PokemonBaseImpl implements _PokemonBase {
       required this.baseExperience,
       required this.height,
       required this.weight,
-      required final List<Stat> stats,
+      @PokeStatsConverter() required final Map<String, PokemonStats> stats,
       required final List<Type> types,
       this.order = 0,
       this.isDefault = false,
@@ -425,14 +426,15 @@ class _$PokemonBaseImpl implements _PokemonBase {
   final int weight;
 
   /// 種族値
-  final List<Stat> _stats;
+  final Map<String, PokemonStats> _stats;
 
   /// 種族値
   @override
-  List<Stat> get stats {
-    if (_stats is EqualUnmodifiableListView) return _stats;
+  @PokeStatsConverter()
+  Map<String, PokemonStats> get stats {
+    if (_stats is EqualUnmodifiableMapView) return _stats;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_stats);
+    return EqualUnmodifiableMapView(_stats);
   }
 
   /// タイプ
@@ -594,7 +596,7 @@ abstract class _PokemonBase implements PokemonBase {
       required final int baseExperience,
       required final int height,
       required final int weight,
-      required final List<Stat> stats,
+      @PokeStatsConverter() required final Map<String, PokemonStats> stats,
       required final List<Type> types,
       final int order,
       final bool isDefault,
@@ -633,7 +635,8 @@ abstract class _PokemonBase implements PokemonBase {
   @override
 
   /// 種族値
-  List<Stat> get stats;
+  @PokeStatsConverter()
+  Map<String, PokemonStats> get stats;
   @override
 
   /// タイプ
@@ -1294,7 +1297,8 @@ GameIndex _$GameIndexFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GameIndex {
   int get gameIndex => throw _privateConstructorUsedError;
-  Species get version => throw _privateConstructorUsedError;
+  @NameUrlConverter()
+  String get version => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1307,9 +1311,7 @@ abstract class $GameIndexCopyWith<$Res> {
   factory $GameIndexCopyWith(GameIndex value, $Res Function(GameIndex) then) =
       _$GameIndexCopyWithImpl<$Res, GameIndex>;
   @useResult
-  $Res call({int gameIndex, Species version});
-
-  $SpeciesCopyWith<$Res> get version;
+  $Res call({int gameIndex, @NameUrlConverter() String version});
 }
 
 /// @nodoc
@@ -1336,16 +1338,8 @@ class _$GameIndexCopyWithImpl<$Res, $Val extends GameIndex>
       version: null == version
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
-              as Species,
+              as String,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SpeciesCopyWith<$Res> get version {
-    return $SpeciesCopyWith<$Res>(_value.version, (value) {
-      return _then(_value.copyWith(version: value) as $Val);
-    });
   }
 }
 
@@ -1357,10 +1351,7 @@ abstract class _$$GameIndexImplCopyWith<$Res>
       __$$GameIndexImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int gameIndex, Species version});
-
-  @override
-  $SpeciesCopyWith<$Res> get version;
+  $Res call({int gameIndex, @NameUrlConverter() String version});
 }
 
 /// @nodoc
@@ -1385,7 +1376,7 @@ class __$$GameIndexImplCopyWithImpl<$Res>
       version: null == version
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
-              as Species,
+              as String,
     ));
   }
 }
@@ -1394,7 +1385,8 @@ class __$$GameIndexImplCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$GameIndexImpl implements _GameIndex {
-  const _$GameIndexImpl({required this.gameIndex, required this.version});
+  const _$GameIndexImpl(
+      {required this.gameIndex, @NameUrlConverter() required this.version});
 
   factory _$GameIndexImpl.fromJson(Map<String, dynamic> json) =>
       _$$GameIndexImplFromJson(json);
@@ -1402,7 +1394,8 @@ class _$GameIndexImpl implements _GameIndex {
   @override
   final int gameIndex;
   @override
-  final Species version;
+  @NameUrlConverter()
+  final String version;
 
   @override
   String toString() {
@@ -1440,7 +1433,7 @@ class _$GameIndexImpl implements _GameIndex {
 abstract class _GameIndex implements GameIndex {
   const factory _GameIndex(
       {required final int gameIndex,
-      required final Species version}) = _$GameIndexImpl;
+      @NameUrlConverter() required final String version}) = _$GameIndexImpl;
 
   factory _GameIndex.fromJson(Map<String, dynamic> json) =
       _$GameIndexImpl.fromJson;
@@ -1448,7 +1441,8 @@ abstract class _GameIndex implements GameIndex {
   @override
   int get gameIndex;
   @override
-  Species get version;
+  @NameUrlConverter()
+  String get version;
   @override
   @JsonKey(ignore: true)
   _$$GameIndexImplCopyWith<_$GameIndexImpl> get copyWith =>
@@ -1461,7 +1455,8 @@ Move _$MoveFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Move {
-  Species get move => throw _privateConstructorUsedError;
+  @NameUrlConverter()
+  String get move => throw _privateConstructorUsedError;
   List<VersionGroupDetail> get versionGroupDetails =>
       throw _privateConstructorUsedError;
 
@@ -1475,9 +1470,9 @@ abstract class $MoveCopyWith<$Res> {
   factory $MoveCopyWith(Move value, $Res Function(Move) then) =
       _$MoveCopyWithImpl<$Res, Move>;
   @useResult
-  $Res call({Species move, List<VersionGroupDetail> versionGroupDetails});
-
-  $SpeciesCopyWith<$Res> get move;
+  $Res call(
+      {@NameUrlConverter() String move,
+      List<VersionGroupDetail> versionGroupDetails});
 }
 
 /// @nodoc
@@ -1500,20 +1495,12 @@ class _$MoveCopyWithImpl<$Res, $Val extends Move>
       move: null == move
           ? _value.move
           : move // ignore: cast_nullable_to_non_nullable
-              as Species,
+              as String,
       versionGroupDetails: null == versionGroupDetails
           ? _value.versionGroupDetails
           : versionGroupDetails // ignore: cast_nullable_to_non_nullable
               as List<VersionGroupDetail>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SpeciesCopyWith<$Res> get move {
-    return $SpeciesCopyWith<$Res>(_value.move, (value) {
-      return _then(_value.copyWith(move: value) as $Val);
-    });
   }
 }
 
@@ -1524,10 +1511,9 @@ abstract class _$$MoveImplCopyWith<$Res> implements $MoveCopyWith<$Res> {
       __$$MoveImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Species move, List<VersionGroupDetail> versionGroupDetails});
-
-  @override
-  $SpeciesCopyWith<$Res> get move;
+  $Res call(
+      {@NameUrlConverter() String move,
+      List<VersionGroupDetail> versionGroupDetails});
 }
 
 /// @nodoc
@@ -1547,7 +1533,7 @@ class __$$MoveImplCopyWithImpl<$Res>
       move: null == move
           ? _value.move
           : move // ignore: cast_nullable_to_non_nullable
-              as Species,
+              as String,
       versionGroupDetails: null == versionGroupDetails
           ? _value._versionGroupDetails
           : versionGroupDetails // ignore: cast_nullable_to_non_nullable
@@ -1561,7 +1547,7 @@ class __$$MoveImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$MoveImpl implements _Move {
   const _$MoveImpl(
-      {required this.move,
+      {@NameUrlConverter() required this.move,
       required final List<VersionGroupDetail> versionGroupDetails})
       : _versionGroupDetails = versionGroupDetails;
 
@@ -1569,7 +1555,8 @@ class _$MoveImpl implements _Move {
       _$$MoveImplFromJson(json);
 
   @override
-  final Species move;
+  @NameUrlConverter()
+  final String move;
   final List<VersionGroupDetail> _versionGroupDetails;
   @override
   List<VersionGroupDetail> get versionGroupDetails {
@@ -1615,14 +1602,15 @@ class _$MoveImpl implements _Move {
 
 abstract class _Move implements Move {
   const factory _Move(
-          {required final Species move,
+          {@NameUrlConverter() required final String move,
           required final List<VersionGroupDetail> versionGroupDetails}) =
       _$MoveImpl;
 
   factory _Move.fromJson(Map<String, dynamic> json) = _$MoveImpl.fromJson;
 
   @override
-  Species get move;
+  @NameUrlConverter()
+  String get move;
   @override
   List<VersionGroupDetail> get versionGroupDetails;
   @override
@@ -5467,7 +5455,8 @@ Stat _$StatFromJson(Map<String, dynamic> json) {
 mixin _$Stat {
   int get baseStat => throw _privateConstructorUsedError;
   int get effort => throw _privateConstructorUsedError;
-  Species get stat => throw _privateConstructorUsedError;
+  @NameUrlConverter()
+  String get stat => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -5479,9 +5468,7 @@ abstract class $StatCopyWith<$Res> {
   factory $StatCopyWith(Stat value, $Res Function(Stat) then) =
       _$StatCopyWithImpl<$Res, Stat>;
   @useResult
-  $Res call({int baseStat, int effort, Species stat});
-
-  $SpeciesCopyWith<$Res> get stat;
+  $Res call({int baseStat, int effort, @NameUrlConverter() String stat});
 }
 
 /// @nodoc
@@ -5513,16 +5500,8 @@ class _$StatCopyWithImpl<$Res, $Val extends Stat>
       stat: null == stat
           ? _value.stat
           : stat // ignore: cast_nullable_to_non_nullable
-              as Species,
+              as String,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SpeciesCopyWith<$Res> get stat {
-    return $SpeciesCopyWith<$Res>(_value.stat, (value) {
-      return _then(_value.copyWith(stat: value) as $Val);
-    });
   }
 }
 
@@ -5533,10 +5512,7 @@ abstract class _$$StatImplCopyWith<$Res> implements $StatCopyWith<$Res> {
       __$$StatImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int baseStat, int effort, Species stat});
-
-  @override
-  $SpeciesCopyWith<$Res> get stat;
+  $Res call({int baseStat, int effort, @NameUrlConverter() String stat});
 }
 
 /// @nodoc
@@ -5565,17 +5541,19 @@ class __$$StatImplCopyWithImpl<$Res>
       stat: null == stat
           ? _value.stat
           : stat // ignore: cast_nullable_to_non_nullable
-              as Species,
+              as String,
     ));
   }
 }
 
 /// @nodoc
 
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$StatImpl implements _Stat {
   const _$StatImpl(
-      {required this.baseStat, required this.effort, required this.stat});
+      {required this.baseStat,
+      required this.effort,
+      @NameUrlConverter() required this.stat});
 
   factory _$StatImpl.fromJson(Map<String, dynamic> json) =>
       _$$StatImplFromJson(json);
@@ -5585,7 +5563,8 @@ class _$StatImpl implements _Stat {
   @override
   final int effort;
   @override
-  final Species stat;
+  @NameUrlConverter()
+  final String stat;
 
   @override
   String toString() {
@@ -5625,7 +5604,7 @@ abstract class _Stat implements Stat {
   const factory _Stat(
       {required final int baseStat,
       required final int effort,
-      required final Species stat}) = _$StatImpl;
+      @NameUrlConverter() required final String stat}) = _$StatImpl;
 
   factory _Stat.fromJson(Map<String, dynamic> json) = _$StatImpl.fromJson;
 
@@ -5634,7 +5613,8 @@ abstract class _Stat implements Stat {
   @override
   int get effort;
   @override
-  Species get stat;
+  @NameUrlConverter()
+  String get stat;
   @override
   @JsonKey(ignore: true)
   _$$StatImplCopyWith<_$StatImpl> get copyWith =>
@@ -5743,7 +5723,7 @@ class __$$TypeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$TypeImpl implements _Type {
   const _$TypeImpl({required this.slot, required this.type});
 
@@ -6278,5 +6258,138 @@ abstract class _VersionDetail implements VersionDetail {
   @override
   @JsonKey(ignore: true)
   _$$VersionDetailImplCopyWith<_$VersionDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+NameUrl _$NameUrlFromJson(Map<String, dynamic> json) {
+  return _NameUrl.fromJson(json);
+}
+
+/// @nodoc
+mixin _$NameUrl {
+  String get name => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $NameUrlCopyWith<NameUrl> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $NameUrlCopyWith<$Res> {
+  factory $NameUrlCopyWith(NameUrl value, $Res Function(NameUrl) then) =
+      _$NameUrlCopyWithImpl<$Res, NameUrl>;
+  @useResult
+  $Res call({String name});
+}
+
+/// @nodoc
+class _$NameUrlCopyWithImpl<$Res, $Val extends NameUrl>
+    implements $NameUrlCopyWith<$Res> {
+  _$NameUrlCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$NameUrlImplCopyWith<$Res> implements $NameUrlCopyWith<$Res> {
+  factory _$$NameUrlImplCopyWith(
+          _$NameUrlImpl value, $Res Function(_$NameUrlImpl) then) =
+      __$$NameUrlImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String name});
+}
+
+/// @nodoc
+class __$$NameUrlImplCopyWithImpl<$Res>
+    extends _$NameUrlCopyWithImpl<$Res, _$NameUrlImpl>
+    implements _$$NameUrlImplCopyWith<$Res> {
+  __$$NameUrlImplCopyWithImpl(
+      _$NameUrlImpl _value, $Res Function(_$NameUrlImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+  }) {
+    return _then(_$NameUrlImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class _$NameUrlImpl implements _NameUrl {
+  const _$NameUrlImpl({required this.name});
+
+  factory _$NameUrlImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NameUrlImplFromJson(json);
+
+  @override
+  final String name;
+
+  @override
+  String toString() {
+    return 'NameUrl(name: $name)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NameUrlImpl &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, name);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NameUrlImplCopyWith<_$NameUrlImpl> get copyWith =>
+      __$$NameUrlImplCopyWithImpl<_$NameUrlImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$NameUrlImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _NameUrl implements NameUrl {
+  const factory _NameUrl({required final String name}) = _$NameUrlImpl;
+
+  factory _NameUrl.fromJson(Map<String, dynamic> json) = _$NameUrlImpl.fromJson;
+
+  @override
+  String get name;
+  @override
+  @JsonKey(ignore: true)
+  _$$NameUrlImplCopyWith<_$NameUrlImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

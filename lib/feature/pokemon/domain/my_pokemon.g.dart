@@ -22,15 +22,16 @@ Map<String, dynamic> _$$PokemonImplToJson(_$PokemonImpl instance) =>
 
 _$MyPokemonsImpl _$$MyPokemonsImplFromJson(Map<String, dynamic> json) =>
     _$MyPokemonsImpl(
-      pokemons: (json['pokemons'] as List<dynamic>?)
-              ?.map((e) => MyPokemon.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      pokemons: (json['pokemons'] as Map<String, dynamic>?)?.map(
+            (k, e) =>
+                MapEntry(k, MyPokemon.fromJson(e as Map<String, dynamic>)),
+          ) ??
+          const {},
     );
 
 Map<String, dynamic> _$$MyPokemonsImplToJson(_$MyPokemonsImpl instance) =>
     <String, dynamic>{
-      'pokemons': instance.pokemons.map((e) => e.toJson()).toList(),
+      'pokemons': instance.pokemons.map((k, e) => MapEntry(k, e.toJson())),
     };
 
 _$MyPokemonImpl _$$MyPokemonImplFromJson(Map<String, dynamic> json) =>
@@ -38,16 +39,20 @@ _$MyPokemonImpl _$$MyPokemonImplFromJson(Map<String, dynamic> json) =>
       uuid: json['uuid'] as String,
       pokemonId: (json['pokemon_id'] as num).toInt(),
       nickName: json['nick_name'] as String,
+      currentHp: (json['current_hp'] as num?)?.toInt() ?? 0,
       level: (json['level'] as num?)?.toInt() ?? 1,
       exp: (json['exp'] as num?)?.toInt() ?? 0,
-      currentStats: (json['current_stats'] as List<dynamic>?)
-              ?.map((e) => Stat.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      gender: (json['gender'] as num?)?.toInt() ?? 0,
+      currentStats: (json['current_stats'] as Map<String, dynamic>?)?.map(
+            (k, e) =>
+                MapEntry(k, PokemonStats.fromJson(e as Map<String, dynamic>)),
+          ) ??
+          const {},
       currentMoves: (json['current_moves'] as List<dynamic>?)
               ?.map((e) => Move.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      isParty: json['is_party'] as bool? ?? false,
       pokemon: json['pokemon'] == null
           ? null
           : Pokemon.fromJson(json['pokemon'] as Map<String, dynamic>),
@@ -58,8 +63,12 @@ Map<String, dynamic> _$$MyPokemonImplToJson(_$MyPokemonImpl instance) =>
       'uuid': instance.uuid,
       'pokemon_id': instance.pokemonId,
       'nick_name': instance.nickName,
+      'current_hp': instance.currentHp,
       'level': instance.level,
       'exp': instance.exp,
-      'current_stats': instance.currentStats.map((e) => e.toJson()).toList(),
+      'gender': instance.gender,
+      'current_stats':
+          instance.currentStats.map((k, e) => MapEntry(k, e.toJson())),
       'current_moves': instance.currentMoves.map((e) => e.toJson()).toList(),
+      'is_party': instance.isParty,
     };
