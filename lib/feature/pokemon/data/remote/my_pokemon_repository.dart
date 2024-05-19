@@ -28,7 +28,7 @@ class MyPokemonRepository {
     final pokemon = await _ref.read(fetchPokemonProvider(pokemonId).future);
     final myPokemon = MyPokemon.unique(pokemonId: pokemonId, pokemon: pokemon);
 
-    final current = await fetchMyPokemon();
+    final current = await _fetchFireStoreMyPokemon();
 
     final update = current.copyWith(
       pokemons: {
@@ -39,9 +39,27 @@ class MyPokemonRepository {
     await _myPokemonsDocumentRef()?.set(update);
   }
 
-  Future<MyPokemons> fetchMyPokemon() async {
+  Future<MyPokemons> _fetchFireStoreMyPokemon() async {
     final snapshot = await _myPokemonsDocumentRef()?.get();
     return snapshot?.data() ?? MyPokemons();
+  }
+
+  Future<MyPokemons> fetchMyPokemon() async {
+    final current = await _fetchFireStoreMyPokemon();
+    return _fillPokemonInfo(_ref, current);
+  }
+
+  /// 保存時に削除したポケモン情報を復元する
+  Future<MyPokemons> _fillPokemonInfo(Ref ref, MyPokemons myPokemons) async {
+    final filled = <String, MyPokemon>{};
+    for (final entry in myPokemons.pokemons.entries) {
+      final myPokemon = entry.value;
+      final pokemon =
+          await ref.read(fetchPokemonProvider(myPokemon.pokemonId).future);
+
+      filled[entry.key] = myPokemon.copyWith(pokemon: pokemon);
+    }
+    return myPokemons.copyWith(pokemons: filled);
   }
 
   Future<bool> hasNoPokemon() async {

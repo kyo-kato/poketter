@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../util/converter.dart';
 import 'pokemon_base.dart';
 
 part 'pokemon_species.freezed.dart';

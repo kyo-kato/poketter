@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../constant/app_size.dart';
 import '../../../gen/assets.gen.dart';
 import '../../authentication/application/create_guest_user_service.dart';
-import '../../authentication/domain/app_user.dart';
 import 'component/user_name.dart';
 import 'onboarding_state.dart';
 

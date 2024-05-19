@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../pokemon/data/remote/my_pokemon_repository.dart';
 import 'component/first_partner_selector.dart';
+import 'component/party_pokemons_list.dart';
 import 'component/player_card.dart';
 
 class HomePage extends ConsumerWidget {
@@ -20,6 +21,7 @@ class HomePage extends ConsumerWidget {
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(child: PlayerCard()),
+            PartyPokemonsSliverList(),
           ],
         ),
       ),
