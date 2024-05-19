@@ -24,6 +24,7 @@ dependencies:
   go_router: ^14.0.2
   google_fonts: ^6.2.1
   google_sign_in: ^6.2.1
+  intl:
   isar:
     hosted: https://pub.isar-community.dev
     version: ^4.0.3
@@ -43,6 +44,7 @@ dependencies:
 dev_dependencies:
   build_runner: ^2.4.9
   custom_lint: ^0.6.4
+  flutter_gen_runner: ^5.4.0
   flutter_launcher_icons: ^0.13.1
   flutter_lints: ^3.0.0
   flutter_test:
@@ -54,9 +56,16 @@ dev_dependencies:
   riverpod_generator: ^2.4.0
   riverpod_lint: ^2.3.10
 
+flutter_gen:
+  output: lib/gen/
+
+  integrations:
+    flutter_svg: true
+
 flutter:
   uses-material-design: true
 
   assets:
-    - assets/
+    - assets/icons/
+    - assets/images/
     - test/json/

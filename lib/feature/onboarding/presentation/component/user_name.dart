@@ -11,13 +11,14 @@ class UserNameField extends ConsumerWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.6,
       child: TextFormField(
-        initialValue: ref.watch(entryUserNameProvider),
+        initialValue:
+            ref.watch(entryUserStateProvider.select((value) => value.userName)),
         decoration: const InputDecoration(
           prefixIcon: Icon(Icons.account_circle),
           hintText: 'Your Name:',
         ),
         maxLength: 10,
-        onChanged: ref.read(entryUserNameProvider.notifier).updateName,
+        onChanged: ref.read(entryUserStateProvider.notifier).updateName,
       ),
     );
   }

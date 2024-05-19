@@ -14,6 +14,7 @@ class CreateGuestUserService extends _$CreateGuestUserService {
 
   Future<void> createGuestUser({
     required String userName,
+    required String gender,
   }) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
@@ -25,7 +26,13 @@ class CreateGuestUserService extends _$CreateGuestUserService {
       }
       await ref
           .read(userDataRepositoryProvider)
-          .createUserData(user.copyWith(userName: userName));
+          .createUserData(
+            user.copyWith(
+              userName: userName,
+              gender: gender,
+              money: 1000, // 初期所持金
+            ),
+          );
     });
   }
 }

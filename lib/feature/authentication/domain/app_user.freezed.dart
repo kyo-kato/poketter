@@ -21,9 +21,11 @@ AppUser _$AppUserFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AppUser {
   String get id => throw _privateConstructorUsedError;
-  String get userName => throw _privateConstructorUsedError;
   bool get isGuest => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
+  String get userName => throw _privateConstructorUsedError;
+  String get gender => throw _privateConstructorUsedError;
+  int get money => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +37,13 @@ abstract class $AppUserCopyWith<$Res> {
   factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) =
       _$AppUserCopyWithImpl<$Res, AppUser>;
   @useResult
-  $Res call({String id, String userName, bool isGuest, String? createdAt});
+  $Res call(
+      {String id,
+      bool isGuest,
+      String? createdAt,
+      String userName,
+      String gender,
+      int money});
 }
 
 /// @nodoc
@@ -52,18 +60,16 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
   @override
   $Res call({
     Object? id = null,
-    Object? userName = null,
     Object? isGuest = null,
     Object? createdAt = freezed,
+    Object? userName = null,
+    Object? gender = null,
+    Object? money = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      userName: null == userName
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
               as String,
       isGuest: null == isGuest
           ? _value.isGuest
@@ -73,6 +79,18 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      userName: null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String,
+      money: null == money
+          ? _value.money
+          : money // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -84,7 +102,13 @@ abstract class _$$AppUserImplCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       __$$AppUserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String userName, bool isGuest, String? createdAt});
+  $Res call(
+      {String id,
+      bool isGuest,
+      String? createdAt,
+      String userName,
+      String gender,
+      int money});
 }
 
 /// @nodoc
@@ -99,18 +123,16 @@ class __$$AppUserImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? userName = null,
     Object? isGuest = null,
     Object? createdAt = freezed,
+    Object? userName = null,
+    Object? gender = null,
+    Object? money = null,
   }) {
     return _then(_$AppUserImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      userName: null == userName
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
               as String,
       isGuest: null == isGuest
           ? _value.isGuest
@@ -120,18 +142,33 @@ class __$$AppUserImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      userName: null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String,
+      money: null == money
+          ? _value.money
+          : money // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$AppUserImpl implements _AppUser {
+class _$AppUserImpl extends _AppUser {
   const _$AppUserImpl(
       {required this.id,
-      this.userName = '',
       this.isGuest = true,
-      this.createdAt});
+      this.createdAt,
+      this.userName = '',
+      this.gender = 'other',
+      this.money = 0})
+      : super._();
 
   factory _$AppUserImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppUserImplFromJson(json);
@@ -140,16 +177,22 @@ class _$AppUserImpl implements _AppUser {
   final String id;
   @override
   @JsonKey()
-  final String userName;
-  @override
-  @JsonKey()
   final bool isGuest;
   @override
   final String? createdAt;
+  @override
+  @JsonKey()
+  final String userName;
+  @override
+  @JsonKey()
+  final String gender;
+  @override
+  @JsonKey()
+  final int money;
 
   @override
   String toString() {
-    return 'AppUser(id: $id, userName: $userName, isGuest: $isGuest, createdAt: $createdAt)';
+    return 'AppUser(id: $id, isGuest: $isGuest, createdAt: $createdAt, userName: $userName, gender: $gender, money: $money)';
   }
 
   @override
@@ -158,17 +201,19 @@ class _$AppUserImpl implements _AppUser {
         (other.runtimeType == runtimeType &&
             other is _$AppUserImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.userName, userName) ||
-                other.userName == userName) &&
             (identical(other.isGuest, isGuest) || other.isGuest == isGuest) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.createdAt == createdAt) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.money, money) || other.money == money));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, userName, isGuest, createdAt);
+      Object.hash(runtimeType, id, isGuest, createdAt, userName, gender, money);
 
   @JsonKey(ignore: true)
   @override
@@ -184,23 +229,30 @@ class _$AppUserImpl implements _AppUser {
   }
 }
 
-abstract class _AppUser implements AppUser {
+abstract class _AppUser extends AppUser {
   const factory _AppUser(
       {required final String id,
-      final String userName,
       final bool isGuest,
-      final String? createdAt}) = _$AppUserImpl;
+      final String? createdAt,
+      final String userName,
+      final String gender,
+      final int money}) = _$AppUserImpl;
+  const _AppUser._() : super._();
 
   factory _AppUser.fromJson(Map<String, dynamic> json) = _$AppUserImpl.fromJson;
 
   @override
   String get id;
   @override
-  String get userName;
-  @override
   bool get isGuest;
   @override
   String? get createdAt;
+  @override
+  String get userName;
+  @override
+  String get gender;
+  @override
+  int get money;
   @override
   @JsonKey(ignore: true)
   _$$AppUserImplCopyWith<_$AppUserImpl> get copyWith =>
