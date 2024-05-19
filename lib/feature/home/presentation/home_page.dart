@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../pokemon/data/remote/my_pokemon_repository.dart';
 import 'component/first_partner_selector.dart';
+import 'component/player_card.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -14,7 +15,15 @@ class HomePage extends ConsumerWidget {
         showFirstPartnerDialog(context);
       }
     });
-    return Scaffold(body: Container());
+    return const Scaffold(
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(child: PlayerCard()),
+          ],
+        ),
+      ),
+    );
   }
 
   Future<void> showFirstPartnerDialog(BuildContext context) async {
