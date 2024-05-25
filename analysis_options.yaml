@@ -1,6 +1,11 @@
 include: package:pedantic_mono/analysis_options.yaml
 
 analyzer:
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+    - '**/*.gen.dart'
+    - '**/firebase_options_*.dart'
   plugins:
     - custom_lint
   language:

@@ -5,6 +5,20 @@ DART := fvm dart
 firestore-deploy:
 	firebase deploy --only firestore:rules
 
+# lint
+
+format:
+	find ./lib ./test -name "*.dart" ! -name "*.*g.dart" ! -name "*.freezed.dart" | xargs ${DART} format
+
+format-check:
+	find ./lib ./test -name "*.dart" ! -name "*.*g.dart" ! -name "*.freezed.dart" | xargs ${DART} format -o none --set-exit-if-changed
+
+analyze:
+	${FLUTTER} analyze
+
+fix:
+	${DART} fix --apply
+
 # build
 pub-get:
 	${FLUTTER} pub get

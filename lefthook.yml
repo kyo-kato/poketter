@@ -1,0 +1,11 @@
+pre-commit:
+  commands:
+    # フォーマッター
+    1_format:
+      run: find ./lib ./test -name "*.dart" ! -name "*.*g.dart" ! -name "*.freezed.dart" | xargs fvm dart format
+    # fixで修正できるものを修正
+    2_fix:
+      run: fvm dart fix --apply
+    # fixで修正できない場合はコミット不可
+    3_analyze:
+      run: fvm flutter analyze --fatal-infos
