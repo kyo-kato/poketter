@@ -1,27 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'fetch_my_pokemon_service.dart';
+part of 'my_pokemon_service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchMyPokemonServiceHash() =>
-    r'89f84130880a6254ad708916069ec9ae08b1709e';
+String _$myPokemonServiceHash() => r'07d6ce49da5498d8650f04e596fc4cbb5c151c4b';
 
-/// See also [fetchMyPokemonService].
-@ProviderFor(fetchMyPokemonService)
-final fetchMyPokemonServiceProvider =
-    AutoDisposeFutureProvider<MyPokemons>.internal(
-  fetchMyPokemonService,
-  name: r'fetchMyPokemonServiceProvider',
+/// See also [MyPokemonService].
+@ProviderFor(MyPokemonService)
+final myPokemonServiceProvider =
+    AutoDisposeAsyncNotifierProvider<MyPokemonService, MyPokemons>.internal(
+  MyPokemonService.new,
+  name: r'myPokemonServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$fetchMyPokemonServiceHash,
+      : _$myPokemonServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef FetchMyPokemonServiceRef = AutoDisposeFutureProviderRef<MyPokemons>;
+typedef _$MyPokemonService = AutoDisposeAsyncNotifier<MyPokemons>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
-import '../../../pokemon/application/fetch_my_pokemon_service.dart';
+import '../../../pokemon/application/my_pokemon_service.dart';
 import '../../../pokemon/domain/my_pokemon.dart';
 
 class PartyPokemonsSliverList extends ConsumerWidget {
@@ -11,7 +11,7 @@ class PartyPokemonsSliverList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final myPokemons = ref.watch(fetchMyPokemonServiceProvider);
+    final myPokemons = ref.watch(myPokemonServiceProvider);
     return myPokemons.when(
       loading: () => const SliverToBoxAdapter(),
       error: (error, stackTrace) =>

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
-import '../../../pokemon/application/catch_pokemon_service.dart';
+import '../../../pokemon/application/my_pokemon_service.dart';
 import '../../../pokemon/domain/first_partner_pokemon.dart';
 import 'first_partner_selector_state.dart';
 
@@ -41,7 +41,7 @@ class _SubmitButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final index = ref.watch(currentPokemonIndexProvider);
-    final state = ref.watch(catchPokemonServiceProvider);
+    final state = ref.watch(myPokemonServiceProvider);
 
     return state.when(
       error: (e, st) => const SizedBox(),
@@ -50,7 +50,7 @@ class _SubmitButton extends ConsumerWidget {
         onPressed: state.isLoading
             ? null
             : () => ref
-                .read(catchPokemonServiceProvider.notifier)
+                .read(myPokemonServiceProvider.notifier)
                 .catchPokemon(pokemons[index].id)
                 .then((value) => Navigator.pop(context)),
         child: const Text('Start'),
