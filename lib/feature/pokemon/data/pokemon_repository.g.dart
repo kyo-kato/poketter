@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'fetch_pokemon_service.dart';
+part of 'pokemon_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -154,23 +154,5 @@ class _FetchPokemonProviderElement
   @override
   int get pokemonId => (origin as FetchPokemonProvider).pokemonId;
 }
-
-String _$fetchPokemonServiceHash() =>
-    r'ecf55c481d661fcfe8fb612cb8d3e85bf9b5cc9b';
-
-/// See also [FetchPokemonService].
-@ProviderFor(FetchPokemonService)
-final fetchPokemonServiceProvider =
-    AutoDisposeAsyncNotifierProvider<FetchPokemonService, Pokemon?>.internal(
-  FetchPokemonService.new,
-  name: r'fetchPokemonServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$fetchPokemonServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$FetchPokemonService = AutoDisposeAsyncNotifier<Pokemon?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

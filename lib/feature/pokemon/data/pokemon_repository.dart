@@ -1,11 +1,11 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../data/local/pokemon_db_repository.dart';
-import '../data/remote/pokemon_api_repository.dart';
+import '../application/dto/pokemon_dto.dart';
 import '../domain/my_pokemon.dart';
-import 'dto/pokemon_dto.dart';
+import 'local/pokemon_db_repository.dart';
+import 'remote/pokemon_api_repository.dart';
 
-part 'fetch_pokemon_service.g.dart';
+part 'pokemon_repository.g.dart';
 
 @riverpod
 Future<Pokemon?> fetchPokemon(FetchPokemonRef ref, int pokemonId) async {
@@ -25,19 +25,4 @@ Future<Pokemon?> fetchPokemon(FetchPokemonRef ref, int pokemonId) async {
     PokemonDto.fromPokemon(id: pokemonId, pokemon: remotePokemon),
   );
   return remotePokemon;
-}
-
-@riverpod
-class FetchPokemonService extends _$FetchPokemonService {
-  @override
-  Future<Pokemon?> build() async {
-    return null;
-  }
-
-  Future<void> fetch(int id) async {
-    state = const AsyncLoading();
-    state = await AsyncValue.guard(() async {
-      return ref.read(fetchPokemonProvider(id).future);
-    });
-  }
 }
