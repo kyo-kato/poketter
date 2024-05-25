@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../util/app_info.dart';
+import '../../debug/presentation/debug_page.dart';
 import '../../pokemon/data/remote/my_pokemon_repository.dart';
 import 'component/first_partner_selector.dart';
 import 'component/party_pokemons_list.dart';
@@ -16,8 +18,13 @@ class HomePage extends ConsumerWidget {
         showFirstPartnerDialog(context);
       }
     });
-    return const Scaffold(
-      body: SafeArea(
+    return Scaffold(
+      appBar: AppBar(
+        actions: const [
+          if (AppFlavor.isDev) DebugItemMenu(),
+        ],
+      ),
+      body: const SafeArea(
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(child: PlayerCard()),

@@ -9,6 +9,7 @@ part of 'app_router.dart';
 List<RouteBase> get $appRoutes => [
       $onboardingRoute,
       $appShellRouteData,
+      $debugRoute,
     ];
 
 RouteBase get $onboardingRoute => GoRouteData.$route(
@@ -172,6 +173,29 @@ extension $AccountRouteDataExtension on AccountRouteData {
 
   String get location => GoRouteData.$location(
         '/account',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $debugRoute => GoRouteData.$route(
+      path: '/debug',
+      name: 'debug',
+      factory: $DebugRouteExtension._fromState,
+    );
+
+extension $DebugRouteExtension on DebugRoute {
+  static DebugRoute _fromState(GoRouterState state) => const DebugRoute();
+
+  String get location => GoRouteData.$location(
+        '/debug',
       );
 
   void go(BuildContext context) => context.go(location);

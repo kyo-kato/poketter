@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../feature/authentication/data/auth_repository.dart';
 import '../feature/authentication/presentation/sign_up_page.dart';
+import '../feature/debug/presentation/debug_page.dart';
 import '../feature/home/presentation/home_page.dart';
 import '../feature/onboarding/presentation/onboarding_page.dart';
 import 'go_router_refresh_stream.dart';
@@ -209,4 +210,18 @@ class AccountRouteData extends GoRouteData {
   Widget build(BuildContext context, GoRouterState state) {
     return SignUpPage();
   }
+}
+
+@TypedGoRoute<DebugRoute>(
+  path: DebugRoute.path,
+  name: DebugRoute.name,
+  routes: <TypedGoRoute<GoRouteData>>[],
+)
+class DebugRoute extends GoRouteData {
+  const DebugRoute();
+  static const name = 'debug';
+  static const path = '/$name';
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const DebugPage();
 }
