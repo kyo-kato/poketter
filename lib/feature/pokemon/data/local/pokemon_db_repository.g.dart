@@ -7,7 +7,7 @@ part of 'pokemon_db_repository.dart';
 // **************************************************************************
 
 String _$pokemonDbRepositoryHash() =>
-    r'1e86a7682ad47d6c2032460aaf3b4ed885a0c5c2';
+    r'fb7e36dd9e154830926c4fdb715e07136274373b';
 
 /// See also [pokemonDbRepository].
 @ProviderFor(pokemonDbRepository)

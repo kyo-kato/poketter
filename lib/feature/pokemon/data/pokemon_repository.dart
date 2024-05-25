@@ -11,7 +11,7 @@ part 'pokemon_repository.g.dart';
 Future<Pokemon?> fetchPokemon(FetchPokemonRef ref, int pokemonId) async {
   // ローカルから取得
   final local = await ref.read(pokemonDbRepositoryProvider.future);
-  final localPokemon = local.fetchPokemon(pokemonId);
+  final localPokemon = await local.fetchPokemon(pokemonId);
   if (localPokemon != null) {
     return localPokemon;
   }
@@ -22,7 +22,7 @@ Future<Pokemon?> fetchPokemon(FetchPokemonRef ref, int pokemonId) async {
   // ローカルに保存
   final db = await ref.read(pokemonDbRepositoryProvider.future);
   await db.storePokemon(
-    PokemonDto.fromPokemon(id: pokemonId, pokemon: remotePokemon),
+    PokemonDto.fromPokemon(pokemon: remotePokemon),
   );
   return remotePokemon;
 }

@@ -6,7 +6,7 @@ part of 'pokemon_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchPokemonHash() => r'5c360b2b4bdb68bb293331f6dbd7c648f745fd64';
+String _$fetchPokemonHash() => r'9fe4b1add82bb32cbc4ad7bc0d909cd7687ff979';
 
 /// Copied from Dart SDK
 class _SystemHash {

@@ -14,7 +14,8 @@ class PartyPokemonsSliverList extends ConsumerWidget {
     final myPokemons = ref.watch(fetchMyPokemonServiceProvider);
     return myPokemons.when(
       loading: () => const SliverToBoxAdapter(),
-      error: (error, stackTrace) => Text('Error: $error'),
+      error: (error, stackTrace) =>
+          SliverToBoxAdapter(child: Text('Error: $error')),
       data: (myPokemons) => _MyPokemonSliverList(my: myPokemons),
     );
   }

@@ -1,10 +1,7 @@
-import 'package:isar/isar.dart';
+import 'dart:convert';
 
 import '../../domain/my_pokemon.dart';
 
-part 'pokemon_dto.g.dart';
-
-@collection
 class PokemonDto {
   PokemonDto({
     required this.id,
@@ -12,13 +9,17 @@ class PokemonDto {
   });
 
   factory PokemonDto.fromPokemon({
-    required int id,
     required Pokemon pokemon,
   }) =>
       PokemonDto(
-        id: id,
-        pokemon: pokemon.toJson().toString(),
+        id: pokemon.id,
+        pokemon: jsonEncode(pokemon.toJson()),
       );
+
   final int id;
   final String pokemon;
+
+  Pokemon toPokemon() => Pokemon.fromJson(
+        json.decode(pokemon) as Map<String, Object?>,
+      );
 }
