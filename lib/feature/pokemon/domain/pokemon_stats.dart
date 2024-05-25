@@ -19,9 +19,10 @@ class PokemonStats with _$PokemonStats {
   static Map<String, PokemonStats> fromApiJson(Map<String, dynamic> json) {
     final list = json['stats'] as List<dynamic>;
     final map = <String, PokemonStats>{};
+
     for (final e in list) {
       final param = e as Map<String, dynamic>;
-      final stat = param['stat']['name'] as String;
+      final stat = (param['stat'] as Map<String, dynamic>)['name'] as String;
       final baseStat = param['base_stat'] as int;
       final effort = param['effort'] as int;
       map[stat] = PokemonStats(

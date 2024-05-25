@@ -25,7 +25,7 @@ class PokeStatsConverter
     final map = <String, PokemonStats>{};
     for (final e in json) {
       final param = e as Map<String, dynamic>;
-      final stat = param['stat']['name'] as String;
+      final stat = (param['stat'] as Map<String, dynamic>)['name'] as String;
       final baseStat = param['base_stat'] as int;
       final effort = param['effort'] as int;
       map[stat] = PokemonStats(
@@ -42,8 +42,8 @@ class PokeStatsConverter
         .map(
           (e) => {
             'stat': {'name': e.key},
-            'base_stat': e.value.baseStat,
-            'effort': e.value.effort,
+            'base_stat': (e.value as PokemonStats).baseStat,
+            'effort': (e.value as PokemonStats).effort,
           },
         )
         .toList();
