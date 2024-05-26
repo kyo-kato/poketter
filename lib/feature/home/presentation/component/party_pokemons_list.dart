@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
+import '../../../../util/extension.dart';
 import '../../../pokemon/application/my_pokemon_service.dart';
 import '../../../pokemon/domain/my_pokemon.dart';
 
@@ -50,10 +51,19 @@ class _PokemonCardView extends StatelessWidget {
     final gender = myPokemon.gender == 0 ? '♂' : '♀';
     final level = myPokemon.level;
 
+    final bgColor =
+        myPokemon.pokemon?.color.shade50 ?? Theme.of(context).primaryColorLight;
+    final borderColor =
+        myPokemon.pokemon?.color.shade500 ?? Theme.of(context).primaryColor;
+
     return Card(
-      color: Theme.of(context).primaryColorLight,
+      color: bgColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(6),
+        side: BorderSide(color: borderColor, width: 6),
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(2),
+        padding: const EdgeInsets.only(right: 6),
         child: Row(
           children: [
             Expanded(flex: 2, child: _PokemonAvatar(myPokemon: myPokemon)),
@@ -63,9 +73,10 @@ class _PokemonCardView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('$name $gender'),
-                  Text('Lv $level'),
-                  // Text('なまえ / ${myPokemon.currentStats}'),
+                  ListTile(
+                    title: Text('$name $gender'),
+                    subtitle: Text('Lv. $level'),
+                  ),
                 ],
               ),
             ),
@@ -84,7 +95,8 @@ class _PokemonAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final female = myPokemon.gender == 1 ? 'female/' : '';
-    return SizedBox(
+    return SizedBox.fromSize(
+      size: const Size.square(120),
       child: CachedNetworkImage(
         fit: BoxFit.cover,
         imageUrl:
@@ -104,24 +116,27 @@ class _PokemonHp extends StatelessWidget {
     final currentMax = myPokemon.currentStats['hp']?.baseStat ?? current;
     final indicator = current / currentMax;
 
-    return Column(
-      children: [
-        Row(
-          children: [
-            const Text('HP'),
-            const Gap(5),
-            Expanded(
-              child: LinearProgressIndicator(
-                minHeight: 8,
-                borderRadius: BorderRadius.circular(4),
-                color: _hpColor(indicator),
-                value: indicator,
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              const Text('HP'),
+              const Gap(5),
+              Expanded(
+                child: LinearProgressIndicator(
+                  minHeight: 8,
+                  borderRadius: BorderRadius.circular(4),
+                  color: _hpColor(indicator),
+                  value: indicator,
+                ),
               ),
-            ),
-          ],
-        ),
-        Text('$current / $currentMax'),
-      ],
+            ],
+          ),
+          Text('$current / $currentMax'),
+        ],
+      ),
     );
   }
 
