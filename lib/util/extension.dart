@@ -34,13 +34,15 @@ extension PokeColorEx on Pokemon {
 }
 
 extension PokemonMove on Pokemon {
-  /// 卵技のみを取得 (最新のもののみ)
+  /// 卵技とlv1技のみを取得 (最新のもののみ)
   List<Move> get movesSinceBorn {
-    return pokemon.moves
+    final eggMoves = pokemon.moves
         .where(
           (move) => move.versionGroupDetails.last.moveLearnMethod.name == 'egg',
         )
         .toList();
+    final firstLvMoves = movesByLevelUp(level: 1);
+    return [...eggMoves, ...firstLvMoves];
   }
 
   ///  レベルアップ技を取得 (最新のもののみ)
