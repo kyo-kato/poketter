@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:poketter/feature/pokemon/domain/my_pokemon.dart';
 import 'package:poketter/feature/pokemon/domain/pokemon_base.dart';
 import 'package:poketter/feature/pokemon/domain/pokemon_species.dart';
+import 'package:poketter/util/extension.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -58,6 +60,40 @@ void main() {
       final map = species.toJson();
       expect(map['id'], 25);
       expect(map['name'], 'pikachu');
+    });
+  });
+  group('moves', () {
+    test('moves since born', () async {
+      final pokemonJson =
+          await rootBundle.loadString('test/json/pokemon_bulbasaur.json');
+      final resBase = json.decode(pokemonJson) as Map<String, dynamic>;
+      final pokeBase = PokemonBase.fromJson(resBase);
+
+      final speciesJson =
+          await rootBundle.loadString('test/json/species_bulbasaur.json');
+      final resSp = json.decode(speciesJson) as Map<String, dynamic>;
+      final speciesSp = PokemonSpecies.fromJson(resSp);
+
+      final pokemon =
+          Pokemon(id: pokeBase.id, pokemon: pokeBase, species: speciesSp);
+
+      expect(pokemon.movesSinceBorn, isNotEmpty);
+    });
+    test('moves by level up', () async {
+      final pokemonJson =
+          await rootBundle.loadString('test/json/pokemon_bulbasaur.json');
+      final resBase = json.decode(pokemonJson) as Map<String, dynamic>;
+      final pokeBase = PokemonBase.fromJson(resBase);
+
+      final speciesJson =
+          await rootBundle.loadString('test/json/species_bulbasaur.json');
+      final resSp = json.decode(speciesJson) as Map<String, dynamic>;
+      final speciesSp = PokemonSpecies.fromJson(resSp);
+
+      final pokemon =
+          Pokemon(id: pokeBase.id, pokemon: pokeBase, species: speciesSp);
+
+      expect(pokemon.movesByLevelUp(), isNotEmpty);
     });
   });
 }

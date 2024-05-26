@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/v4.dart';
 
+import '../../../util/extension.dart';
 import 'pokemon_base.dart';
 import 'pokemon_species.dart';
 import 'pokemon_stats.dart';
@@ -79,7 +80,7 @@ class MyPokemon with _$MyPokemon {
     int level = 1,
     int exp = 0,
     int gender = 0,
-    List<Move> currentMoves = const [],
+    List<Move>? currentMoves,
     bool isParty = false,
     required Pokemon pokemon,
   }) =>
@@ -92,7 +93,7 @@ class MyPokemon with _$MyPokemon {
         exp: exp,
         gender: gender,
         currentStats: pokemon.pokemon.stats,
-        currentMoves: currentMoves,
+        currentMoves: currentMoves ?? pokemon.movesSinceBorn,
         isParty: isParty,
         createdAt: DateTime.timestamp(),
         pokemon: pokemon,

@@ -133,7 +133,7 @@ class GameIndex with _$GameIndex {
 
 @freezed
 class Move with _$Move {
-  @JsonSerializable(fieldRename: FieldRename.snake)
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory Move({
     @NameUrlConverter() required String move,
     required List<VersionGroupDetail> versionGroupDetails,
@@ -144,11 +144,10 @@ class Move with _$Move {
 
 @freezed
 class VersionGroupDetail with _$VersionGroupDetail {
-  @JsonSerializable(fieldRename: FieldRename.snake)
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory VersionGroupDetail({
     required int levelLearnedAt,
-    required Species moveLearnMethod,
-    // required Species versionGroup,
+    required NameUrl moveLearnMethod,
   }) = _VersionGroupDetail;
 
   factory VersionGroupDetail.fromJson(Map<String, dynamic> json) =>

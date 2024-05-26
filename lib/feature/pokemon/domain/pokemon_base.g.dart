@@ -128,7 +128,8 @@ _$MoveImpl _$$MoveImplFromJson(Map<String, dynamic> json) => _$MoveImpl(
 Map<String, dynamic> _$$MoveImplToJson(_$MoveImpl instance) =>
     <String, dynamic>{
       'move': const NameUrlConverter().toJson(instance.move),
-      'version_group_details': instance.versionGroupDetails,
+      'version_group_details':
+          instance.versionGroupDetails.map((e) => e.toJson()).toList(),
     };
 
 _$VersionGroupDetailImpl _$$VersionGroupDetailImplFromJson(
@@ -136,14 +137,14 @@ _$VersionGroupDetailImpl _$$VersionGroupDetailImplFromJson(
     _$VersionGroupDetailImpl(
       levelLearnedAt: (json['level_learned_at'] as num).toInt(),
       moveLearnMethod:
-          Species.fromJson(json['move_learn_method'] as Map<String, dynamic>),
+          NameUrl.fromJson(json['move_learn_method'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$VersionGroupDetailImplToJson(
         _$VersionGroupDetailImpl instance) =>
     <String, dynamic>{
       'level_learned_at': instance.levelLearnedAt,
-      'move_learn_method': instance.moveLearnMethod,
+      'move_learn_method': instance.moveLearnMethod.toJson(),
     };
 
 _$GenerationVImpl _$$GenerationVImplFromJson(Map<String, dynamic> json) =>

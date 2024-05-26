@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../feature/authentication/domain/app_user.dart';
 import '../feature/pokemon/domain/my_pokemon.dart';
+import '../feature/pokemon/domain/pokemon_base.dart';
 
 extension FirebaseUserConverter on User {
   AppUser toAppUser({String? userName}) {
@@ -29,5 +30,25 @@ extension PokeColorEx on Pokemon {
       'yellow' => Colors.yellow,
       _ => const MaterialColor(0x00000000, {}),
     };
+  }
+}
+
+extension PokemonMove on Pokemon {
+  /// 卵技のみを取得 (最新のもののみ)
+  List<Move> get movesSinceBorn {
+    return pokemon.moves
+        .where(
+          (move) => move.versionGroupDetails.last.moveLearnMethod.name == 'egg',
+        )
+        .toList();
+  }
+
+  ///  レベルアップ技を取得 (最新のもののみ)
+  List<Move> movesByLevelUp({int? level}) {
+    return pokemon.moves.where((move) {
+      final versionGroupDetails = move.versionGroupDetails.last;
+      return versionGroupDetails.moveLearnMethod.name == 'level-up' &&
+          (level == null || versionGroupDetails.levelLearnedAt == level);
+    }).toList();
   }
 }

@@ -1544,7 +1544,7 @@ class __$$MoveImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$MoveImpl implements _Move {
   const _$MoveImpl(
       {@NameUrlConverter() required this.move,
@@ -1626,7 +1626,7 @@ VersionGroupDetail _$VersionGroupDetailFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$VersionGroupDetail {
   int get levelLearnedAt => throw _privateConstructorUsedError;
-  Species get moveLearnMethod => throw _privateConstructorUsedError;
+  NameUrl get moveLearnMethod => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1640,9 +1640,9 @@ abstract class $VersionGroupDetailCopyWith<$Res> {
           VersionGroupDetail value, $Res Function(VersionGroupDetail) then) =
       _$VersionGroupDetailCopyWithImpl<$Res, VersionGroupDetail>;
   @useResult
-  $Res call({int levelLearnedAt, Species moveLearnMethod});
+  $Res call({int levelLearnedAt, NameUrl moveLearnMethod});
 
-  $SpeciesCopyWith<$Res> get moveLearnMethod;
+  $NameUrlCopyWith<$Res> get moveLearnMethod;
 }
 
 /// @nodoc
@@ -1669,14 +1669,14 @@ class _$VersionGroupDetailCopyWithImpl<$Res, $Val extends VersionGroupDetail>
       moveLearnMethod: null == moveLearnMethod
           ? _value.moveLearnMethod
           : moveLearnMethod // ignore: cast_nullable_to_non_nullable
-              as Species,
+              as NameUrl,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SpeciesCopyWith<$Res> get moveLearnMethod {
-    return $SpeciesCopyWith<$Res>(_value.moveLearnMethod, (value) {
+  $NameUrlCopyWith<$Res> get moveLearnMethod {
+    return $NameUrlCopyWith<$Res>(_value.moveLearnMethod, (value) {
       return _then(_value.copyWith(moveLearnMethod: value) as $Val);
     });
   }
@@ -1690,10 +1690,10 @@ abstract class _$$VersionGroupDetailImplCopyWith<$Res>
       __$$VersionGroupDetailImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int levelLearnedAt, Species moveLearnMethod});
+  $Res call({int levelLearnedAt, NameUrl moveLearnMethod});
 
   @override
-  $SpeciesCopyWith<$Res> get moveLearnMethod;
+  $NameUrlCopyWith<$Res> get moveLearnMethod;
 }
 
 /// @nodoc
@@ -1718,14 +1718,14 @@ class __$$VersionGroupDetailImplCopyWithImpl<$Res>
       moveLearnMethod: null == moveLearnMethod
           ? _value.moveLearnMethod
           : moveLearnMethod // ignore: cast_nullable_to_non_nullable
-              as Species,
+              as NameUrl,
     ));
   }
 }
 
 /// @nodoc
 
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$VersionGroupDetailImpl implements _VersionGroupDetail {
   const _$VersionGroupDetailImpl(
       {required this.levelLearnedAt, required this.moveLearnMethod});
@@ -1736,7 +1736,7 @@ class _$VersionGroupDetailImpl implements _VersionGroupDetail {
   @override
   final int levelLearnedAt;
   @override
-  final Species moveLearnMethod;
+  final NameUrl moveLearnMethod;
 
   @override
   String toString() {
@@ -1776,7 +1776,7 @@ class _$VersionGroupDetailImpl implements _VersionGroupDetail {
 abstract class _VersionGroupDetail implements VersionGroupDetail {
   const factory _VersionGroupDetail(
       {required final int levelLearnedAt,
-      required final Species moveLearnMethod}) = _$VersionGroupDetailImpl;
+      required final NameUrl moveLearnMethod}) = _$VersionGroupDetailImpl;
 
   factory _VersionGroupDetail.fromJson(Map<String, dynamic> json) =
       _$VersionGroupDetailImpl.fromJson;
@@ -1784,7 +1784,7 @@ abstract class _VersionGroupDetail implements VersionGroupDetail {
   @override
   int get levelLearnedAt;
   @override
-  Species get moveLearnMethod;
+  NameUrl get moveLearnMethod;
   @override
   @JsonKey(ignore: true)
   _$$VersionGroupDetailImplCopyWith<_$VersionGroupDetailImpl> get copyWith =>
