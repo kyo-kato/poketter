@@ -76,4 +76,14 @@ void main() {
       expect(func(100), 1640000);
     });
   });
+
+  test('exp type by id', () async {
+    expect(ExpType.fromPokemonId(1), ExpType.mediumSlow);
+    expect(ExpType.fromPokemonId(10), ExpType.mediumFast);
+    expect(ExpType.fromPokemonId(35), ExpType.fast);
+    expect(ExpType.fromPokemonId(58), ExpType.slow);
+    expect(ExpType.fromPokemonId(285), ExpType.fluctuating);
+    expect(ExpType.fromPokemonId(290), ExpType.erratic);
+    expect(ExpType.fromPokemonId(9999), ExpType.unknown);
+  });
 }
