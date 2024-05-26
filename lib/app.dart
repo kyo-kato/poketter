@@ -15,7 +15,7 @@ class App extends ConsumerWidget {
     return MaterialApp.router(
       title: 'Poketter',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
         useMaterial3: true,
       ),
       routerConfig: router,

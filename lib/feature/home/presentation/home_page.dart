@@ -20,6 +20,7 @@ class HomePage extends ConsumerWidget {
     });
     return Scaffold(
       appBar: AppBar(
+        title: const PlayerStatus(),
         actions: const [
           if (AppFlavor.isDev) DebugItemMenu(),
         ],
@@ -27,7 +28,6 @@ class HomePage extends ConsumerWidget {
       body: const SafeArea(
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(child: PlayerCard()),
             PartyPokemonsSliverList(),
           ],
         ),

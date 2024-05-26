@@ -62,6 +62,7 @@ class _PokemonCardView extends StatelessWidget {
         borderRadius: BorderRadius.circular(6),
         side: BorderSide(color: borderColor, width: 6),
       ),
+      margin: const EdgeInsets.all(0.5), // デフォルトで 4 のマージンがある
       child: Padding(
         padding: const EdgeInsets.only(right: 6),
         child: Row(
