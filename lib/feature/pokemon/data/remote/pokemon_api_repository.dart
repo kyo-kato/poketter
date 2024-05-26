@@ -47,11 +47,18 @@ class PokemonApiRepository {
 
   PokemonBase _excludeBaseInfo(PokemonBase pokemonBase) {
     // レベルアップで覚える技とタマゴ技のみを取得する
-    final origMoves = pokemonBase.moves.where((move) {
-      return move.versionGroupDetails.any(
-        (value) => ['egg', 'level-up'].contains(value.moveLearnMethod.name),
-      );
-    }).toList();
+    final origMoves = pokemonBase.moves
+        .where((move) {
+          return move.versionGroupDetails.any(
+            (value) => ['egg', 'level-up'].contains(value.moveLearnMethod.name),
+          );
+        })
+        .map(
+          (move) => move
+              // バージョン毎の情報がリストになっているが、最後の１つ(最新を期待)のみ保存する
+              .copyWith(versionGroupDetails: [move.versionGroupDetails.last]),
+        )
+        .toList();
 
     final heldItems = pokemonBase.heldItems
         .map((item) => item.copyWith(versionDetails: null))
