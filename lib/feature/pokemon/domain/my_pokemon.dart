@@ -87,6 +87,7 @@ class MyPokemon with _$MyPokemon {
         uuid: const UuidV4().generate(),
         pokemonId: pokemonId,
         nickName: nickName,
+        currentHp: pokemon.pokemon.stats['hp']?.baseStat ?? 0,
         level: level,
         exp: exp,
         gender: gender,
