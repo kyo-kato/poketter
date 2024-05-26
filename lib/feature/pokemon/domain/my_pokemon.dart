@@ -81,7 +81,7 @@ class MyPokemon with _$MyPokemon {
     int gender = 0,
     List<Move> currentMoves = const [],
     bool isParty = false,
-    Pokemon? pokemon,
+    required Pokemon pokemon,
   }) =>
       MyPokemon(
         uuid: const UuidV4().generate(),
@@ -90,7 +90,7 @@ class MyPokemon with _$MyPokemon {
         level: level,
         exp: exp,
         gender: gender,
-        currentStats: pokemon?.pokemon.stats ?? {},
+        currentStats: pokemon.pokemon.stats,
         currentMoves: currentMoves,
         isParty: isParty,
         createdAt: DateTime.timestamp(),

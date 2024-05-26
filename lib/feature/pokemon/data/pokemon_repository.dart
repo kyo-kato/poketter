@@ -8,7 +8,7 @@ import 'remote/pokemon_api_repository.dart';
 part 'pokemon_repository.g.dart';
 
 @riverpod
-Future<Pokemon?> fetchPokemon(FetchPokemonRef ref, int pokemonId) async {
+Future<Pokemon> fetchPokemon(FetchPokemonRef ref, int pokemonId) async {
   // ローカルから取得
   final local = await ref.read(pokemonDbRepositoryProvider.future);
   final localPokemon = await local.fetchPokemon(pokemonId);
