@@ -31,10 +31,10 @@ class MyPokemonRepository {
     final current = await _fetchFireStoreMyPokemon();
 
     final update = current.copyWith(
-      pokemons: {
+      pokemons: [
         ...current.pokemons,
-        myPokemon.uuid: myPokemon.toWrite(),
-      },
+        myPokemon.toWrite(),
+      ],
     );
     await _myPokemonsDocumentRef()?.set(update);
   }
@@ -51,13 +51,13 @@ class MyPokemonRepository {
 
   /// 保存時に削除したポケモン情報を復元する
   Future<MyPokemons> _fillPokemonInfo(Ref ref, MyPokemons myPokemons) async {
-    final filled = <String, MyPokemon>{};
-    for (final entry in myPokemons.pokemons.entries) {
-      final myPokemon = entry.value;
+    final filled = <MyPokemon>[];
+    final ite = myPokemons.pokemons.iterator;
+    while (ite.moveNext()) {
+      final myPokemon = ite.current;
       final pokemon =
           await ref.read(fetchPokemonProvider(myPokemon.pokemonId).future);
-
-      filled[entry.key] = myPokemon.copyWith(pokemon: pokemon);
+      filled.add(myPokemon.copyWith(pokemon: pokemon));
     }
     return myPokemons.copyWith(pokemons: filled);
   }

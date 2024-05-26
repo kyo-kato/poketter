@@ -22,16 +22,15 @@ Map<String, dynamic> _$$PokemonImplToJson(_$PokemonImpl instance) =>
 
 _$MyPokemonsImpl _$$MyPokemonsImplFromJson(Map<String, dynamic> json) =>
     _$MyPokemonsImpl(
-      pokemons: (json['pokemons'] as Map<String, dynamic>?)?.map(
-            (k, e) =>
-                MapEntry(k, MyPokemon.fromJson(e as Map<String, dynamic>)),
-          ) ??
-          const {},
+      pokemons: (json['pokemons'] as List<dynamic>?)
+              ?.map((e) => MyPokemon.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$MyPokemonsImplToJson(_$MyPokemonsImpl instance) =>
     <String, dynamic>{
-      'pokemons': instance.pokemons.map((k, e) => MapEntry(k, e.toJson())),
+      'pokemons': instance.pokemons.map((e) => e.toJson()).toList(),
     };
 
 _$MyPokemonImpl _$$MyPokemonImplFromJson(Map<String, dynamic> json) =>
@@ -53,6 +52,7 @@ _$MyPokemonImpl _$$MyPokemonImplFromJson(Map<String, dynamic> json) =>
               .toList() ??
           const [],
       isParty: json['is_party'] as bool? ?? false,
+      createdAt: DateTime.parse(json['created_at'] as String),
       pokemon: json['pokemon'] == null
           ? null
           : Pokemon.fromJson(json['pokemon'] as Map<String, dynamic>),
@@ -71,4 +71,5 @@ Map<String, dynamic> _$$MyPokemonImplToJson(_$MyPokemonImpl instance) =>
           instance.currentStats.map((k, e) => MapEntry(k, e.toJson())),
       'current_moves': instance.currentMoves.map((e) => e.toJson()).toList(),
       'is_party': instance.isParty,
+      'created_at': instance.createdAt.toIso8601String(),
     };

@@ -215,7 +215,7 @@ MyPokemons _$MyPokemonsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MyPokemons {
-  Map<String, MyPokemon> get pokemons => throw _privateConstructorUsedError;
+  List<MyPokemon> get pokemons => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -229,7 +229,7 @@ abstract class $MyPokemonsCopyWith<$Res> {
           MyPokemons value, $Res Function(MyPokemons) then) =
       _$MyPokemonsCopyWithImpl<$Res, MyPokemons>;
   @useResult
-  $Res call({Map<String, MyPokemon> pokemons});
+  $Res call({List<MyPokemon> pokemons});
 }
 
 /// @nodoc
@@ -251,7 +251,7 @@ class _$MyPokemonsCopyWithImpl<$Res, $Val extends MyPokemons>
       pokemons: null == pokemons
           ? _value.pokemons
           : pokemons // ignore: cast_nullable_to_non_nullable
-              as Map<String, MyPokemon>,
+              as List<MyPokemon>,
     ) as $Val);
   }
 }
@@ -264,7 +264,7 @@ abstract class _$$MyPokemonsImplCopyWith<$Res>
       __$$MyPokemonsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Map<String, MyPokemon> pokemons});
+  $Res call({List<MyPokemon> pokemons});
 }
 
 /// @nodoc
@@ -284,7 +284,7 @@ class __$$MyPokemonsImplCopyWithImpl<$Res>
       pokemons: null == pokemons
           ? _value._pokemons
           : pokemons // ignore: cast_nullable_to_non_nullable
-              as Map<String, MyPokemon>,
+              as List<MyPokemon>,
     ));
   }
 }
@@ -293,20 +293,20 @@ class __$$MyPokemonsImplCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$MyPokemonsImpl extends _MyPokemons {
-  _$MyPokemonsImpl({final Map<String, MyPokemon> pokemons = const {}})
+  _$MyPokemonsImpl({final List<MyPokemon> pokemons = const []})
       : _pokemons = pokemons,
         super._();
 
   factory _$MyPokemonsImpl.fromJson(Map<String, dynamic> json) =>
       _$$MyPokemonsImplFromJson(json);
 
-  final Map<String, MyPokemon> _pokemons;
+  final List<MyPokemon> _pokemons;
   @override
   @JsonKey()
-  Map<String, MyPokemon> get pokemons {
-    if (_pokemons is EqualUnmodifiableMapView) return _pokemons;
+  List<MyPokemon> get pokemons {
+    if (_pokemons is EqualUnmodifiableListView) return _pokemons;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_pokemons);
+    return EqualUnmodifiableListView(_pokemons);
   }
 
   @override
@@ -342,15 +342,14 @@ class _$MyPokemonsImpl extends _MyPokemons {
 }
 
 abstract class _MyPokemons extends MyPokemons {
-  factory _MyPokemons({final Map<String, MyPokemon> pokemons}) =
-      _$MyPokemonsImpl;
+  factory _MyPokemons({final List<MyPokemon> pokemons}) = _$MyPokemonsImpl;
   _MyPokemons._() : super._();
 
   factory _MyPokemons.fromJson(Map<String, dynamic> json) =
       _$MyPokemonsImpl.fromJson;
 
   @override
-  Map<String, MyPokemon> get pokemons;
+  List<MyPokemon> get pokemons;
   @override
   @JsonKey(ignore: true)
   _$$MyPokemonsImplCopyWith<_$MyPokemonsImpl> get copyWith =>
@@ -376,6 +375,7 @@ mixin _$MyPokemon {
       throw _privateConstructorUsedError;
   List<Move> get currentMoves => throw _privateConstructorUsedError;
   bool get isParty => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false)
   Pokemon? get pokemon => throw _privateConstructorUsedError;
 
@@ -401,6 +401,7 @@ abstract class $MyPokemonCopyWith<$Res> {
       Map<String, PokemonStats> currentStats,
       List<Move> currentMoves,
       bool isParty,
+      DateTime createdAt,
       @JsonKey(includeToJson: false) Pokemon? pokemon});
 
   $PokemonCopyWith<$Res>? get pokemon;
@@ -429,6 +430,7 @@ class _$MyPokemonCopyWithImpl<$Res, $Val extends MyPokemon>
     Object? currentStats = null,
     Object? currentMoves = null,
     Object? isParty = null,
+    Object? createdAt = null,
     Object? pokemon = freezed,
   }) {
     return _then(_value.copyWith(
@@ -472,6 +474,10 @@ class _$MyPokemonCopyWithImpl<$Res, $Val extends MyPokemon>
           ? _value.isParty
           : isParty // ignore: cast_nullable_to_non_nullable
               as bool,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       pokemon: freezed == pokemon
           ? _value.pokemon
           : pokemon // ignore: cast_nullable_to_non_nullable
@@ -511,6 +517,7 @@ abstract class _$$MyPokemonImplCopyWith<$Res>
       Map<String, PokemonStats> currentStats,
       List<Move> currentMoves,
       bool isParty,
+      DateTime createdAt,
       @JsonKey(includeToJson: false) Pokemon? pokemon});
 
   @override
@@ -538,6 +545,7 @@ class __$$MyPokemonImplCopyWithImpl<$Res>
     Object? currentStats = null,
     Object? currentMoves = null,
     Object? isParty = null,
+    Object? createdAt = null,
     Object? pokemon = freezed,
   }) {
     return _then(_$MyPokemonImpl(
@@ -581,6 +589,10 @@ class __$$MyPokemonImplCopyWithImpl<$Res>
           ? _value.isParty
           : isParty // ignore: cast_nullable_to_non_nullable
               as bool,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       pokemon: freezed == pokemon
           ? _value.pokemon
           : pokemon // ignore: cast_nullable_to_non_nullable
@@ -604,6 +616,7 @@ class _$MyPokemonImpl extends _MyPokemon {
       final Map<String, PokemonStats> currentStats = const {},
       final List<Move> currentMoves = const [],
       this.isParty = false,
+      required this.createdAt,
       @JsonKey(includeToJson: false) this.pokemon})
       : _currentStats = currentStats,
         _currentMoves = currentMoves,
@@ -654,12 +667,14 @@ class _$MyPokemonImpl extends _MyPokemon {
   @JsonKey()
   final bool isParty;
   @override
+  final DateTime createdAt;
+  @override
   @JsonKey(includeToJson: false)
   final Pokemon? pokemon;
 
   @override
   String toString() {
-    return 'MyPokemon(uuid: $uuid, pokemonId: $pokemonId, nickName: $nickName, currentHp: $currentHp, level: $level, exp: $exp, gender: $gender, currentStats: $currentStats, currentMoves: $currentMoves, isParty: $isParty, pokemon: $pokemon)';
+    return 'MyPokemon(uuid: $uuid, pokemonId: $pokemonId, nickName: $nickName, currentHp: $currentHp, level: $level, exp: $exp, gender: $gender, currentStats: $currentStats, currentMoves: $currentMoves, isParty: $isParty, createdAt: $createdAt, pokemon: $pokemon)';
   }
 
   @override
@@ -682,6 +697,8 @@ class _$MyPokemonImpl extends _MyPokemon {
             const DeepCollectionEquality()
                 .equals(other._currentMoves, _currentMoves) &&
             (identical(other.isParty, isParty) || other.isParty == isParty) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.pokemon, pokemon) || other.pokemon == pokemon));
   }
 
@@ -699,6 +716,7 @@ class _$MyPokemonImpl extends _MyPokemon {
       const DeepCollectionEquality().hash(_currentStats),
       const DeepCollectionEquality().hash(_currentMoves),
       isParty,
+      createdAt,
       pokemon);
 
   @JsonKey(ignore: true)
@@ -727,6 +745,7 @@ abstract class _MyPokemon extends MyPokemon {
       final Map<String, PokemonStats> currentStats,
       final List<Move> currentMoves,
       final bool isParty,
+      required final DateTime createdAt,
       @JsonKey(includeToJson: false) final Pokemon? pokemon}) = _$MyPokemonImpl;
   const _MyPokemon._() : super._();
 
@@ -755,6 +774,8 @@ abstract class _MyPokemon extends MyPokemon {
   List<Move> get currentMoves;
   @override
   bool get isParty;
+  @override
+  DateTime get createdAt;
   @override
   @JsonKey(includeToJson: false)
   Pokemon? get pokemon;

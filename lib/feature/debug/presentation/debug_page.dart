@@ -78,7 +78,7 @@ class _MyPokemons extends ConsumerWidget {
               shrinkWrap: true,
               itemCount: value.pokemons.length,
               itemBuilder: (context, index) {
-                final pokemon = value.pokemons.values.elementAt(index);
+                final pokemon = value.pokemons[index];
                 return _MyPokemon(pokemon: pokemon);
               },
               separatorBuilder: (context, index) => const Gap(10),

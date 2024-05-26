@@ -23,7 +23,7 @@ class PartyPokemonsSliverList extends ConsumerWidget {
 
 class _MyPokemonSliverList extends StatelessWidget {
   _MyPokemonSliverList({required MyPokemons my}) : myPokemons = my.pokemons;
-  final Map<String, MyPokemon> myPokemons;
+  final List<MyPokemon> myPokemons;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _MyPokemonSliverList extends StatelessWidget {
     return SliverList.builder(
       itemCount: myPokemons.length,
       itemBuilder: (context, index) {
-        final pokemon = myPokemons.values.elementAt(index);
+        final pokemon = myPokemons[index];
         return _PokemonCardView(myPokemon: pokemon);
       },
     );

@@ -38,7 +38,7 @@ class Pokemon with _$Pokemon {
 class MyPokemons with _$MyPokemons {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   factory MyPokemons({
-    @Default({}) Map<String, MyPokemon> pokemons,
+    @Default([]) List<MyPokemon> pokemons,
   }) = _MyPokemons;
 
   factory MyPokemons.fromJson(Map<String, Object?> json) =>
@@ -47,10 +47,9 @@ class MyPokemons with _$MyPokemons {
   const MyPokemons._();
 
   factory MyPokemons.fromFireStoreJson(Map<String, Object?> json) =>
-      _$MyPokemonsFromJson({'pokemons': json});
+      MyPokemons.fromJson(json);
 
-  Map<String, Object?> toFireStoreJson() =>
-      toJson()['pokemons'] as Map<String, Object?>;
+  Map<String, Object?> toFireStoreJson() => toJson();
 }
 
 /// 捕まえたポケモン
@@ -70,6 +69,7 @@ class MyPokemon with _$MyPokemon {
     @Default({}) Map<String, PokemonStats> currentStats,
     @Default([]) List<Move> currentMoves,
     @Default(false) bool isParty,
+    required DateTime createdAt,
     @JsonKey(includeToJson: false) Pokemon? pokemon,
   }) = _MyPokemon;
 
@@ -93,6 +93,7 @@ class MyPokemon with _$MyPokemon {
         currentStats: pokemon?.pokemon.stats ?? {},
         currentMoves: currentMoves,
         isParty: isParty,
+        createdAt: DateTime.timestamp(),
         pokemon: pokemon,
       );
 
